@@ -1,1 +1,1 @@
-Poker
+Texas Hold'em
