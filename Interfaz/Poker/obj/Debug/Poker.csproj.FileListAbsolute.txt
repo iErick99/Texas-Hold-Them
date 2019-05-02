@@ -1,0 +1,71 @@
+C:\Users\alefa\source\repos\Poker\Poker\obj\Debug\Poker.csprojAssemblyReference.cache
+C:\Users\alefa\source\repos\Poker\Poker\obj\Debug\Login.g.cs
+C:\Users\alefa\source\repos\Poker\Poker\obj\Debug\App.g.cs
+C:\Users\alefa\source\repos\Poker\Poker\obj\Debug\Poker_MarkupCompile.cache
+C:\Users\alefa\source\repos\Poker\Poker\obj\Debug\Poker_MarkupCompile.lref
+C:\Users\alefa\source\repos\Poker\Poker\bin\Debug\Poker.exe.config
+C:\Users\alefa\source\repos\Poker\Poker\bin\Debug\Poker.exe
+C:\Users\alefa\source\repos\Poker\Poker\bin\Debug\Poker.pdb
+C:\Users\alefa\source\repos\Poker\Poker\obj\Debug\Login.baml
+C:\Users\alefa\source\repos\Poker\Poker\obj\Debug\Poker.g.resources
+C:\Users\alefa\source\repos\Poker\Poker\obj\Debug\Poker.Properties.Resources.resources
+C:\Users\alefa\source\repos\Poker\Poker\obj\Debug\Poker.csproj.GenerateResource.cache
+C:\Users\alefa\source\repos\Poker\Poker\obj\Debug\Poker.csproj.CoreCompileInputs.cache
+C:\Users\alefa\source\repos\Poker\Poker\obj\Debug\Poker.exe
+C:\Users\alefa\source\repos\Poker\Poker\obj\Debug\Poker.pdb
+C:\Users\alefa\Documents\Visual Studio 2019\Projects\Poker\Poker\bin\Debug\Poker.exe
+C:\Users\alefa\Documents\Visual Studio 2019\Projects\Poker\Poker\bin\Debug\Poker.exe.config
+C:\Users\alefa\Documents\Visual Studio 2019\Projects\Poker\Poker\obj\Debug\Login.g.cs
+C:\Users\alefa\Documents\Visual Studio 2019\Projects\Poker\Poker\obj\Debug\Mesa.g.cs
+C:\Users\alefa\Documents\Visual Studio 2019\Projects\Poker\Poker\obj\Debug\App.g.cs
+C:\Users\alefa\Documents\Visual Studio 2019\Projects\Poker\Poker\obj\Debug\Poker_MarkupCompile.cache
+C:\Users\alefa\Documents\Visual Studio 2019\Projects\Poker\Poker\obj\Debug\Poker_MarkupCompile.lref
+C:\Users\alefa\Documents\Visual Studio 2019\Projects\Poker\Poker\obj\Debug\Login.baml
+C:\Users\alefa\Documents\Visual Studio 2019\Projects\Poker\Poker\obj\Debug\Mesa.baml
+C:\Users\alefa\Documents\Visual Studio 2019\Projects\Poker\Poker\obj\Debug\Poker.g.resources
+C:\Users\alefa\Documents\Visual Studio 2019\Projects\Poker\Poker\obj\Debug\Poker.Properties.Resources.resources
+C:\Users\alefa\Documents\Visual Studio 2019\Projects\Poker\Poker\obj\Debug\Poker.csproj.GenerateResource.cache
+C:\Users\alefa\Documents\Visual Studio 2019\Projects\Poker\Poker\obj\Debug\Poker.csproj.CoreCompileInputs.cache
+C:\Users\alefa\Documents\Visual Studio 2019\Projects\Poker\Poker\obj\Debug\Poker.exe
+C:\Users\alefa\Documents\Visual Studio 2019\Projects\Poker\Poker\obj\Debug\Poker.pdb
+C:\Users\alefa\Documents\Visual Studio 2019\Projects\Poker\Poker\obj\Debug\Poker.csprojAssemblyReference.cache
+C:\Users\alefa\Documents\Visual Studio 2019\Projects\Poker\Poker\bin\Debug\Poker.pdb
+C:\Users\alefa\Documents\Visual Studio 2019\Projects\Poker\Poker\bin\Debug\MaterialDesignColors.dll
+C:\Users\alefa\Documents\Visual Studio 2019\Projects\Poker\Poker\bin\Debug\MaterialDesignThemes.Wpf.dll
+C:\Users\alefa\Documents\Visual Studio 2019\Projects\Poker\Poker\bin\Debug\MaterialDesignColors.pdb
+C:\Users\alefa\Documents\Visual Studio 2019\Projects\Poker\Poker\bin\Debug\MaterialDesignThemes.Wpf.pdb
+C:\Users\alefa\Documents\Visual Studio 2019\Projects\Poker\Poker\bin\Debug\MaterialDesignThemes.Wpf.xml
+C:\Users\alefa\Documents\Visual Studio 2019\Projects\Poker\Poker\obj\Debug\App.baml
+C:\Users\alefa\Documents\Visual Studio 2019\Projects\Poker\Poker\obj\Debug\Poker.csproj.CopyComplete
+C:\Users\alefa\Documents\Visual Studio 2019\Projects\Poker\Poker\obj\Debug\Cuenta.g.cs
+C:\Users\alefa\Documents\Visual Studio 2019\Projects\Poker\Poker\obj\Debug\Cuenta.baml
+C:\Users\alefa\Documents\Visual Studio 2019\Projects\Poker\Poker\bin\Debug\Newtonsoft.Json.dll
+C:\Users\alefa\Documents\Visual Studio 2019\Projects\Poker\Poker\bin\Debug\Newtonsoft.Json.xml
+C:\Users\alefa\Documents\Visual Studio 2019\Projects\Texas-Hold-Them\Interfaz\Poker\bin\Debug\Poker.exe.config
+C:\Users\alefa\Documents\Visual Studio 2019\Projects\Texas-Hold-Them\Interfaz\Poker\bin\Debug\Poker.exe
+C:\Users\alefa\Documents\Visual Studio 2019\Projects\Texas-Hold-Them\Interfaz\Poker\bin\Debug\Poker.pdb
+C:\Users\alefa\Documents\Visual Studio 2019\Projects\Texas-Hold-Them\Interfaz\Poker\bin\Debug\MaterialDesignColors.dll
+C:\Users\alefa\Documents\Visual Studio 2019\Projects\Texas-Hold-Them\Interfaz\Poker\bin\Debug\MaterialDesignThemes.Wpf.dll
+C:\Users\alefa\Documents\Visual Studio 2019\Projects\Texas-Hold-Them\Interfaz\Poker\bin\Debug\Newtonsoft.Json.dll
+C:\Users\alefa\Documents\Visual Studio 2019\Projects\Texas-Hold-Them\Interfaz\Poker\bin\Debug\MaterialDesignColors.pdb
+C:\Users\alefa\Documents\Visual Studio 2019\Projects\Texas-Hold-Them\Interfaz\Poker\bin\Debug\MaterialDesignThemes.Wpf.pdb
+C:\Users\alefa\Documents\Visual Studio 2019\Projects\Texas-Hold-Them\Interfaz\Poker\bin\Debug\MaterialDesignThemes.Wpf.xml
+C:\Users\alefa\Documents\Visual Studio 2019\Projects\Texas-Hold-Them\Interfaz\Poker\bin\Debug\Newtonsoft.Json.xml
+C:\Users\alefa\Documents\Visual Studio 2019\Projects\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Poker.csprojAssemblyReference.cache
+C:\Users\alefa\Documents\Visual Studio 2019\Projects\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Cuenta.g.cs
+C:\Users\alefa\Documents\Visual Studio 2019\Projects\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Login.g.cs
+C:\Users\alefa\Documents\Visual Studio 2019\Projects\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Mesa.g.cs
+C:\Users\alefa\Documents\Visual Studio 2019\Projects\Texas-Hold-Them\Interfaz\Poker\obj\Debug\App.g.cs
+C:\Users\alefa\Documents\Visual Studio 2019\Projects\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Poker_MarkupCompile.cache
+C:\Users\alefa\Documents\Visual Studio 2019\Projects\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Poker_MarkupCompile.lref
+C:\Users\alefa\Documents\Visual Studio 2019\Projects\Texas-Hold-Them\Interfaz\Poker\obj\Debug\App.baml
+C:\Users\alefa\Documents\Visual Studio 2019\Projects\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Cuenta.baml
+C:\Users\alefa\Documents\Visual Studio 2019\Projects\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Login.baml
+C:\Users\alefa\Documents\Visual Studio 2019\Projects\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Mesa.baml
+C:\Users\alefa\Documents\Visual Studio 2019\Projects\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Poker.g.resources
+C:\Users\alefa\Documents\Visual Studio 2019\Projects\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Poker.Properties.Resources.resources
+C:\Users\alefa\Documents\Visual Studio 2019\Projects\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Poker.csproj.GenerateResource.cache
+C:\Users\alefa\Documents\Visual Studio 2019\Projects\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Poker.csproj.CoreCompileInputs.cache
+C:\Users\alefa\Documents\Visual Studio 2019\Projects\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Poker.csproj.CopyComplete
+C:\Users\alefa\Documents\Visual Studio 2019\Projects\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Poker.exe
+C:\Users\alefa\Documents\Visual Studio 2019\Projects\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Poker.pdb
