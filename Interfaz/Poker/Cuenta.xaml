@@ -11,7 +11,7 @@
         TextElement.FontSize="14"
         FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        Icon="C:\Users\alefa\Documents\Visual Studio 2019\Projects\Poker\Poker\images\logo.png"
+        Icon="/Images/logo.png"
         Title="Login" Height="470" Width="425" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True">
     <Grid>
         <Grid.RowDefinitions>
