@@ -58,7 +58,7 @@
                 
                 <Button Content="Crear" Width="80" HorizontalAlignment="Right" Margin="0 20 70 0" Background="#FF950808" BorderBrush="#FF950808"/>
                 <StackPanel Orientation="Horizontal">
-                    <Button Content="Crear" Width="80" Background="#FF950808" BorderBrush="#FF950808"/>
+                    <Button Content="Escoger logo" Width="114" Background="#FF950808" BorderBrush="#FF950808" Click="Button_Click"/>
                 </StackPanel>
             </StackPanel>
         </Grid>

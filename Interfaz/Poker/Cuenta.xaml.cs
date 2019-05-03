@@ -28,5 +28,12 @@ namespace Poker {
         private void Btn_cerrar_Click(object sender, RoutedEventArgs e) {
             Application.Current.Shutdown();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e) {
+            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+            dlg.DefaultExt = ".jpg";
+            dlg.Filter = "JPG Files (*.jpg)|*.jpg|JPEG Files (*.jpeg)|*.jpeg| PNG Files(*.png)|*.png";
+            dlg.ShowDialog();
+        }
     }
 }

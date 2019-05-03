@@ -165,5 +165,12 @@
   <ItemGroup>
     <Resource Include="Images\fazio.jpg" />
   </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Sounds\alert-5.wav" />
+    <Content Include="Sounds\bet-4.wav" />
+    <Content Include="Sounds\deal-4.wav" />
+    <Content Include="Sounds\fold.wav" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

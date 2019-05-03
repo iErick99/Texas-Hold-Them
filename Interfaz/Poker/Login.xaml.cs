@@ -18,6 +18,7 @@ namespace Poker {
 
         Cuenta cuenta;
         Mesa mesa;
+
         public Login() {
             InitializeComponent();
             cuenta = null;

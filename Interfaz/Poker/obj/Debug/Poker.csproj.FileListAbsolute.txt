@@ -69,3 +69,4 @@ C:\Users\alefa\Documents\Visual Studio 2019\Projects\Texas-Hold-Them\Interfaz\Po
 C:\Users\alefa\Documents\Visual Studio 2019\Projects\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Poker.csproj.CopyComplete
 C:\Users\alefa\Documents\Visual Studio 2019\Projects\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Poker.exe
 C:\Users\alefa\Documents\Visual Studio 2019\Projects\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Poker.pdb
+C:\Users\alefa\Documents\Visual Studio 2019\Projects\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Poker_Content.g.cs

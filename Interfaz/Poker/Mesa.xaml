@@ -14,6 +14,7 @@
         Icon="/Images/logo.png"
         Title="Poker"
         WindowStartupLocation="CenterScreen" WindowStyle="None" MinWidth="850" MinHeight="563" Height="563" Width="850" ResizeMode="NoResize">
+
     <Grid>
         <Grid.Background>
             <ImageBrush ImageSource="/Images/mesa.jpg"/>
@@ -23,9 +24,6 @@
             <RowDefinition Height="2.3*"/>
             <RowDefinition Height="0.7*"/>
         </Grid.RowDefinitions>
-
-
-
 
         <Border Grid.Row="0" Background="Transparent" MouseLeftButtonDown="Brd_MouseLeftButtonDown">
             <Grid>
@@ -63,8 +61,8 @@
 
             <StackPanel Grid.Column="0" Grid.Row="0" Orientation="Horizontal">
                 <Button x:Name="Btn_fold" Content="Fold"  Width="120" Height="65" Foreground="White" BorderBrush="#FFAA2424" Background="#FFAA2424" FontSize="18" FontWeight="Bold" Margin="10,0,0,0" Click="Btn_fold_Click"/>
-                <Button x:Name="Btn_pass" Content="Pass"  Width="120" Height="65" Foreground="White" BorderBrush="#FFAA2424" Background="#FFAA2424" FontSize="18" FontWeight="Bold" Margin="10,0,0,0"/>
-                <Button x:Name="Btn_raise" Content="Raise" Width="120" Height="65" Foreground="White" BorderBrush="#FFAA2424" Background="#FFAA2424" FontSize="18" FontWeight="Bold" Margin="10,0,0,0"/>
+                <Button x:Name="Btn_pass" Content="Pass"  Width="120" Height="65" Foreground="White" BorderBrush="#FFAA2424" Background="#FFAA2424" FontSize="18" FontWeight="Bold" Margin="10,0,0,0" Click="Btn_pass_Click"/>
+                <Button x:Name="Btn_raise" Content="Raise" Width="120" Height="65" Foreground="White" BorderBrush="#FFAA2424" Background="#FFAA2424" FontSize="18" FontWeight="Bold" Margin="10,0,0,0" Click="Btn_raise_Click"/>
             </StackPanel>
 
             <StackPanel Grid.Column="1" Grid.Row="0" Orientation="Horizontal">
@@ -80,25 +78,25 @@
 
         </Grid>
 
-        <Rectangle Margin="740,356,60,20" Stroke="Black">
+        <Rectangle x:Name="Rtg_carta1_jugador4" Margin="740,356,60,20" Stroke="Black">
             <Rectangle.Fill>
                 <ImageBrush ImageSource="/Images/carta volteada.jpg"/>
             </Rectangle.Fill>
         </Rectangle>
 
-        <Rectangle Margin="792,356,8,20" Stroke="Black">
+        <Rectangle x:Name="Rtg_carta2_jugador4" Margin="792,356,8,20" Stroke="Black">
             <Rectangle.Fill>
                 <ImageBrush ImageSource="/Images/carta volteada.jpg"/>
             </Rectangle.Fill>
         </Rectangle>
 
-        <Rectangle Margin="740,130,60,246" Stroke="Black">
+        <Rectangle x:Name="Rtg_carta1_jugador2" Margin="740,130,60,246" Stroke="Black">
             <Rectangle.Fill>
                 <ImageBrush ImageSource="/Images/carta volteada.jpg"/>
             </Rectangle.Fill>
         </Rectangle>
 
-        <Rectangle Margin="792,130,8,246" Stroke="Black">
+        <Rectangle x:Name="Rtg_carta2_jugador2" Margin="792,130,8,246" Stroke="Black">
             <Rectangle.Fill>
                 <ImageBrush ImageSource="/Images/carta volteada.jpg"/>
             </Rectangle.Fill>
@@ -179,19 +177,18 @@
                 <ImageBrush ImageSource="/Images/j treboles.png"/>
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle Margin="8,130,792,246" Stroke="Black">
+        <Rectangle x:Name="Rtg_carta1_jugador1" Margin="8,130,792,246" Stroke="Black">
             <Rectangle.Fill>
                 <ImageBrush ImageSource="Images/carta volteada.jpg"/>
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle Margin="60,130,740,246" Stroke="Black">
+        <Rectangle x:Name="Rtg_carta2_jugador1" Margin="60,130,740,246" Stroke="Black">
             <Rectangle.Fill>
                 <ImageBrush ImageSource="Images/carta volteada.jpg"/>
             </Rectangle.Fill>
         </Rectangle>
         <TextBlock TextWrapping="Wrap" Text="Bote: 250" Width="146" FontSize="18" Margin="381,214,323,197" Foreground="#DDFFFFFF" FontWeight="Bold"/>
-
-
-
+        <ProgressBar x:Name="Pgb_tiempo" Style="{x:Null}" Value="15" Height="Auto" Margin="518,15,140,103" Maximum="15" SmallChange="1" Background="Transparent" BorderBrush="Black" Foreground="Red" BorderThickness="1" Grid.Row="1" ValueChanged="Pgb_tiempo_ValueChanged"/>
+        <Label Content="Tiempo:" HorizontalAlignment="Left" Margin="436,6,0,0" VerticalAlignment="Top" Width="81" Grid.Row="1" FontSize="18" FontWeight="Bold" Foreground="#DDFFFFFF"/>
     </Grid>
 </Window>
