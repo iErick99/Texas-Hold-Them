@@ -18,6 +18,7 @@ namespace Poker {
 
         Cuenta cuenta;
         Mesa mesa;
+        Cliente cliente;
 
         public Login() {
             InitializeComponent();
@@ -42,28 +43,45 @@ namespace Poker {
             cuenta.Show();
         }
 
-        private void Psw_contrasena_KeyUp(object sender, KeyEventArgs e) {
-            if (e.Key == System.Windows.Input.Key.Enter) {
-                if (this.psw_contrasena.Password.Equals("001")) {
-                    mesa = new Mesa();
-                    MessageBox.Show("Inicio Correctamente", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
-                    this.Hide();
-                    mesa.Show();
-                }
+        //private void Psw_contrasena_KeyUp(object sender, KeyEventArgs e) {
+        //    if (e.Key == System.Windows.Input.Key.Enter) {
+        //        if (this.psw_contrasena.Password.Equals("001")) {
+        //            mesa = new Mesa();
+        //            MessageBox.Show("Inicio Correctamente", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+        //            this.Hide();
+        //            mesa.Show();
+        //        }
 
-                else {
-                    MessageBox.Show("Inicio incorrectamente", "Info", MessageBoxButton.OK, MessageBoxImage.Error);
-                    this.txt_usuario.Text = "";
-                    this.psw_contrasena.Password = "";
-                    this.txt_usuario.Focus();
-                }
-            }
-        }
+        //        else {
+        //            MessageBox.Show("Inicio incorrectamente", "Info", MessageBoxButton.OK, MessageBoxImage.Error);
+        //            this.txt_usuario.Text = "";
+        //            this.psw_contrasena.Password = "";
+        //            this.txt_usuario.Focus();
+        //        }
+        //    }
+        //}
 
         private void Btn_iniciar_Click(object sender, RoutedEventArgs e) {
             mesa = new Mesa();
-            this.Hide();
-            mesa.Show();
+            try {
+                cliente = new Cliente(this.txt_ip.Text, Int32.Parse(this.txt_puerto.Text));
+                cliente.conectar();
+                this.Hide();
+                mesa.Show();
+            }
+
+            catch (Exception exc) {
+                MessageBox.Show(exc.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void Window_KeyUp(object sender, KeyEventArgs e) {
+            if (e.Key == Key.Enter) {
+                mesa = new Mesa();
+                MessageBox.Show("Inicio Correctamente", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+                this.Hide();
+                mesa.Show();
+            }
         }
     }
 }

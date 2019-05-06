@@ -12,7 +12,7 @@
         FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         Icon="/Images/logo.png"
-        Title="Login" Height="470" Width="425" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True" ResizeMode="NoResize">
+        Title="Login" Height="470" Width="425" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True" ResizeMode="NoResize" KeyUp="Window_KeyUp">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
@@ -48,12 +48,14 @@
 
                 <StackPanel Orientation="Horizontal" Margin="0 40 0 0">
                     <materialDesign:PackIcon Kind="Key" Foreground="{Binding ElementName=psw_contrasena}" VerticalAlignment="Bottom" Margin="0 4"/>
-                    <PasswordBox x:Name="psw_contrasena" Width="300" materialDesign:HintAssist.Hint="Contraseña" materialDesign:HintAssist.IsFloating="True" CaretBrush="#FF950808" KeyUp="Psw_contrasena_KeyUp"/>
+                    <PasswordBox x:Name="psw_contrasena" Width="300" materialDesign:HintAssist.Hint="Contraseña" materialDesign:HintAssist.IsFloating="True" CaretBrush="#FF950808"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" Margin="0 40 0 0">
-                    <materialDesign:PackIcon Kind="IpNetwork" Foreground="{Binding ElementName=psw_contrasena}" VerticalAlignment="Bottom" Margin="0 4"/>
-                    <TextBox x:Name="txt_ip" Width="300" materialDesign:HintAssist.Hint="IP Servidor" materialDesign:HintAssist.IsFloating="True" CaretBrush="#FF950808" KeyUp="Psw_contrasena_KeyUp"/>
+                    <materialDesign:PackIcon Kind="IpNetwork" Foreground="{Binding ElementName=txt_ip}" VerticalAlignment="Bottom" Margin="0 4"/>
+                    <TextBox x:Name="txt_ip" Width="150" materialDesign:HintAssist.Hint="IP Servidor" materialDesign:HintAssist.IsFloating="True" CaretBrush="#FF950808" />
+                    <materialDesign:PackIcon Kind="SerialPort" Foreground="{Binding ElementName=txt_puerto}" VerticalAlignment="Bottom" Margin="5,4,0,4"/>
+                    <TextBox x:Name="txt_puerto" Width="129" materialDesign:HintAssist.Hint="Puerto" materialDesign:HintAssist.IsFloating="True" CaretBrush="#FF950808" />
                 </StackPanel>
 
                 <Button x:Name="Btn_iniciar" Content="Iniciar" Width="80" HorizontalAlignment="Right" Margin="0 20 70 0" Background="#FF950808" BorderBrush="#FF950808" Click="Btn_iniciar_Click"/>

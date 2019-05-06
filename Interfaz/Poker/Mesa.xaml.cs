@@ -19,56 +19,43 @@ using System.Windows.Media.Animation;
 namespace Poker {
     public partial class Mesa : Window {
 
+        enum Cartas {
+            c = 1,
+            d = 2,
+            h = 3,
+            s = 4
+        }
+
         private bool fuera;
-        private SoundPlayer player;
+        private SoundPlayer Sonido;
         private DispatcherTimer Timer;
+        private bool ancho;
 
         public Mesa() {
             InitializeComponent();
             this.fuera = false;
-            player = new SoundPlayer();
+            Sonido = new SoundPlayer();
             Timer = new DispatcherTimer();
             Timer.Tick += new EventHandler(Timer_Tick);
             Timer.Interval = TimeSpan.FromSeconds(1);
             Timer.Start();
+            ancho = false;
+            
         }
 
-        private void Repartir() {
-            this.Rtg_carta1_jugador1.Visibility = Visibility.Hidden;
-            this.Rtg_carta2_jugador1.Visibility = Visibility.Hidden;
+        private void EscogerCarta() {
+            Random numero = new Random();
+            MessageBox.Show(numero.Next(1, 5) + "");
 
-            this.Rtg_carta1_jugador2.Visibility = Visibility.Hidden;
-            this.Rtg_carta2_jugador2.Visibility = Visibility.Hidden;
+            MessageBox.Show(numero.Next(1, 14) + "");
 
-            this.Rtg_carta1_jugador3.Visibility = Visibility.Hidden;
-            this.Rtg_carta2_jugador3.Visibility = Visibility.Hidden;
 
-            this.Rtg_carta1_jugador4.Visibility = Visibility.Hidden;
-            this.Rtg_carta2_jugador4.Visibility = Visibility.Hidden;
 
-            Esperar(2000);
-            this.Rtg_carta1_jugador1.Visibility = Visibility.Visible;
+            BitmapImage b = new BitmapImage();
+            b.BeginInit();
+            b.UriSource = new Uri("/Images/c" + numero.Next(1, 14) + ".png", UriKind.Relative);
+            b.EndInit();
 
-            Esperar(2000);
-            this.Rtg_carta1_jugador2.Visibility = Visibility.Visible;
-
-            Esperar(2000);
-            this.Rtg_carta1_jugador3.Visibility = Visibility.Visible;
-
-            Esperar(2000);
-            this.Rtg_carta1_jugador4.Visibility = Visibility.Visible;
-
-            Esperar(2000);
-            this.Rtg_carta2_jugador1.Visibility = Visibility.Visible;
-
-            Esperar(2000);
-            this.Rtg_carta2_jugador2.Visibility = Visibility.Visible;
-
-            Esperar(2000);
-            this.Rtg_carta2_jugador3.Visibility = Visibility.Visible;
-
-            Esperar(2000);
-            this.Rtg_carta2_jugador4.Visibility = Visibility.Visible;
         }
 
         private void Btn_cerrar_Click(object sender, RoutedEventArgs e) {
@@ -101,27 +88,28 @@ namespace Poker {
 
         private void Btn_fold_Click(object sender, RoutedEventArgs e) {
             if (!this.fuera) {
-                this.Rtg_carta1_jugador3.Visibility = Visibility.Hidden;
-                this.Rtg_carta2_jugador3.Visibility = Visibility.Hidden;
-                player.SoundLocation = "C:\\Users\\alefa\\Documents\\Visual Studio 2019\\Projects\\Texas-Hold-Them\\Interfaz\\Poker\\Sounds\\fold.wav";
-                player.Play();
+                this.Img_carta1_jugador3.Visibility = Visibility.Hidden;
+                this.Img_carta2_jugador3.Visibility = Visibility.Hidden;
+                Sonido.SoundLocation = "../../Sounds/fold.wav";
+                Sonido.Play();
                 this.fuera = true;
             }
         }
 
         private void Elp_jugador3_MouseEnter(object sender, MouseEventArgs e) {
+            
             if (this.fuera) {
-                this.Rtg_carta1_jugador3.Opacity = 0.60;
-                this.Rtg_carta2_jugador3.Opacity = 0.60;
-                this.Rtg_carta1_jugador3.Visibility = Visibility.Visible;
-                this.Rtg_carta2_jugador3.Visibility = Visibility.Visible;
+                this.Img_carta1_jugador3.Opacity = 0.60;
+                this.Img_carta2_jugador3.Opacity = 0.60;
+                this.Img_carta1_jugador3.Visibility = Visibility.Visible;
+                this.Img_carta2_jugador3.Visibility = Visibility.Visible;
             }
         }
 
         private void Elp_jugador3_MouseLeave(object sender, MouseEventArgs e) {
             if (this.fuera) {
-                this.Rtg_carta1_jugador3.Visibility = Visibility.Hidden;
-                this.Rtg_carta2_jugador3.Visibility = Visibility.Hidden;
+                this.Img_carta1_jugador3.Visibility = Visibility.Hidden;
+                this.Img_carta2_jugador3.Visibility = Visibility.Hidden;
             }
         }
 
@@ -133,29 +121,44 @@ namespace Poker {
             this.Elp_jugador3_MouseLeave(sender, e);
         }
 
-        private async void Esperar(int ms) {
-            await Task.Delay(ms);
-        }
-
         private void Timer_Tick(object sender, EventArgs e) {
-            if (this.Pgb_tiempo.Value > 0) {
+            if (this.Pgb_tiempo.Value > 0 && !fuera) {
                 this.Pgb_tiempo.Value -= 1;
+
+                if (!ancho) {
+                    this.Elp_jugador3.StrokeThickness = 5;
+                    ancho = true;
+                }
+
+                else {
+                    this.Elp_jugador3.StrokeThickness = 1;
+                    ancho = false;
+                }
+            }
+
+            else {
+                this.Elp_jugador3.StrokeThickness = 1;
+                ancho = false;
+                this.Pgb_tiempo.Value = 15;
             }
         }
 
         private void Btn_raise_Click(object sender, RoutedEventArgs e) {
-            player.SoundLocation = "C:\\Users\\alefa\\Documents\\Visual Studio 2019\\Projects\\Texas-Hold-Them\\Interfaz\\Poker\\Sounds\\bet-4.wav";
-            player.Play();
+            Sonido.SoundLocation = "../../Sounds/bet-4.wav";
+            Sonido.Play();
+            this.Lbl_apuesta_jugador3.Content = lbl_apuesta.Content;
+            this.sld_apuesta.Value = 0;
+            fuera = true;
         }
 
         private void Btn_pass_Click(object sender, RoutedEventArgs e) {
-            
+            this.EscogerCarta();
         }
 
         private void Pgb_tiempo_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) {
             if (this.Pgb_tiempo.Value == 5) {
-                player.SoundLocation = "C:\\Users\\alefa\\Documents\\Visual Studio 2019\\Projects\\Texas-Hold-Them\\Interfaz\\Poker\\Sounds\\alert-5.wav";
-                player.Play();
+                Sonido.SoundLocation = "../../Sounds/alert-5.wav";
+                Sonido.Play();
             }
 
             else if (this.Pgb_tiempo.Value == 0) {

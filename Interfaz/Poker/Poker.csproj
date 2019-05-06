@@ -79,6 +79,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Cliente.cs" />
     <Page Include="Cuenta.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -167,6 +168,13 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Resource Include="Images\c1.png" />
+    <Resource Include="Images\test.png" />
+    <Resource Include="Images\carta volteada_opt.jpg" />
+    <Resource Include="Images\lewa.jpg" />
+    <Resource Include="Images\c11.png" />
+    <Resource Include="Images\c11 %281%29.png" />
+    <Resource Include="Images\h4.png" />
     <Content Include="Sounds\alert-5.wav" />
     <Content Include="Sounds\bet-4.wav" />
     <Content Include="Sounds\deal-4.wav" />
