@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -18,7 +19,7 @@ namespace Poker {
             this.puerto = puerto;
             this.cliente = new TcpClient();
 
-            //Console.Write("Enter the string to be transmitted : ");
+            //Console.Write("Enter the string to be transmitted: ");
 
             //String str = Console.ReadLine();
             //Stream stm = cliente.GetStream();

@@ -12,7 +12,7 @@
         FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         Icon="/Images/logo.png"
-        Title="Login" Height="470" Width="425" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True">
+        Title="Login" Height="420" Width="425" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
@@ -55,11 +55,8 @@
                     <materialDesign:PackIcon Kind="Key" Foreground="{Binding ElementName=psw_contrasena}" VerticalAlignment="Bottom" Margin="0 4"/>
                     <PasswordBox x:Name="psw_confirmarContrasena" Width="300" materialDesign:HintAssist.Hint="Confirmar contraseña" materialDesign:HintAssist.IsFloating="True" CaretBrush="#FF950808"/>
                 </StackPanel>
-                
-                <Button Content="Crear" Width="80" HorizontalAlignment="Right" Margin="0 20 70 0" Background="#FF950808" BorderBrush="#FF950808"/>
-                <StackPanel Orientation="Horizontal">
-                    <Button Content="Escoger logo" Width="114" Background="#FF950808" BorderBrush="#FF950808" Click="Button_Click"/>
-                </StackPanel>
+
+                <Button x:Name="Btn_crear" Content="Crear" Width="80" HorizontalAlignment="Right" Margin="0 20 70 0" Background="#FF950808" BorderBrush="#FF950808" Click="Btn_crear_Click"/>
             </StackPanel>
         </Grid>
     </Grid>

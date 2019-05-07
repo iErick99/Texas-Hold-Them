@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,11 +21,13 @@ namespace Poker {
         Cuenta cuenta;
         Mesa mesa;
         Cliente cliente;
+        dynamic jugador;
 
         public Login() {
             InitializeComponent();
             cuenta = null;
             mesa = null;
+            jugador = new ExpandoObject();
         }
 
         private void Brd_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) {
@@ -62,21 +66,26 @@ namespace Poker {
         //}
 
         private void Btn_iniciar_Click(object sender, RoutedEventArgs e) {
-            mesa = new Mesa();
-            try {
-                cliente = new Cliente(this.txt_ip.Text, Int32.Parse(this.txt_puerto.Text));
-                cliente.conectar();
-                this.Hide();
-                mesa.Show();
-            }
+            jugador.method = "login";
+            jugador.usuario = this.txt_usuario.Text;
+            jugador.password = this.psw_contrasena.Password;
 
-            catch (Exception exc) {
-                MessageBox.Show(exc.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+            string result = JsonConvert.SerializeObject(jugador);
+
+            mesa = new Mesa();
+            MessageBox.Show("Inicio Correctamente", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+            this.Hide();
+            mesa.Show();  
         }
 
         private void Window_KeyUp(object sender, KeyEventArgs e) {
             if (e.Key == Key.Enter) {
+                jugador.method = "login";
+                jugador.usuario = this.txt_usuario.Text;
+                jugador.password = this.psw_contrasena.Password;
+
+                string result = JsonConvert.SerializeObject(jugador);
+
                 mesa = new Mesa();
                 MessageBox.Show("Inicio Correctamente", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
                 this.Hide();
