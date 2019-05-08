@@ -29,6 +29,7 @@ namespace Client
             Console.WriteLine("Connection established!");
         }
 
+        // Client request sender method. It returns the server's response as a string (JSON format)
         public string SendRequest(string request)
         {
             NetworkStream dataStream;

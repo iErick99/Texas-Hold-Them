@@ -87,6 +87,7 @@ namespace Server
 
                     var deserializedRequest = JsonConvert.DeserializeObject<dynamic>(request);
 
+                    // TODO: Definir mas metodos del servidor
                     switch ((string)deserializedRequest.method)
                     {
                         case "login":
