@@ -19,27 +19,20 @@ using System.Windows.Media.Animation;
 namespace Poker {
     public partial class Mesa : Window {
 
-        enum Cartas {
-            c = 1,
-            d = 2,
-            h = 3,
-            s = 4
-        }
-
-        private bool fuera;
+        private bool Fuera;
         private SoundPlayer Sonido;
         private DispatcherTimer Timer;
-        private bool ancho;
+        private bool Ancho;
 
         public Mesa() {
             InitializeComponent();
-            this.fuera = false;
+            this.Fuera = false;
             Sonido = new SoundPlayer();
             Timer = new DispatcherTimer();
             Timer.Tick += new EventHandler(Timer_Tick);
             Timer.Interval = TimeSpan.FromSeconds(1);
             Timer.Start();
-            ancho = false;
+            Ancho = false;
             
         }
 
@@ -71,34 +64,34 @@ namespace Poker {
         }
 
         private void Sld_apuesta_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) {
-            this.lbl_apuesta.Content = (int)this.sld_apuesta.Value;
+            this.Lbl_apuesta.Content = (int)this.Sld_apuesta.Value;
 
-            if (this.sld_apuesta.Value == 1000) {
-                this.lbl_apuesta.Content = "All in";
+            if (this.Sld_apuesta.Value == 1000) {
+                this.Lbl_apuesta.Content = "All in";
             }
         }
 
         private void Btn_restar_Click(object sender, RoutedEventArgs e) {
-            this.sld_apuesta.Value -= 1;
+            this.Sld_apuesta.Value -= 1;
         }
 
         private void Btn_sumar_Click(object sender, RoutedEventArgs e) {
-            this.sld_apuesta.Value += 1;
+            this.Sld_apuesta.Value += 1;
         }
 
         private void Btn_fold_Click(object sender, RoutedEventArgs e) {
-            if (!this.fuera) {
+            if (!this.Fuera) {
                 this.Img_carta1_jugador3.Visibility = Visibility.Hidden;
                 this.Img_carta2_jugador3.Visibility = Visibility.Hidden;
                 Sonido.SoundLocation = "../../Sounds/fold.wav";
                 Sonido.Play();
-                this.fuera = true;
+                this.Fuera = true;
             }
         }
 
         private void Elp_jugador3_MouseEnter(object sender, MouseEventArgs e) {
             
-            if (this.fuera) {
+            if (this.Fuera) {
                 this.Img_carta1_jugador3.Opacity = 0.60;
                 this.Img_carta2_jugador3.Opacity = 0.60;
                 this.Img_carta1_jugador3.Visibility = Visibility.Visible;
@@ -107,7 +100,7 @@ namespace Poker {
         }
 
         private void Elp_jugador3_MouseLeave(object sender, MouseEventArgs e) {
-            if (this.fuera) {
+            if (this.Fuera) {
                 this.Img_carta1_jugador3.Visibility = Visibility.Hidden;
                 this.Img_carta2_jugador3.Visibility = Visibility.Hidden;
             }
@@ -122,23 +115,23 @@ namespace Poker {
         }
 
         private void Timer_Tick(object sender, EventArgs e) {
-            if (this.Pgb_tiempo.Value > 0 && !fuera) {
+            if (this.Pgb_tiempo.Value > 0 && !Fuera) {
                 this.Pgb_tiempo.Value -= 1;
 
-                if (!ancho) {
+                if (!Ancho) {
                     this.Elp_jugador3.StrokeThickness = 5;
-                    ancho = true;
+                    Ancho = true;
                 }
 
                 else {
                     this.Elp_jugador3.StrokeThickness = 1;
-                    ancho = false;
+                    Ancho = false;
                 }
             }
 
             else {
                 this.Elp_jugador3.StrokeThickness = 1;
-                ancho = false;
+                Ancho = false;
                 this.Pgb_tiempo.Value = 15;
             }
         }
@@ -146,9 +139,10 @@ namespace Poker {
         private void Btn_raise_Click(object sender, RoutedEventArgs e) {
             Sonido.SoundLocation = "../../Sounds/bet-4.wav";
             Sonido.Play();
-            this.Lbl_apuesta_jugador3.Content = lbl_apuesta.Content;
-            this.sld_apuesta.Value = 0;
-            fuera = true;
+            this.Tbk_apuesta_jugador3.Text = this.Lbl_apuesta.Content + "";
+            this.Tbk_saldo_jugador3.Text = Int32.Parse(this.Tbk_saldo_jugador3.Text) - (int)this.Lbl_apuesta.Content + "";
+            this.Sld_apuesta.Value = 0;
+            Fuera = true;
         }
 
         private void Btn_pass_Click(object sender, RoutedEventArgs e) {

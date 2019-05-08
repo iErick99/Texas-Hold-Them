@@ -38,6 +38,13 @@
                         </Button>
                     </StackPanel>
                 </materialDesign:ColorZone>
+                <StackPanel Orientation="Horizontal" Margin="0,100,0,0" Height="110" HorizontalAlignment="Center" VerticalAlignment="Center" Width="441">
+                    <Image x:Name="Img_flop1" Margin="0,0,5,0" Stretch="Fill" Source="Images/Cartas/Diamantes/8.png"/>
+                    <Image x:Name="Img_flop2" Margin="0,0,5,0" Stretch="Fill" Source="Images/Cartas/Diamantes/5.png"/>
+                    <Image x:Name="Img_flop3" Margin="0,0,5,0" Stretch="Fill" Source="Images/Cartas/Treboles/9.png"/>
+                    <Image x:Name="Img_turn" Margin="0,0,5,0" Stretch="Fill" Source="Images/Cartas/Corazones/3.png"/>
+                    <Image x:Name="Img_river" Stretch="Fill" Source="Images/Cartas/Treboles/j.png"/>
+                </StackPanel>
             </Grid>
         </Border>
 
@@ -66,11 +73,11 @@
             </StackPanel>
 
             <StackPanel Grid.Column="1" Grid.Row="0" Orientation="Horizontal">
-                <Label x:Name="lbl_apuesta" Content="0" Grid.Column="3" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="75" Height="44" Foreground="White" Background="#FFAA2424" FontSize="18" FontWeight="Bold" Margin="30,0,0,0"/>
+                <Label x:Name="Lbl_apuesta" Content="0" Grid.Column="3" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="75" Height="44" Foreground="White" Background="#FFAA2424" FontSize="18" FontWeight="Bold" Margin="30,0,0,0"/>
                 <Button x:Name="Btn_restar" Foreground="#DD000000" Click="Btn_restar_Click" Margin="10,0,0,0">
                     <materialDesign:PackIcon Kind="Minus"/>
                 </Button>
-                <Slider x:Name="sld_apuesta" Height="38" Width="192" Margin="10,15,10,0" ValueChanged="Sld_apuesta_ValueChanged" Maximum="1000"/>
+                <Slider x:Name="Sld_apuesta" Height="38" Width="192" Margin="10,15,10,0" ValueChanged="Sld_apuesta_ValueChanged" Maximum="1000"/>
                 <Button x:Name="Btn_sumar" Foreground="#DD000000" Click="Btn_sumar_Click" Margin="10,0">
                     <materialDesign:PackIcon Kind="Plus"/>
                 </Button>
@@ -85,9 +92,9 @@
                     <GradientStop Color="#FFAA2424" Offset="1"/>
                 </LinearGradientBrush>
             </StackPanel.Background>
-            <TextBlock Text="iErick99" Foreground="#DDFFFFFF" FontSize="18" TextAlignment="Center" Height="26" Margin="0,8,0,0"/>
+            <TextBlock x:Name="Tbk_jugador2" Text="iErick99" Foreground="#DDFFFFFF" FontSize="18" TextAlignment="Center" Height="26" Margin="0,8,0,0"/>
             <Separator Height="6" Margin="30,0,18,0" VerticalAlignment="Top" Background="#FF0F0101"/>
-            <TextBlock Text="1000" Foreground="#DDFFFFFF" FontSize="18" TextAlignment="Center" Height="26" Margin="0,3,0,0"/>
+            <TextBlock x:Name="Tbk_saldo_jugador2" Text="1000" Foreground="#DDFFFFFF" FontSize="18" TextAlignment="Center" Height="26" Margin="0,3,0,0"/>
         </StackPanel>
         <Ellipse x:Name="Elp_jugador2"  Margin="829,101,158,352" Stroke="#FF0E9E00" Width="93" Height="92">
             <Ellipse.Fill>
@@ -109,9 +116,9 @@
                     <GradientStop Color="#FFAA2424" Offset="1"/>
                 </LinearGradientBrush>
             </StackPanel.Background>
-            <TextBlock Text="bleysh" Foreground="#DDFFFFFF" FontSize="18" TextAlignment="Center" Height="26" Margin="0,8,0,0"/>
+            <TextBlock x:Name="Tbk_jugador4" Text="bleysh" Foreground="#DDFFFFFF" FontSize="18" TextAlignment="Center" Height="26" Margin="0,8,0,0"/>
             <Separator Height="6" Margin="30,0,18,0" VerticalAlignment="Top" Background="#FF0F0101"/>
-            <TextBlock Text="1000" Foreground="#DDFFFFFF" FontSize="18" TextAlignment="Center" Height="26" Margin="0,3,0,0"/>
+            <TextBlock x:Name="Tbk_saldo_jugador4" Text="1000" Foreground="#DDFFFFFF" FontSize="18" TextAlignment="Center" Height="26" Margin="0,3,0,0"/>
         </StackPanel>
         <Ellipse x:Name="Elp_jugador4"  Margin="829,356,158,96" Stroke="#FF0E9E00">
             <Ellipse.Fill>
@@ -125,9 +132,9 @@
                     <GradientStop Color="#FFAA2424" Offset="1"/>
                 </LinearGradientBrush>
             </StackPanel.Background>
-            <TextBlock Text="Faziop" Foreground="#DDFFFFFF" FontSize="18" TextAlignment="Center" Height="26" Margin="0,8,0,0"/>
+            <TextBlock x:Name="Tbk_jugador3" Text="Faziop" Foreground="#DDFFFFFF" FontSize="18" TextAlignment="Center" Height="26" Margin="0,8,0,0"/>
             <Separator Height="6" Margin="18,0,30,0" VerticalAlignment="Top" Background="#FF0F0101"/>
-            <TextBlock Text="1000" Foreground="#DDFFFFFF" FontSize="18" TextAlignment="Center" Height="26" Margin="0,3,0,0"/>
+            <TextBlock x:Name="Tbk_saldo_jugador3" Text="1000" Foreground="#DDFFFFFF" FontSize="18" TextAlignment="Center" Height="26" Margin="0,3,0,0"/>
         </StackPanel>
         <Ellipse x:Name="Elp_jugador3" Margin="158,356,829,96" Stroke="#FF0E9E00" MouseEnter="Elp_jugador3_MouseEnter" MouseLeave="Elp_jugador3_MouseLeave">
             <Ellipse.Fill>
@@ -142,29 +149,37 @@
                     <GradientStop Color="#FFAA2424" Offset="1"/>
                 </LinearGradientBrush>
             </StackPanel.Background>
-            <TextBlock Text="GonzaCRC" Foreground="#DDFFFFFF" FontSize="18" TextAlignment="Center" Height="26" Margin="0,8,0,0"/>
+            <TextBlock x:Name="Tbk_jugador1" Text="GonzaCRC" Foreground="#DDFFFFFF" FontSize="18" TextAlignment="Center" Height="26" Margin="0,8,0,0"/>
             <Separator Height="6" Margin="18,0,30,0" VerticalAlignment="Top" Background="#FF0F0101"/>
-            <TextBlock Text="1000" Foreground="#DDFFFFFF" FontSize="18" TextAlignment="Center" Height="26" Margin="0,3,0,0"/>
+            <TextBlock x:Name="Tbk_saldo_jugador1" Text="1000" Foreground="#DDFFFFFF" FontSize="18" TextAlignment="Center" Height="26" Margin="0,3,0,0"/>
         </StackPanel>
         <Ellipse x:Name="Elp_jugador1"  Margin="158,101,829,351" Stroke="#FF0E9E00" Width="93" Height="92">
             <Ellipse.Fill>
                 <ImageBrush ImageSource="/Images/gonzalo.jpg"/>
             </Ellipse.Fill>
         </Ellipse>
-        <Rectangle x:Name="Img_carta1_jugador3" Margin="10,436,980,4" Stroke="Black">
-            <Rectangle.Fill>
-                <ImageBrush ImageSource="/Images/as treboles.png"/>
-            </Rectangle.Fill>
-        </Rectangle>
-        <Image x:Name="Img_carta2_jugador3" Margin="104,438,895,3" Stretch="Fill" Source="Images/c11 (1).png"/>
 
-        <TextBlock TextWrapping="Wrap" Text="Bote: 250" FontSize="18" Margin="496,214,470,311" Foreground="#DDFFFFFF" FontWeight="Bold"/>
+        <TextBlock TextWrapping="Wrap" Text="Bote: 250" FontSize="18" Margin="0,0,0,100" Foreground="#DDFFFFFF" FontWeight="Bold" Height="19" VerticalAlignment="Center" HorizontalAlignment="Center" Width="114"/>
         <ProgressBar x:Name="Pgb_tiempo" Style="{x:Null}" Value="15" Height="Auto" Margin="655,16,108,128" Maximum="15" SmallChange="1" Background="Transparent" BorderBrush="Black" Foreground="Red" BorderThickness="1" Grid.Row="1" ValueChanged="Pgb_tiempo_ValueChanged"/>
-        <Label Content="Tiempo:" HorizontalAlignment="Left" Margin="564,12,0,0" VerticalAlignment="Top" Width="80" Grid.Row="1" FontSize="18" FontWeight="Bold" Foreground="#DDFFFFFF"/>
-        <Label x:Name="Lbl_apuesta_jugador1" Margin="239,160,762,340" FontSize="18" FontWeight="Bold" Foreground="#DDFFFFFF" Content=""/>
-        <Label x:Name="Lbl_apuesta_jugador2" Margin="743,148,289,340" FontSize="18" FontWeight="Bold" Foreground="#DDFFFFFF" Content=""/>
-        <Label x:Name="Lbl_apuesta_jugador3" Margin="242,354,773,152" FontSize="18" FontWeight="Bold" Foreground="#DDFFFFFF" Content=""/>
-        <Label x:Name="Lbl_apuesta_jugador4" Margin="740,342,276,164" FontSize="18" FontWeight="Bold" Foreground="#DDFFFFFF" Content=""/>
+
+        <Label x:Name="Lbl_tiempo" Content="Tiempo:" HorizontalAlignment="Left" Margin="564,12,0,0" VerticalAlignment="Top" Width="80" Grid.Row="1" FontSize="18" FontWeight="Bold" Foreground="#DDFFFFFF"/>
+        <TextBlock x:Name="Tbk_apuesta_jugador1" Margin="260,152,766,374" FontSize="18" FontWeight="Bold" Foreground="#DDFFFFFF" Text=""/>
+        <TextBlock x:Name="Tbk_apuesta_jugador2" Margin="766,152,260,374" FontSize="18" FontWeight="Bold" Foreground="#DDFFFFFF" Text="" TextAlignment="Right"/>
+        <TextBlock x:Name="Tbk_apuesta_jugador3" Margin="260,374,766,152" FontSize="18" FontWeight="Bold" Foreground="#DDFFFFFF" Text=""/>
+        <TextBlock x:Name="Tbk_apuesta_jugador4" Margin="766,374,260,152" FontSize="18" FontWeight="Bold" Foreground="#DDFFFFFF" Text="" TextAlignment="Right"/>
+
+        <Image x:Name="Img_carta1_jugador1" Margin="10,184,989,254" Stretch="Fill" Source="Images/Cartas/carta volteada.jpg"/>
+        <Image x:Name="Img_carta2_jugador1" Margin="96,184,903,254" Stretch="Fill" Source="Images/Cartas/carta volteada.jpg"/>
+
+        <Image x:Name="Img_carta1_jugador2" Margin="989,184,10,254" Stretch="Fill" Source="Images/Cartas/carta volteada.jpg"/>
+        <Image x:Name="Img_carta2_jugador2" Margin="903,184,96,254" Stretch="Fill" Source="Images/Cartas/carta volteada.jpg"/>
+
+        <Image x:Name="Img_carta1_jugador3" Margin="10,438,989,0" Stretch="Fill" Source="Images/Cartas/Corazones/j.png"/>
+        <Image x:Name="Img_carta2_jugador3" Margin="96,438,903,0" Stretch="Fill" Source="Images/Cartas/Treboles/5.png"/>
+
+        <Image x:Name="Img_carta1_jugador4" Margin="989,438,10,0" Stretch="Fill" Source="Images/Cartas/carta volteada.jpg"/>
+        <Image x:Name="Img_carta2_jugador4" Margin="903,438,96,0" Stretch="Fill" Source="Images/Cartas/carta volteada.jpg"/>
+
 
     </Grid>
 </Window>
