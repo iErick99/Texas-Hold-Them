@@ -8,23 +8,23 @@ namespace Server
 {
     class Carta
     {
-        private string numero;
+        private int numero;
         private string simbolo;
 
         public Carta()
         {
-            numero = "";
+            numero = 0;
             simbolo = "";
         }
 
-        public Carta(string num, string sim)
+        public Carta(int num, string sim)
         {
             numero = num;
             simbolo = sim;
         }
-        public string getNumero() { return numero; }
+        public int getNumero() { return numero; }
         public string getSimbolo() { return simbolo; }
-        public void setNumero(string num) { numero = num; }
+        public void setNumero(int num) { numero = num; }
         public void setSimbolo(string sim) { simbolo = sim; }
     }
 }

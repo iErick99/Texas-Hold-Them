@@ -44,19 +44,19 @@ namespace Server
 
                 switch (contNum)
                 {
-                    case 0: { cartas[contCar].setNumero("A"); break; }
-                    case 1: { cartas[contCar].setNumero("2"); break; }
-                    case 2: { cartas[contCar].setNumero("3"); break; }
-                    case 3: { cartas[contCar].setNumero("4"); break; }
-                    case 4: { cartas[contCar].setNumero("5"); break; }
-                    case 5: { cartas[contCar].setNumero("6"); break; }
-                    case 6: { cartas[contCar].setNumero("7"); break; }
-                    case 7: { cartas[contCar].setNumero("8"); break; }
-                    case 8: { cartas[contCar].setNumero("9"); break; }
-                    case 9: { cartas[contCar].setNumero("10"); break; }
-                    case 10: { cartas[contCar].setNumero("J"); break; }
-                    case 11: { cartas[contCar].setNumero("Q"); break; }
-                    case 12: { cartas[contCar].setNumero("K"); break; }
+                    case 0: { cartas[contCar].setNumero(contNum + 2); break; }
+                    case 1: { cartas[contCar].setNumero(contNum + 2); break; }
+                    case 2: { cartas[contCar].setNumero(contNum + 2); break; }
+                    case 3: { cartas[contCar].setNumero(contNum + 2); break; }
+                    case 4: { cartas[contCar].setNumero(contNum + 2); break; }
+                    case 5: { cartas[contCar].setNumero(contNum + 2); break; }
+                    case 6: { cartas[contCar].setNumero(contNum + 2); break; }
+                    case 7: { cartas[contCar].setNumero(contNum + 2); break; }
+                    case 8: { cartas[contCar].setNumero(contNum + 2); break; }
+                    case 9: { cartas[contCar].setNumero(contNum + 2); break; }
+                    case 10: { cartas[contCar].setNumero(contNum + 2); break; }
+                    case 11: { cartas[contCar].setNumero(contNum + 2); break; }
+                    case 12: { cartas[contCar].setNumero(contNum + 2); break; }
                 }
 
                 contCar++;
@@ -64,6 +64,11 @@ namespace Server
                 if (contNum == 13) { contSim++; contNum = 0; }
 
 
+            }
+            for(int i = 0; i < 52; i++)
+            {
+                Console.WriteLine(cartas[i].getSimbolo());
+                Console.WriteLine(cartas[i].getNumero());
             }
             this.clone(cartas, ref disponibles);
             this.desordenar(disponibles);

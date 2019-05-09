@@ -5,3 +5,10 @@ C:\Users\jaalf\source\repos\Server\Server\bin\Debug\Server.exe
 C:\Users\jaalf\source\repos\Server\Server\bin\Debug\Server.pdb
 C:\Users\jaalf\source\repos\Server\Server\obj\Debug\Server.exe
 C:\Users\jaalf\source\repos\Server\Server\obj\Debug\Server.pdb
+C:\Users\jaalf\Desktop\Texas-Hold-Them\Servidor\Server\Server\bin\Debug\Server.exe.config
+C:\Users\jaalf\Desktop\Texas-Hold-Them\Servidor\Server\Server\bin\Debug\Server.exe
+C:\Users\jaalf\Desktop\Texas-Hold-Them\Servidor\Server\Server\bin\Debug\Server.pdb
+C:\Users\jaalf\Desktop\Texas-Hold-Them\Servidor\Server\Server\obj\Debug\Server.csprojAssemblyReference.cache
+C:\Users\jaalf\Desktop\Texas-Hold-Them\Servidor\Server\Server\obj\Debug\Server.csproj.CoreCompileInputs.cache
+C:\Users\jaalf\Desktop\Texas-Hold-Them\Servidor\Server\Server\obj\Debug\Server.exe
+C:\Users\jaalf\Desktop\Texas-Hold-Them\Servidor\Server\Server\obj\Debug\Server.pdb
