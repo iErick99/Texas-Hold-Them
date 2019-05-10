@@ -23,6 +23,7 @@ namespace Poker {
         private SoundPlayer Sonido;
         private DispatcherTimer Timer;
         private bool Ancho;
+        private int cantidad;
 
         public Mesa() {
             InitializeComponent();
@@ -32,8 +33,8 @@ namespace Poker {
             Timer.Tick += new EventHandler(Timer_Tick);
             Timer.Interval = TimeSpan.FromSeconds(1);
             Timer.Start();
-            Ancho = false;
-            
+            this.Ancho = false;
+            this.cantidad = 0;
         }
 
         private void EscogerCarta() {
@@ -65,10 +66,6 @@ namespace Poker {
 
         private void Sld_apuesta_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) {
             this.Lbl_apuesta.Content = (int)this.Sld_apuesta.Value;
-
-            if (this.Sld_apuesta.Value == 1000) {
-                this.Lbl_apuesta.Content = "All in";
-            }
         }
 
         private void Btn_restar_Click(object sender, RoutedEventArgs e) {
@@ -137,21 +134,138 @@ namespace Poker {
         }
 
         private void Btn_raise_Click(object sender, RoutedEventArgs e) {
-            Sonido.SoundLocation = "../../Sounds/bet-4.wav";
+            Sonido.SoundLocation = "../../Sounds/raise.wav";
             Sonido.Play();
+
             this.Tbk_apuesta_jugador3.Text = this.Lbl_apuesta.Content + "";
+            int apuesta = Int32.Parse(Tbk_apuesta_jugador3.Text);
+
             this.Tbk_saldo_jugador3.Text = Int32.Parse(this.Tbk_saldo_jugador3.Text) - (int)this.Lbl_apuesta.Content + "";
             this.Sld_apuesta.Value = 0;
             Fuera = true;
+
+            int cordX = 28, cordY = 0;
+
+            if (cantidad != 0) {
+                this.Grd_fichas.Children.Clear();
+                cantidad = 0;
+            }
+
+            while (apuesta != 0) {
+                if (apuesta % 1000 == 0) {
+                    Image ficha = new Image();
+                    ficha.Name = "Img_ficha" + cantidad;
+                    ficha.Margin = new Thickness(301, 410 - cordY, 753, 110 + cordY);
+                    cordY += 4;
+
+                    BitmapImage bitmap = new BitmapImage();
+                    bitmap.BeginInit();
+                    bitmap.UriSource = new Uri("../../Images/Fichas/chip1000.png", UriKind.Relative);
+                    bitmap.EndInit();
+
+                    ficha.Source = bitmap;
+                    ficha.Stretch = Stretch.None;
+                    this.Grd_fichas.Children.Add(ficha);
+                    apuesta -= 1000;
+                }
+
+                else if (apuesta % 500 == 0) {
+                    Image ficha = new Image();
+                    ficha.Name = "Img_fichas" + cantidad;
+                    ficha.Margin = new Thickness(301, 410 - cordY, 753, 110 + cordY);
+                    cordY += 4;
+
+                    BitmapImage bitmap = new BitmapImage();
+                    bitmap.BeginInit();
+                    bitmap.UriSource = new Uri("../../Images/Fichas/chip500.png", UriKind.Relative);
+                    bitmap.EndInit();
+
+                    ficha.Source = bitmap;
+                    ficha.Stretch = Stretch.None;
+                    this.Grd_fichas.Children.Add(ficha);
+                    apuesta -= 500;
+                }
+
+                else if (apuesta % 100 == 0) {
+                    Image ficha = new Image();
+                    ficha.Name = "Img_fichas" + cantidad;
+                    ficha.Margin = new Thickness(301, 410 - cordY, 753, 110 + cordY);
+                    cordY += 4;
+
+                    BitmapImage bitmap = new BitmapImage();
+                    bitmap.BeginInit();
+                    bitmap.UriSource = new Uri("../../Images/Fichas/chip100.png", UriKind.Relative);
+                    bitmap.EndInit();
+
+                    ficha.Source = bitmap;
+                    ficha.Stretch = Stretch.None;
+                    this.Grd_fichas.Children.Add(ficha);
+                    apuesta -= 100;
+                }
+
+                else if (apuesta % 25 == 0) {
+                    Image ficha = new Image();
+                    ficha.Name = "Img_fichas" + cantidad;
+                    ficha.Margin = new Thickness(301, 410 - cordY, 753, 110 + cordY);
+                    cordY += 4;
+
+                    BitmapImage bitmap = new BitmapImage();
+                    bitmap.BeginInit();
+                    bitmap.UriSource = new Uri("../../Images/Fichas/chip25.png", UriKind.Relative);
+                    bitmap.EndInit();
+
+                    ficha.Source = bitmap;
+                    ficha.Stretch = Stretch.None;
+                    this.Grd_fichas.Children.Add(ficha);
+                    apuesta -= 25;
+                }
+
+                else if (apuesta % 5 == 0) {
+                    Image ficha = new Image();
+                    ficha.Name = "Img_fichas" + cantidad;
+                    ficha.Margin = new Thickness(301, 410 - cordY, 753, 110 + cordY);
+                    cordY += 4;
+
+                    BitmapImage bitmap = new BitmapImage();
+                    bitmap.BeginInit();
+                    bitmap.UriSource = new Uri("../../Images/Fichas/chip5.png", UriKind.Relative);
+                    bitmap.EndInit();
+
+                    ficha.Source = bitmap;
+                    ficha.Stretch = Stretch.None;
+                    this.Grd_fichas.Children.Add(ficha);
+                    apuesta -= 5;
+                }
+
+                else {
+                    Image ficha = new Image();
+                    ficha.Name = "Img_fichas" + cantidad;
+                    ficha.Margin = new Thickness(301, 410 - cordY, 753, 110 + cordY);
+                    cordY += 4;
+
+                    BitmapImage bitmap = new BitmapImage();
+                    bitmap.BeginInit();
+                    bitmap.UriSource = new Uri("../../Images/Fichas/chip1.png", UriKind.Relative);
+                    bitmap.EndInit();
+
+                    ficha.Source = bitmap;
+                    ficha.Stretch = Stretch.None;
+                    this.Grd_fichas.Children.Add(ficha);
+                    apuesta -= 1;
+                }
+
+                cantidad++;
+            }
         }
 
         private void Btn_pass_Click(object sender, RoutedEventArgs e) {
-            this.EscogerCarta();
+            Sonido.SoundLocation = "../../Sounds/pass.wav";
+            Sonido.Play();
         }
 
         private void Pgb_tiempo_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) {
             if (this.Pgb_tiempo.Value == 5) {
-                Sonido.SoundLocation = "../../Sounds/alert-5.wav";
+                Sonido.SoundLocation = "../../Sounds/alert.wav";
                 Sonido.Play();
             }
 

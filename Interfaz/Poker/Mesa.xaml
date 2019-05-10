@@ -15,7 +15,7 @@
         Title="Poker"
         WindowStartupLocation="CenterScreen" WindowStyle="None" MinWidth="1080" MinHeight="710" Height="710" Width="1080" ResizeMode="NoResize">
 
-    <Grid>
+    <Grid x:Name="Grd_principal">
         <Grid.Background>
             <ImageBrush ImageSource="Images/mesa.jpg"/>
         </Grid.Background>
@@ -96,7 +96,7 @@
             <Separator Height="6" Margin="30,0,18,0" VerticalAlignment="Top" Background="#FF0F0101"/>
             <TextBlock x:Name="Tbk_saldo_jugador2" Text="1000" Foreground="#DDFFFFFF" FontSize="18" TextAlignment="Center" Height="26" Margin="0,3,0,0"/>
         </StackPanel>
-        <Ellipse x:Name="Elp_jugador2"  Margin="829,101,158,352" Stroke="#FF0E9E00" Width="93" Height="92">
+        <Ellipse x:Name="Elp_jugador2" Margin="829,101,158,352" Stroke="Black" Width="93" Height="92">
             <Ellipse.Fill>
                 <ImageBrush ImageSource="Images/erick.jpg"/>
             </Ellipse.Fill>
@@ -120,7 +120,7 @@
             <Separator Height="6" Margin="30,0,18,0" VerticalAlignment="Top" Background="#FF0F0101"/>
             <TextBlock x:Name="Tbk_saldo_jugador4" Text="1000" Foreground="#DDFFFFFF" FontSize="18" TextAlignment="Center" Height="26" Margin="0,3,0,0"/>
         </StackPanel>
-        <Ellipse x:Name="Elp_jugador4"  Margin="829,356,158,96" Stroke="#FF0E9E00">
+        <Ellipse x:Name="Elp_jugador4"  Margin="829,356,158,96" Stroke="Black">
             <Ellipse.Fill>
                 <ImageBrush ImageSource="/Images/cosi.jpg"/>
             </Ellipse.Fill>
@@ -136,7 +136,7 @@
             <Separator Height="6" Margin="18,0,30,0" VerticalAlignment="Top" Background="#FF0F0101"/>
             <TextBlock x:Name="Tbk_saldo_jugador3" Text="1000" Foreground="#DDFFFFFF" FontSize="18" TextAlignment="Center" Height="26" Margin="0,3,0,0"/>
         </StackPanel>
-        <Ellipse x:Name="Elp_jugador3" Margin="158,356,829,96" Stroke="#FF0E9E00" MouseEnter="Elp_jugador3_MouseEnter" MouseLeave="Elp_jugador3_MouseLeave">
+        <Ellipse x:Name="Elp_jugador3" Margin="158,356,829,96" Stroke="Black" MouseEnter="Elp_jugador3_MouseEnter" MouseLeave="Elp_jugador3_MouseLeave">
             <Ellipse.Fill>
                 <ImageBrush ImageSource="/Images/fazio.jpg"/>
             </Ellipse.Fill>
@@ -153,7 +153,7 @@
             <Separator Height="6" Margin="18,0,30,0" VerticalAlignment="Top" Background="#FF0F0101"/>
             <TextBlock x:Name="Tbk_saldo_jugador1" Text="1000" Foreground="#DDFFFFFF" FontSize="18" TextAlignment="Center" Height="26" Margin="0,3,0,0"/>
         </StackPanel>
-        <Ellipse x:Name="Elp_jugador1"  Margin="158,101,829,351" Stroke="#FF0E9E00" Width="93" Height="92">
+        <Ellipse x:Name="Elp_jugador1"  Margin="158,101,829,351" Stroke="Black" Width="93" Height="92">
             <Ellipse.Fill>
                 <ImageBrush ImageSource="/Images/gonzalo.jpg"/>
             </Ellipse.Fill>
@@ -165,8 +165,8 @@
         <Label x:Name="Lbl_tiempo" Content="Tiempo:" HorizontalAlignment="Left" Margin="564,12,0,0" VerticalAlignment="Top" Width="80" Grid.Row="1" FontSize="18" FontWeight="Bold" Foreground="#DDFFFFFF"/>
         <TextBlock x:Name="Tbk_apuesta_jugador1" Margin="260,152,766,374" FontSize="18" FontWeight="Bold" Foreground="#DDFFFFFF" Text=""/>
         <TextBlock x:Name="Tbk_apuesta_jugador2" Margin="766,152,260,374" FontSize="18" FontWeight="Bold" Foreground="#DDFFFFFF" Text="" TextAlignment="Right"/>
-        <TextBlock x:Name="Tbk_apuesta_jugador3" Margin="260,374,766,152" FontSize="18" FontWeight="Bold" Foreground="#DDFFFFFF" Text=""/>
-        <TextBlock x:Name="Tbk_apuesta_jugador4" Margin="766,374,260,152" FontSize="18" FontWeight="Bold" Foreground="#DDFFFFFF" Text="" TextAlignment="Right"/>
+        <TextBlock x:Name="Tbk_apuesta_jugador3" Margin="260,380,766,146" FontSize="18" FontWeight="Bold" Foreground="#DDFFFFFF" Text=""/>
+        <TextBlock x:Name="Tbk_apuesta_jugador4" Margin="766,380,260,146" FontSize="18" FontWeight="Bold" Foreground="#DDFFFFFF" Text="" TextAlignment="Right"/>
 
         <Image x:Name="Img_carta1_jugador1" Margin="10,184,989,254" Stretch="Fill" Source="Images/Cartas/carta volteada.jpg"/>
         <Image x:Name="Img_carta2_jugador1" Margin="96,184,903,254" Stretch="Fill" Source="Images/Cartas/carta volteada.jpg"/>
@@ -179,7 +179,13 @@
 
         <Image x:Name="Img_carta1_jugador4" Margin="989,438,10,0" Stretch="Fill" Source="Images/Cartas/carta volteada.jpg"/>
         <Image x:Name="Img_carta2_jugador4" Margin="903,438,96,0" Stretch="Fill" Source="Images/Cartas/carta volteada.jpg"/>
-
+        <Image x:Name="Img_ficha_dealer_jugador1" Margin="257,124,801,400" Source="Images/Fichas/chip-d.png" Stretch="None" Visibility="Hidden"/>
+        <Image x:Name="Img_ficha_dealer_jugadro2" Margin="801,124,257,400" Source="Images/Fichas/chip-d.png" Stretch="None" Visibility="Hidden"/>
+        <Image x:Name="Img_ficha_dealer_jugador3" Margin="257,410,801,114" Source="Images/Fichas/chip-d.png" Stretch="None"/>
+        <Image x:Name="Img_ficha_dealer_jugador4" Margin="801,410,257,114" Source="Images/Fichas/chip-d.png" Stretch="None" Visibility="Hidden"/>
+        <Grid x:Name="Grd_fichas">
+            
+        </Grid>
 
     </Grid>
 </Window>
