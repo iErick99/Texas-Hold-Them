@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Dynamic;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
@@ -90,19 +91,17 @@ namespace Server
                     // TODO: Definir mas metodos del servidor
                     switch ((string)deserializedRequest.method)
                     {
-                        case "login":
-                            response =
-                                "{" +
-                                "\"success\": true" +
-                                "}";
-                            break;
+                        case "login": {
+                                if (deserializedRequest.usuario == "001" && deserializedRequest.password == "001") {
+                                    response = "{\"success\":true}";
+                                }
 
-                        default:
-                            response =
-                                "{" +
-                                "\"success\": false" +
-                                "}";
-                            break;
+                                else {
+                                    response = "{\"success\":false}";
+                                }
+                            } break;
+
+                        default: response = "{\"success\":false}"; break;
                     }
 
                     responseBuffer = Encoding.ASCII.GetBytes(response);

@@ -18,16 +18,17 @@ namespace Poker {
 
     public partial class Login : Window {
 
-        Cuenta cuenta;
-        Mesa mesa;
-        Cliente cliente;
-        dynamic jugador;
+        private Cuenta cuenta;
+        private Mesa mesa;
+        private Client cliente;
+        private dynamic jugador;
 
         public Login() {
             InitializeComponent();
-            cuenta = null;
-            mesa = null;
-            jugador = new ExpandoObject();
+            this.cuenta = null;
+            this.mesa = null;
+            this.jugador = new ExpandoObject();
+            this.cliente = new Client();
         }
 
         private void Brd_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) {
@@ -39,57 +40,65 @@ namespace Poker {
         }
 
         private void Hl_registrate_Click(object sender, RoutedEventArgs e) {
-            if (cuenta == null) {
-                cuenta = new Cuenta();
+            if (this.cuenta == null) {
+                this.cuenta = new Cuenta();
             }
 
             this.Hide();
-            cuenta.Show();
+            this.cuenta.Show();
         }
 
-        //private void Psw_contrasena_KeyUp(object sender, KeyEventArgs e) {
-        //    if (e.Key == System.Windows.Input.Key.Enter) {
-        //        if (this.psw_contrasena.Password.Equals("001")) {
-        //            mesa = new Mesa();
-        //            MessageBox.Show("Inicio Correctamente", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
-        //            this.Hide();
-        //            mesa.Show();
-        //        }
-
-        //        else {
-        //            MessageBox.Show("Inicio incorrectamente", "Info", MessageBoxButton.OK, MessageBoxImage.Error);
-        //            this.txt_usuario.Text = "";
-        //            this.psw_contrasena.Password = "";
-        //            this.txt_usuario.Focus();
-        //        }
-        //    }
-        //}
-
         private void Btn_iniciar_Click(object sender, RoutedEventArgs e) {
-            jugador.method = "login";
-            jugador.usuario = this.txt_usuario.Text;
-            jugador.password = this.psw_contrasena.Password;
+            try {
+                this.jugador.method = "login";
+                this.jugador.usuario = this.txt_usuario.Text;
+                this.jugador.password = this.psw_contrasena.Password;
+                this.cliente.Connect(this.txt_ip.Text, Int32.Parse(this.txt_puerto.Text));
 
-            string result = JsonConvert.SerializeObject(jugador);
+                var result = JsonConvert.DeserializeObject<dynamic>(this.cliente.SendRequest(JsonConvert.SerializeObject(jugador)));
 
-            mesa = new Mesa();
-            MessageBox.Show("Inicio Correctamente", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
-            this.Hide();
-            mesa.Show();  
+                if (result.success == true) {
+                    this.mesa = new Mesa();
+                    MessageBox.Show("Inicio Correctamente", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+                    this.Hide();
+                    this.mesa.Show();
+                }
+
+                else {
+                    MessageBox.Show("Credenciales incorrectos", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            } 
+
+            catch (Exception exc) {
+                MessageBox.Show(exc.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void Window_KeyUp(object sender, KeyEventArgs e) {
             if (e.Key == Key.Enter) {
-                jugador.method = "login";
-                jugador.usuario = this.txt_usuario.Text;
-                jugador.password = this.psw_contrasena.Password;
+                try {
+                    this.jugador.method = "login";
+                    this.jugador.usuario = this.txt_usuario.Text;
+                    this.jugador.password = this.psw_contrasena.Password;
+                    this.cliente.Connect(this.txt_ip.Text, Int32.Parse(this.txt_puerto.Text));
 
-                string result = JsonConvert.SerializeObject(jugador);
+                    var result = JsonConvert.DeserializeObject<dynamic>(this.cliente.SendRequest(JsonConvert.SerializeObject(jugador)));
 
-                mesa = new Mesa();
-                MessageBox.Show("Inicio Correctamente", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
-                this.Hide();
-                mesa.Show();
+                    if (result.success == true) {
+                        this.mesa = new Mesa();
+                        MessageBox.Show("Inicio Correctamente", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+                        this.Hide();
+                        this.mesa.Show();
+                    }
+
+                    else {
+                        MessageBox.Show("Credenciales incorrectos", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                }
+
+                catch (Exception exc) {
+                    MessageBox.Show(exc.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
         }
     }

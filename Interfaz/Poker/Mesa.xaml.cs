@@ -37,21 +37,6 @@ namespace Poker {
             this.cantidad = 0;
         }
 
-        private void EscogerCarta() {
-            Random numero = new Random();
-            MessageBox.Show(numero.Next(1, 5) + "");
-
-            MessageBox.Show(numero.Next(1, 14) + "");
-
-
-
-            BitmapImage b = new BitmapImage();
-            b.BeginInit();
-            b.UriSource = new Uri("/Images/c" + numero.Next(1, 14) + ".png", UriKind.Relative);
-            b.EndInit();
-
-        }
-
         private void Btn_cerrar_Click(object sender, RoutedEventArgs e) {
             Application.Current.Shutdown();
         }
