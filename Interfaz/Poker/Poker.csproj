@@ -79,6 +79,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Cliente.cs" />
     <Page Include="Cuenta.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -146,14 +147,9 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\as treboles.png" />
-    <Resource Include="Images\carta volteada.jpg" />
+    <Resource Include="Images\Cartas\carta volteada.jpg" />
     <Resource Include="Images\erick.jpg" />
-    <Resource Include="Images\j treboles.png" />
     <Resource Include="Images\logo.png" />
-    <Resource Include="Images\mazo.jpg" />
-    <Resource Include="Images\mesa.jpg" />
-    <Resource Include="Images\poker.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\cosi.jpg" />
@@ -164,6 +160,76 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\fazio.jpg" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Images\Fichas\chip-d.png" />
+    <Resource Include="Images\Fichas\chip1.png" />
+    <Resource Include="Images\Fichas\chip100.png" />
+    <Resource Include="Images\Fichas\chip1000.png" />
+    <Resource Include="Images\Fichas\chip25.png" />
+    <Resource Include="Images\Fichas\chip5.png" />
+    <Resource Include="Images\Fichas\chip500.png" />
+    <Resource Include="Images\bg.jpg" />
+    <Resource Include="Images\mesa.jpg" />
+    <Resource Include="Images\Cartas\Corazones\11.png" />
+    <Resource Include="Images\Cartas\Corazones\12.png" />
+    <Resource Include="Images\Cartas\Corazones\13.png" />
+    <Resource Include="Images\Cartas\Corazones\14.png" />
+    <Resource Include="Images\Cartas\Diamantes\11.png" />
+    <Resource Include="Images\Cartas\Diamantes\12.png" />
+    <Resource Include="Images\Cartas\Diamantes\13.png" />
+    <Resource Include="Images\Cartas\Diamantes\14.png" />
+    <Resource Include="Images\Cartas\Treboles\11.png" />
+    <Resource Include="Images\Cartas\Treboles\12.png" />
+    <Resource Include="Images\Cartas\Treboles\13.png" />
+    <Resource Include="Images\Cartas\Treboles\14.png" />
+    <Resource Include="Images\Cartas\Espadas\11.png" />
+    <Resource Include="Images\Cartas\Espadas\12.png" />
+    <Resource Include="Images\Cartas\Espadas\13.png" />
+    <Resource Include="Images\Cartas\Espadas\14.png" />
+    <Content Include="Sounds\pass.wav" />
+    <Content Include="Sounds\raise.wav" />
+    <Resource Include="Images\Cartas\Treboles\2.png" />
+    <Resource Include="Images\Cartas\Treboles\10.png" />
+    <Resource Include="Images\Cartas\Treboles\3.png" />
+    <Resource Include="Images\Cartas\Treboles\4.png" />
+    <Resource Include="Images\Cartas\Treboles\5.png" />
+    <Resource Include="Images\Cartas\Treboles\6.png" />
+    <Resource Include="Images\Cartas\Treboles\7.png" />
+    <Resource Include="Images\Cartas\Treboles\8.png" />
+    <Resource Include="Images\Cartas\Treboles\9.png" />
+    <Resource Include="Images\Cartas\Diamantes\10.png" />
+    <Resource Include="Images\Cartas\Diamantes\2.png" />
+    <Resource Include="Images\Cartas\Diamantes\3.png" />
+    <Resource Include="Images\Cartas\Diamantes\4.png" />
+    <Resource Include="Images\Cartas\Diamantes\5.png" />
+    <Resource Include="Images\Cartas\Diamantes\6.png" />
+    <Resource Include="Images\Cartas\Diamantes\7.png" />
+    <Resource Include="Images\Cartas\Diamantes\8.png" />
+    <Resource Include="Images\Cartas\Diamantes\9.png" />
+    <Resource Include="Images\Cartas\Corazones\10.png" />
+    <Resource Include="Images\Cartas\Corazones\2.png" />
+    <Resource Include="Images\Cartas\Corazones\3.png" />
+    <Resource Include="Images\Cartas\Corazones\4.png" />
+    <Resource Include="Images\Cartas\Corazones\5.png" />
+    <Resource Include="Images\Cartas\Corazones\6.png" />
+    <Resource Include="Images\Cartas\Corazones\7.png" />
+    <Resource Include="Images\Cartas\Corazones\8.png" />
+    <Resource Include="Images\Cartas\Corazones\9.png" />
+    <Resource Include="Images\Cartas\Espadas\10.png" />
+    <Resource Include="Images\Cartas\Espadas\2.png" />
+    <Resource Include="Images\Cartas\Espadas\3.png" />
+    <Resource Include="Images\Cartas\Espadas\4.png" />
+    <Resource Include="Images\Cartas\Espadas\5.png" />
+    <Resource Include="Images\Cartas\Espadas\6.png" />
+    <Resource Include="Images\Cartas\Espadas\7.png" />
+    <Resource Include="Images\Cartas\Espadas\8.png" />
+    <Resource Include="Images\Cartas\Espadas\9.png" />
+    <Resource Include="Images\saloon-on.jpg" />
+    <Content Include="Sounds\alert.wav" />
+    <Content Include="Sounds\deal-4.wav" />
+    <Content Include="Sounds\fold.wav" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

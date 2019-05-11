@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,10 +20,14 @@ namespace Poker {
 
         Cuenta cuenta;
         Mesa mesa;
+        Cliente cliente;
+        dynamic jugador;
+
         public Login() {
             InitializeComponent();
             cuenta = null;
             mesa = null;
+            jugador = new ExpandoObject();
         }
 
         private void Brd_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) {
@@ -41,28 +47,50 @@ namespace Poker {
             cuenta.Show();
         }
 
-        private void Psw_contrasena_KeyUp(object sender, KeyEventArgs e) {
-            if (e.Key == System.Windows.Input.Key.Enter) {
-                if (this.psw_contrasena.Password.Equals("001")) {
-                    mesa = new Mesa();
-                    MessageBox.Show("Inicio Correctamente", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
-                    this.Hide();
-                    mesa.Show();
-                }
+        //private void Psw_contrasena_KeyUp(object sender, KeyEventArgs e) {
+        //    if (e.Key == System.Windows.Input.Key.Enter) {
+        //        if (this.psw_contrasena.Password.Equals("001")) {
+        //            mesa = new Mesa();
+        //            MessageBox.Show("Inicio Correctamente", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+        //            this.Hide();
+        //            mesa.Show();
+        //        }
 
-                else {
-                    MessageBox.Show("Inicio incorrectamente", "Info", MessageBoxButton.OK, MessageBoxImage.Error);
-                    this.txt_usuario.Text = "";
-                    this.psw_contrasena.Password = "";
-                    this.txt_usuario.Focus();
-                }
-            }
-        }
+        //        else {
+        //            MessageBox.Show("Inicio incorrectamente", "Info", MessageBoxButton.OK, MessageBoxImage.Error);
+        //            this.txt_usuario.Text = "";
+        //            this.psw_contrasena.Password = "";
+        //            this.txt_usuario.Focus();
+        //        }
+        //    }
+        //}
 
         private void Btn_iniciar_Click(object sender, RoutedEventArgs e) {
+            jugador.method = "login";
+            jugador.usuario = this.txt_usuario.Text;
+            jugador.password = this.psw_contrasena.Password;
+
+            string result = JsonConvert.SerializeObject(jugador);
+
             mesa = new Mesa();
+            MessageBox.Show("Inicio Correctamente", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
             this.Hide();
-            mesa.Show();
+            mesa.Show();  
+        }
+
+        private void Window_KeyUp(object sender, KeyEventArgs e) {
+            if (e.Key == Key.Enter) {
+                jugador.method = "login";
+                jugador.usuario = this.txt_usuario.Text;
+                jugador.password = this.psw_contrasena.Password;
+
+                string result = JsonConvert.SerializeObject(jugador);
+
+                mesa = new Mesa();
+                MessageBox.Show("Inicio Correctamente", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+                this.Hide();
+                mesa.Show();
+            }
         }
     }
 }

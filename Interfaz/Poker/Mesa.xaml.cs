@@ -12,14 +12,44 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
+using System.Media;
+using System.Windows.Media.Animation;
 
 namespace Poker {
     public partial class Mesa : Window {
 
-        public bool fuera;
+        private bool Fuera;
+        private SoundPlayer Sonido;
+        private DispatcherTimer Timer;
+        private bool Ancho;
+        private int cantidad;
+
         public Mesa() {
             InitializeComponent();
-            this.fuera = false;
+            this.Fuera = false;
+            Sonido = new SoundPlayer();
+            Timer = new DispatcherTimer();
+            Timer.Tick += new EventHandler(Timer_Tick);
+            Timer.Interval = TimeSpan.FromSeconds(1);
+            Timer.Start();
+            this.Ancho = false;
+            this.cantidad = 0;
+        }
+
+        private void EscogerCarta() {
+            Random numero = new Random();
+            MessageBox.Show(numero.Next(1, 5) + "");
+
+            MessageBox.Show(numero.Next(1, 14) + "");
+
+
+
+            BitmapImage b = new BitmapImage();
+            b.BeginInit();
+            b.UriSource = new Uri("/Images/c" + numero.Next(1, 14) + ".png", UriKind.Relative);
+            b.EndInit();
+
         }
 
         private void Btn_cerrar_Click(object sender, RoutedEventArgs e) {
@@ -30,60 +60,46 @@ namespace Poker {
             DragMove();
         }
 
-        //private void Btn_max_Click(object sender, RoutedEventArgs e) {
-        //    if (this.wnd_ventana.WindowState == WindowState.Normal) {
-        //        this.wnd_ventana.WindowState = WindowState.Maximized;
-        //        this.Icn_max.Kind = MaterialDesignThemes.Wpf.PackIconKind.WindowRestore;
-        //    }
-
-        //    else {
-        //        this.wnd_ventana.WindowState = WindowState.Normal;
-        //        this.Icn_max.Kind = MaterialDesignThemes.Wpf.PackIconKind.WindowMaximize;
-        //    }
-        //}
-
         private void Btn_min_Click(object sender, RoutedEventArgs e) {
             this.wnd_ventana.WindowState = WindowState.Minimized;
         }
 
         private void Sld_apuesta_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) {
-            this.lbl_apuesta.Content = (int)this.sld_apuesta.Value;
-
-            if (this.sld_apuesta.Value == 1000) {
-                this.lbl_apuesta.Content = "All in";
-            }
-
+            this.Lbl_apuesta.Content = (int)this.Sld_apuesta.Value;
         }
 
         private void Btn_restar_Click(object sender, RoutedEventArgs e) {
-            this.sld_apuesta.Value -= 1;
+            this.Sld_apuesta.Value -= 1;
         }
 
         private void Btn_sumar_Click(object sender, RoutedEventArgs e) {
-            this.sld_apuesta.Value += 1;
+            this.Sld_apuesta.Value += 1;
         }
 
         private void Btn_fold_Click(object sender, RoutedEventArgs e) {
-            if (!this.fuera) {
-                this.Rtg_carta1_jugador3.Visibility = Visibility.Hidden;
-                this.Rtg_carta2_jugador3.Visibility = Visibility.Hidden;
-                this.fuera = true;
+            if (!this.Fuera) {
+                this.Img_carta1_jugador3.Visibility = Visibility.Hidden;
+                this.Img_carta2_jugador3.Visibility = Visibility.Hidden;
+                Sonido.SoundLocation = "../../Sounds/fold.wav";
+                Sonido.Play();
+                this.Fuera = true;
             }
         }
 
         private void Elp_jugador3_MouseEnter(object sender, MouseEventArgs e) {
-            if (this.fuera) {
-                this.Rtg_carta1_jugador3.Opacity = 0.60;
-                this.Rtg_carta2_jugador3.Opacity = 0.60;
-                this.Rtg_carta1_jugador3.Visibility = Visibility.Visible;
-                this.Rtg_carta2_jugador3.Visibility = Visibility.Visible;
+            
+            if (this.Fuera) {
+                this.Img_carta1_jugador3.Opacity = 0.60;
+                this.Img_carta2_jugador3.Opacity = 0.60;
+                this.Img_carta1_jugador3.Visibility = Visibility.Visible;
+                this.Img_carta2_jugador3.Visibility = Visibility.Visible;
             }
         }
 
         private void Elp_jugador3_MouseLeave(object sender, MouseEventArgs e) {
-            if (this.fuera) {
-                this.Rtg_carta1_jugador3.Visibility = Visibility.Hidden;
-                this.Rtg_carta2_jugador3.Visibility = Visibility.Hidden;
+            if (this.Fuera) {
+                this.Img_carta1_jugador3.Visibility = Visibility.Hidden;
+                this.Img_carta2_jugador3.Visibility = Visibility.Hidden;
             }
         }
 
@@ -93,6 +109,169 @@ namespace Poker {
 
         private void Sp_jugador3_MouseLeave(object sender, MouseEventArgs e) {
             this.Elp_jugador3_MouseLeave(sender, e);
+        }
+
+        private void Timer_Tick(object sender, EventArgs e) {
+            if (this.Pgb_tiempo.Value > 0 && !Fuera) {
+                this.Pgb_tiempo.Value -= 1;
+
+                if (!Ancho) {
+                    this.Elp_jugador3.StrokeThickness = 5;
+                    Ancho = true;
+                }
+
+                else {
+                    this.Elp_jugador3.StrokeThickness = 1;
+                    Ancho = false;
+                }
+            }
+
+            else {
+                this.Elp_jugador3.StrokeThickness = 1;
+                Ancho = false;
+                this.Pgb_tiempo.Value = 15;
+            }
+        }
+
+        private void Btn_raise_Click(object sender, RoutedEventArgs e) {
+            Sonido.SoundLocation = "../../Sounds/raise.wav";
+            Sonido.Play();
+
+            this.Tbk_apuesta_jugador3.Text = this.Lbl_apuesta.Content + "";
+            int apuesta = Int32.Parse(Tbk_apuesta_jugador3.Text);
+
+            this.Tbk_saldo_jugador3.Text = Int32.Parse(this.Tbk_saldo_jugador3.Text) - (int)this.Lbl_apuesta.Content + "";
+            this.Sld_apuesta.Value = 0;
+            Fuera = true;
+
+            int cordX = 28, cordY = 0;
+
+            if (cantidad != 0) {
+                this.Grd_fichas.Children.Clear();
+                cantidad = 0;
+            }
+
+            while (apuesta != 0) {
+                if (apuesta % 1000 == 0) {
+                    Image ficha = new Image();
+                    ficha.Name = "Img_ficha" + cantidad;
+                    ficha.Margin = new Thickness(301, 410 - cordY, 753, 110 + cordY);
+                    cordY += 4;
+
+                    BitmapImage bitmap = new BitmapImage();
+                    bitmap.BeginInit();
+                    bitmap.UriSource = new Uri("../../Images/Fichas/chip1000.png", UriKind.Relative);
+                    bitmap.EndInit();
+
+                    ficha.Source = bitmap;
+                    ficha.Stretch = Stretch.None;
+                    this.Grd_fichas.Children.Add(ficha);
+                    apuesta -= 1000;
+                }
+
+                else if (apuesta % 500 == 0) {
+                    Image ficha = new Image();
+                    ficha.Name = "Img_fichas" + cantidad;
+                    ficha.Margin = new Thickness(301, 410 - cordY, 753, 110 + cordY);
+                    cordY += 4;
+
+                    BitmapImage bitmap = new BitmapImage();
+                    bitmap.BeginInit();
+                    bitmap.UriSource = new Uri("../../Images/Fichas/chip500.png", UriKind.Relative);
+                    bitmap.EndInit();
+
+                    ficha.Source = bitmap;
+                    ficha.Stretch = Stretch.None;
+                    this.Grd_fichas.Children.Add(ficha);
+                    apuesta -= 500;
+                }
+
+                else if (apuesta % 100 == 0) {
+                    Image ficha = new Image();
+                    ficha.Name = "Img_fichas" + cantidad;
+                    ficha.Margin = new Thickness(301, 410 - cordY, 753, 110 + cordY);
+                    cordY += 4;
+
+                    BitmapImage bitmap = new BitmapImage();
+                    bitmap.BeginInit();
+                    bitmap.UriSource = new Uri("../../Images/Fichas/chip100.png", UriKind.Relative);
+                    bitmap.EndInit();
+
+                    ficha.Source = bitmap;
+                    ficha.Stretch = Stretch.None;
+                    this.Grd_fichas.Children.Add(ficha);
+                    apuesta -= 100;
+                }
+
+                else if (apuesta % 25 == 0) {
+                    Image ficha = new Image();
+                    ficha.Name = "Img_fichas" + cantidad;
+                    ficha.Margin = new Thickness(301, 410 - cordY, 753, 110 + cordY);
+                    cordY += 4;
+
+                    BitmapImage bitmap = new BitmapImage();
+                    bitmap.BeginInit();
+                    bitmap.UriSource = new Uri("../../Images/Fichas/chip25.png", UriKind.Relative);
+                    bitmap.EndInit();
+
+                    ficha.Source = bitmap;
+                    ficha.Stretch = Stretch.None;
+                    this.Grd_fichas.Children.Add(ficha);
+                    apuesta -= 25;
+                }
+
+                else if (apuesta % 5 == 0) {
+                    Image ficha = new Image();
+                    ficha.Name = "Img_fichas" + cantidad;
+                    ficha.Margin = new Thickness(301, 410 - cordY, 753, 110 + cordY);
+                    cordY += 4;
+
+                    BitmapImage bitmap = new BitmapImage();
+                    bitmap.BeginInit();
+                    bitmap.UriSource = new Uri("../../Images/Fichas/chip5.png", UriKind.Relative);
+                    bitmap.EndInit();
+
+                    ficha.Source = bitmap;
+                    ficha.Stretch = Stretch.None;
+                    this.Grd_fichas.Children.Add(ficha);
+                    apuesta -= 5;
+                }
+
+                else {
+                    Image ficha = new Image();
+                    ficha.Name = "Img_fichas" + cantidad;
+                    ficha.Margin = new Thickness(301, 410 - cordY, 753, 110 + cordY);
+                    cordY += 4;
+
+                    BitmapImage bitmap = new BitmapImage();
+                    bitmap.BeginInit();
+                    bitmap.UriSource = new Uri("../../Images/Fichas/chip1.png", UriKind.Relative);
+                    bitmap.EndInit();
+
+                    ficha.Source = bitmap;
+                    ficha.Stretch = Stretch.None;
+                    this.Grd_fichas.Children.Add(ficha);
+                    apuesta -= 1;
+                }
+
+                cantidad++;
+            }
+        }
+
+        private void Btn_pass_Click(object sender, RoutedEventArgs e) {
+            Sonido.SoundLocation = "../../Sounds/pass.wav";
+            Sonido.Play();
+        }
+
+        private void Pgb_tiempo_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) {
+            if (this.Pgb_tiempo.Value == 5) {
+                Sonido.SoundLocation = "../../Sounds/alert.wav";
+                Sonido.Play();
+            }
+
+            else if (this.Pgb_tiempo.Value == 0) {
+                this.Btn_fold_Click(sender, e);
+            }
         }
     }
 }
