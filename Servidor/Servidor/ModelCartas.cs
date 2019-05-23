@@ -65,11 +65,6 @@ namespace Servidor
 
 
             }
-            for(int i = 0; i < 52; i++)
-            {
-                Console.WriteLine(cartas[i].getSimbolo());
-                Console.WriteLine(cartas[i].getNumero());
-            }
             this.clone(cartas, ref disponibles);
             this.desordenar(disponibles);
 

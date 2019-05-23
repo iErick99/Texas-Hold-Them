@@ -8,3 +8,13 @@ C:\Users\alefa\Documents\Visual Studio 2019\Projects\Servidor\Servidor\obj\Debug
 C:\Users\alefa\Documents\Visual Studio 2019\Projects\Servidor\Servidor\obj\Debug\Servidor.csproj.CopyComplete
 C:\Users\alefa\Documents\Visual Studio 2019\Projects\Servidor\Servidor\obj\Debug\Servidor.exe
 C:\Users\alefa\Documents\Visual Studio 2019\Projects\Servidor\Servidor\obj\Debug\Servidor.pdb
+C:\Users\jaalf\Desktop\Texas-Hold-Them\Servidor\Servidor\bin\Debug\Servidor.exe.config
+C:\Users\jaalf\Desktop\Texas-Hold-Them\Servidor\Servidor\bin\Debug\Servidor.exe
+C:\Users\jaalf\Desktop\Texas-Hold-Them\Servidor\Servidor\bin\Debug\Servidor.pdb
+C:\Users\jaalf\Desktop\Texas-Hold-Them\Servidor\Servidor\bin\Debug\Newtonsoft.Json.dll
+C:\Users\jaalf\Desktop\Texas-Hold-Them\Servidor\Servidor\bin\Debug\Newtonsoft.Json.xml
+C:\Users\jaalf\Desktop\Texas-Hold-Them\Servidor\Servidor\obj\Debug\Servidor.csprojAssemblyReference.cache
+C:\Users\jaalf\Desktop\Texas-Hold-Them\Servidor\Servidor\obj\Debug\Servidor.csproj.CoreCompileInputs.cache
+C:\Users\jaalf\Desktop\Texas-Hold-Them\Servidor\Servidor\obj\Debug\Servidor.csproj.CopyComplete
+C:\Users\jaalf\Desktop\Texas-Hold-Them\Servidor\Servidor\obj\Debug\Servidor.exe
+C:\Users\jaalf\Desktop\Texas-Hold-Them\Servidor\Servidor\obj\Debug\Servidor.pdb

@@ -73,7 +73,7 @@ namespace Servidor
         public void mutexGeneral()
         {
             bool nuevo_juego = true;//sirve para identificar si va empezar un nuevo juego
-            bool vuelta =true;//Sirve solamente para dar permiso que se ejecute el metodo "cobro"
+            bool vuelta = true;//Sirve solamente para dar permiso que se ejecute el metodo "cobro"
             //y se activa cuando al menos los 4 jugadores ya participaron. Esto sirve por si en una jugada 
             //nadie aposto y la apuesta queda en 0;
             int contHilos = 1;
@@ -92,9 +92,11 @@ namespace Servidor
                     case 4: { hilo4 = true; break; }
                 }
                 Thread.Sleep(1000);
-
+                Console.ReadLine();
                 if (instruccion != "")
                 {
+                    //////////////////////////////////////
+                    
                     //hacer la instruccion
                     contHilos++;
                     if (contHilos == 5) { contHilos = 1; vuelta = true; }
@@ -203,11 +205,19 @@ namespace Servidor
                 j2.setApostado(0);
                 j3.setApostado(0);
                 j4.setApostado(0);
+
+                j1.setJugando(true);
+                j2.setJugando(true);
+                j3.setJugando(true);
+                j4.setJugando(true);
                 contHilos = 1;
                 if (cartas.getMesa().Count() == 5)
                 {
                     nuevo_juego = true;
                     //DEFINIR GANADOR
+                    /////////////prueba////////////
+                    j1.setMonto(j1.getMonto() + pozo);
+                    //////////////////////////////////
                     pozo = 0;
                     
                 }
@@ -221,10 +231,10 @@ namespace Servidor
         }
         public bool verificarCobro()
         {
-            if (j1.getApostado() != apuesta) { return false; }
-            if (j2.getApostado() != apuesta) { return false; }
-            if (j3.getApostado() != apuesta) { return false; }
-            if (j4.getApostado() != apuesta) { return false; }
+            if (j1.getApostado() != apuesta && j1.getJugando() == true) { return false; }
+            if (j2.getApostado() != apuesta && j2.getJugando() == true) { return false; }
+            if (j3.getApostado() != apuesta && j3.getJugando() == true) { return false; }
+            if (j4.getApostado() != apuesta && j4.getJugando() == true) { return false; }
             return true;
         }
         public void mutexH1()
@@ -234,8 +244,31 @@ namespace Servidor
                 if (hilo1)
                 {
                     Console.WriteLine("Hilo 1 hablando ...");
+                    ///esto es mientras, es para una prueba
+                    j1.setApostado(j1.getApostado() + 50);
+                    j1.setMonto(j1.getMonto() - 50);
+                    pozo += 50;
+                    if (apuesta < j1.getApostado())
+                    {
+                        int x = j1.getApostado() - apuesta;
+                        apuesta += x;
+                    }
+                    //////////////////////////////////////
+                    ////////////////prueba//////////
+                    Console.WriteLine("Cartas:");
+                    foreach(Carta c in cartas.getMesa())
+                    {
+                        Console.WriteLine(c.getNumero() + c.getSimbolo());
+                    }
+                    Console.WriteLine("Pozo:"+pozo);
+                    Console.WriteLine("apuesta:"+apuesta);
+                    Console.WriteLine("J1 apostado: "+j1.getApostado());
+                    Console.WriteLine("Monto de j1: "+j1.getMonto());
+                    ////////////////////////////////
+
                     //Thread.Sleep(1000);
                     instruccion = "hols";
+                    j1.setJugando(true);
                     hilo1 = false;
                 }
             }
@@ -248,7 +281,8 @@ namespace Servidor
                 {
                     Console.WriteLine("Hilo 2 hablando ...");
                     //Thread.Sleep(1000);
-                    instruccion = "hols";
+                    instruccion = "NO";
+                    j2.setJugando(false);
                     hilo2 = false;
                 }
             }
@@ -261,7 +295,8 @@ namespace Servidor
                 {
                     Console.WriteLine("Hilo 3 hablando ...");
                     //Thread.Sleep(1000);
-                    instruccion = "hols";
+                    instruccion = "NO";
+                    j3.setJugando(false);
                     hilo3 = false;
                 }
 
@@ -276,8 +311,10 @@ namespace Servidor
                 {
                     Console.WriteLine("Hilo 4 hablando ...");
                     //Thread.Sleep(1000);
-                    instruccion = "hols";
+                    instruccion = "NO";
+                    j4.setJugando(false);
                     hilo4 = false;
+
                 }
             }
         }
