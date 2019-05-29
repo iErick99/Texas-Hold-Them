@@ -329,9 +329,30 @@ namespace Servidor
             }
         }
 
-        public void parse(string str)
+        public void apostar(ref Jugador j, string instruccion ,int raise )
         {
-            Console.WriteLine("Parseando..");
+            if(instruccion == "Apostar")
+            {
+                j.setApostado(j.getApostado() + raise);
+                j.setMonto(j.getMonto() - raise);
+                pozo += raise;
+                if (apuesta < j.getApostado())
+                {
+                    int x = j.getApostado() - apuesta;
+                    apuesta += x;
+                }
+            }
+            if(instruccion == "Igualar")
+            {
+                int aux = apuesta - j.getApostado();
+                j.setApostado(j.getApostado() + aux);
+                pozo += aux;
+            }
+            if (instruccion == "Botar")
+            {
+                j.setJugando(false);
+            }
+
         }
     }
 }
