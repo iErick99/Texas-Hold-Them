@@ -93,5 +93,28 @@ namespace Servidor
             }
 
         }
+        public void dealing()
+        {
+            if (this.mesa.Count() == 0)
+            {
+                this.mesa.Add(this.disponibles[0]);
+                this.disponibles.Remove(this.disponibles[0]);
+                this.mesa.Add(this.disponibles[0]);
+                this.disponibles.Remove(this.disponibles[0]);
+                this.mesa.Add(this.disponibles[0]);
+                this.disponibles.Remove(this.disponibles[0]);
+
+            }
+            else
+            {
+                this.mesa.Add(this.disponibles[0]);
+                this.disponibles.Remove(this.disponibles[0]);
+
+            }
+        }
+        public void vaciarMesa()
+        {
+            this.mesa = new List<Carta>();
+        }
     }
 }

@@ -6,14 +6,15 @@ using System.Text;
 using System.Threading;
 using Newtonsoft.Json;
 
-namespace Servidor 
+namespace Servidor
 {
     class Server
     {
         private TcpListener socket;
-
+        static int numeroHilo = 0;
         public Server(string address, int port)
         {
+
             // Initialize server's socket
             socket = new TcpListener(IPAddress.Parse(address), port);
         }
@@ -23,7 +24,6 @@ namespace Servidor
         {
             // Listen connections
             socket.Start();
-
             Console.WriteLine(String.Format("Server started on {0}...", socket.LocalEndpoint));
         }
 
@@ -47,19 +47,20 @@ namespace Servidor
             finally
             {
                 socket.Stop();
-            }            
+            }
         }
 
         public void CreateClientThread(TcpClient client)
         {
-            Thread clientThread = new Thread(() => ReceiveRequests(client));
+            Thread clientThread = new Thread(() => ReceiveRequests(client, numeroHilo++));
 
             clientThread.Start();
         }
 
         // Clients' request parsing method
-        public void ReceiveRequests(TcpClient client)
+        public void ReceiveRequests(TcpClient client, int numero)
         {
+            Console.Write(numero);
             NetworkStream dataStream;
             int requestSize;
             string clientAddress = (client.Client.RemoteEndPoint).ToString();
@@ -91,15 +92,41 @@ namespace Servidor
                     // TODO: Definir mas metodos del servidor
                     switch ((string)deserializedRequest.method)
                     {
-                        case "login": {
-                                if (deserializedRequest.usuario == "001" && deserializedRequest.password == "001") {
+                        case "login":
+                            {
+                                if (deserializedRequest.usuario == "001" && deserializedRequest.password == "001")
+                                {
                                     response = "{\"success\":true}";
                                 }
 
-                                else {
+                                else
+                                {
                                     response = "{\"success\":false}";
                                 }
-                            } break;
+                            }
+                            break;
+
+                        case "raise":
+                            {
+                                var apuesta = deserializedRequest.apuesta;
+                                response = "{\"success\":true}";
+                            }
+                            break;
+
+                        case "pass":
+                            {
+                            }
+                            break;
+
+                        case "fold":
+                            {
+                            }
+                            break;
+
+                        case "call":
+                            {
+                            }
+                            break;
 
                         default: response = "{\"success\":false}"; break;
                     }
