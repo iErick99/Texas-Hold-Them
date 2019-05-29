@@ -15,6 +15,9 @@ using System.Windows.Shapes;
 using System.Windows.Threading;
 using System.Media;
 using System.Windows.Media.Animation;
+using System.Dynamic;
+using Newtonsoft.Json;
+
 
 namespace Poker {
     public partial class Mesa : Window {
@@ -24,7 +27,8 @@ namespace Poker {
         private DispatcherTimer Timer;
         private bool Ancho;
         private int cantidad;
-
+        private dynamic jugador;
+        
         public Mesa() {
             InitializeComponent();
             this.Fuera = false;
@@ -35,6 +39,7 @@ namespace Poker {
             Timer.Start();
             this.Ancho = false;
             this.cantidad = 0;
+            this.jugador = new ExpandoObject();
         }
 
         private void Btn_cerrar_Click(object sender, RoutedEventArgs e) {
@@ -126,9 +131,15 @@ namespace Poker {
             int apuesta = Int32.Parse(Tbk_apuesta_jugador3.Text);
 
             this.Tbk_saldo_jugador3.Text = Int32.Parse(this.Tbk_saldo_jugador3.Text) - (int)this.Lbl_apuesta.Content + "";
-            this.Sld_apuesta.Value = 0;
             Fuera = true;
 
+            
+            this.jugador.method = "raise";
+            this.jugador.raise = (int)Lbl_apuesta.Content + "";
+            this.Sld_apuesta.Value = 0;
+
+            var result = JsonConvert.DeserializeObject<dynamic>(Poker.Client.cliente.SendRequest(JsonConvert.SerializeObject(jugador)));
+ 
             int cordX = 28, cordY = 0;
 
             if (cantidad != 0) {
