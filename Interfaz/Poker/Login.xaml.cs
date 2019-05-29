@@ -20,7 +20,6 @@ namespace Poker {
 
         private Cuenta cuenta;
         private Mesa mesa;
-        private Client cliente;
         private dynamic jugador;
 
         public Login() {
@@ -28,12 +27,13 @@ namespace Poker {
             this.cuenta = null;
             this.mesa = null;
             this.jugador = new ExpandoObject();
-            this.cliente = new Client();
+            
         }
-
+     
         private void Brd_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) {
             DragMove();
         }
+
 
         private void Btn_cerrar_Click(object sender, RoutedEventArgs e) {
             Application.Current.Shutdown();
@@ -53,9 +53,10 @@ namespace Poker {
                 this.jugador.method = "login";
                 this.jugador.usuario = this.txt_usuario.Text;
                 this.jugador.password = this.psw_contrasena.Password;
-                this.cliente.Connect(this.txt_ip.Text, Int32.Parse(this.txt_puerto.Text));
+                Poker.Client.cliente.Connect(this.txt_ip.Text, Int32.Parse(this.txt_puerto.Text));
+                
 
-                var result = JsonConvert.DeserializeObject<dynamic>(this.cliente.SendRequest(JsonConvert.SerializeObject(jugador)));
+                var result = JsonConvert.DeserializeObject<dynamic>(Poker.Client.cliente.SendRequest(JsonConvert.SerializeObject(jugador)));
 
                 if (result.success == true) {
                     this.mesa = new Mesa();
@@ -80,9 +81,9 @@ namespace Poker {
                     this.jugador.method = "login";
                     this.jugador.usuario = this.txt_usuario.Text;
                     this.jugador.password = this.psw_contrasena.Password;
-                    this.cliente.Connect(this.txt_ip.Text, Int32.Parse(this.txt_puerto.Text));
+                    Poker.Client.cliente.Connect(this.txt_ip.Text, Int32.Parse(this.txt_puerto.Text));
 
-                    var result = JsonConvert.DeserializeObject<dynamic>(this.cliente.SendRequest(JsonConvert.SerializeObject(jugador)));
+                    var result = JsonConvert.DeserializeObject<dynamic>(Poker.Client.cliente.SendRequest(JsonConvert.SerializeObject(jugador)));
 
                     if (result.success == true) {
                         this.mesa = new Mesa();

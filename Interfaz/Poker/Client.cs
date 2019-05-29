@@ -4,10 +4,10 @@ using System.Text;
 
 namespace Poker
 {
-    class Client
+    public class Client
     {
         private TcpClient socket = new TcpClient();
-
+        public static Client cliente = new Client();
         public void Connect(string address, int port)
         {
             int attempts = 0;
