@@ -77,13 +77,29 @@ namespace Servidor
             //y se activa cuando al menos los 4 jugadores ya participaron. Esto sirve por si en una jugada 
             //nadie aposto y la apuesta queda en 0;
             int contHilos = 1;
-            
+            int ciega = 0;
 
             while (true)
             {
-                if (nuevo_juego) { this.nuevoJuego(ref nuevo_juego, contHilos); }
-                if (vuelta) { this.cobro(ref nuevo_juego, ref contHilos, ref vuelta); }
+
+                if (nuevo_juego) { this.nuevoJuego(ref nuevo_juego, contHilos); ciega++; if (ciega == 5) { ciega = 1; } }
+                if (vuelta) {
+                    this.cobro(ref nuevo_juego, ref contHilos, ref vuelta);
+                    ////////////////prueba//////////
+                    string str = "";
+                    foreach (Carta c in cartas.getMesa())
+                    {
+                        str+=(c.getNumero() + c.getSimbolo()+" ");
+                    }
+                    Console.WriteLine("Cartas: " + str);
+                    Console.WriteLine("Pozo:" + pozo);
+                    Console.WriteLine("apuesta:" + apuesta);
+                    ///////////////////////////////
+
+                }
+
                 
+
                 switch (contHilos)
                 {
                     case 1: { hilo1 = true; break; }
@@ -96,11 +112,13 @@ namespace Servidor
                 if (instruccion != "")
                 {
                     //////////////////////////////////////
-                    
+
                     //hacer la instruccion
+                    if (contHilos == 0) { contHilos = ciega; }
                     contHilos++;
-                    if (contHilos == 5) { contHilos = 1; vuelta = true; }
-                    instruccion = "";
+                    if (contHilos == 5) { contHilos = 1; vuelta = true;}
+                    
+                    instruccion = "a";
                 }
             }
         }
@@ -111,6 +129,7 @@ namespace Servidor
             {
                 case 1:
                     {
+                        Console.WriteLine("Ciega cobrada a J1");
                         j1.setMonto(j1.getMonto() - apuestaMinima);
                         j1.setApostado(apuestaMinima);
                         j2.setMonto(j2.getMonto() - (apuestaMinima * 2));
@@ -120,6 +139,7 @@ namespace Servidor
                     }
                 case 2:
                     {
+                        Console.WriteLine("Ciega cobrada a J2");
                         j2.setMonto(j2.getMonto() - apuestaMinima);
                         j2.setApostado(apuestaMinima);
                         j3.setMonto(j3.getMonto() - (apuestaMinima * 2));
@@ -129,6 +149,7 @@ namespace Servidor
                     }
                 case 3:
                     {
+                        Console.WriteLine("Ciega cobrada a J3");
                         j3.setMonto(j3.getMonto() - apuestaMinima);
                         j3.setApostado(apuestaMinima);
                         j4.setMonto(j4.getMonto() - (apuestaMinima * 2));
@@ -138,6 +159,7 @@ namespace Servidor
                     }
                 case 4:
                     {
+                        Console.WriteLine("Ciega cobrada a J4");
                         j4.setMonto(j4.getMonto() - apuestaMinima);
                         j4.setApostado(apuestaMinima);
                         j1.setMonto(j1.getMonto() - (apuestaMinima * 2));
@@ -147,7 +169,7 @@ namespace Servidor
                     }
             }
             apuesta = apuestaMinima * 2;
-
+            this.cartas.vaciarMesa();
             this.repartirCartas();
             nuevoJuego = false;
         }
@@ -176,25 +198,7 @@ namespace Servidor
             cartas.getCartas().Remove(cartas.getCartas()[0]);
 
         }
-        public void dealing()
-        {
-            if (cartas.getMesa().Count() == 0)
-            {
-                cartas.getMesa().Add(cartas.getCartas()[0]);
-                cartas.getCartas().Remove(cartas.getCartas()[0]);
-                cartas.getMesa().Add(cartas.getCartas()[0]);
-                cartas.getCartas().Remove(cartas.getCartas()[0]);
-                cartas.getMesa().Add(cartas.getCartas()[0]);
-                cartas.getCartas().Remove(cartas.getCartas()[0]);
 
-            }
-            else
-            {
-                cartas.getMesa().Add(cartas.getCartas()[0]);
-                cartas.getCartas().Remove(cartas.getCartas()[0]);
-
-            }
-        }
         public void cobro(ref bool nuevo_juego,ref int contHilos, ref bool vuelta)
         {
             if (verificarCobro())
@@ -219,11 +223,11 @@ namespace Servidor
                     j1.setMonto(j1.getMonto() + pozo);
                     //////////////////////////////////
                     pozo = 0;
-                    
+                    contHilos = 0;
                 }
                 else
                 {
-                    this.dealing();
+                    this.cartas.dealing();
                 }
 
 
@@ -254,14 +258,8 @@ namespace Servidor
                         apuesta += x;
                     }
                     //////////////////////////////////////
-                    ////////////////prueba//////////
-                    Console.WriteLine("Cartas:");
-                    foreach(Carta c in cartas.getMesa())
-                    {
-                        Console.WriteLine(c.getNumero() + c.getSimbolo());
-                    }
-                    Console.WriteLine("Pozo:"+pozo);
-                    Console.WriteLine("apuesta:"+apuesta);
+                   
+                    ///////////////////////////////
                     Console.WriteLine("J1 apostado: "+j1.getApostado());
                     Console.WriteLine("Monto de j1: "+j1.getMonto());
                     ////////////////////////////////
@@ -280,6 +278,10 @@ namespace Servidor
                 if (hilo2)
                 {
                     Console.WriteLine("Hilo 2 hablando ...");
+                    ///////////////////////////////
+                    Console.WriteLine("J2 apostado: " + j2.getApostado());
+                    Console.WriteLine("Monto de j2: " + j2.getMonto());
+                    ////////////////////////////////
                     //Thread.Sleep(1000);
                     instruccion = "NO";
                     j2.setJugando(false);
@@ -294,6 +296,10 @@ namespace Servidor
                 if (hilo3)
                 {
                     Console.WriteLine("Hilo 3 hablando ...");
+                    ///////////////////////////////
+                    Console.WriteLine("J3 apostado: " + j3.getApostado());
+                    Console.WriteLine("Monto de j3: " + j3.getMonto());
+                    ////////////////////////////////
                     //Thread.Sleep(1000);
                     instruccion = "NO";
                     j3.setJugando(false);
@@ -310,6 +316,10 @@ namespace Servidor
                 if (hilo4)
                 {
                     Console.WriteLine("Hilo 4 hablando ...");
+                    ///////////////////////////////
+                    Console.WriteLine("J4 apostado: " + j4.getApostado());
+                    Console.WriteLine("Monto de j4: " + j4.getMonto());
+                    ////////////////////////////////
                     //Thread.Sleep(1000);
                     instruccion = "NO";
                     j4.setJugando(false);
