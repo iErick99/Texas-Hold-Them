@@ -98,7 +98,7 @@
         </StackPanel>
         <Ellipse x:Name="Elp_jugador2" Margin="829,101,158,352" Stroke="Black" Width="93" Height="92">
             <Ellipse.Fill>
-                <ImageBrush ImageSource="Images/erick.jpg"/>
+                <ImageBrush/>
             </Ellipse.Fill>
         </Ellipse>
         <StackPanel x:Name="Sp_jugador4" Margin="900,368,10,109" RenderTransformOrigin="0.5,0.5">
@@ -122,7 +122,7 @@
         </StackPanel>
         <Ellipse x:Name="Elp_jugador4"  Margin="829,356,158,96" Stroke="Black">
             <Ellipse.Fill>
-                <ImageBrush ImageSource="/Images/cosi.jpg"/>
+                <ImageBrush />
             </Ellipse.Fill>
         </Ellipse>
         <StackPanel x:Name="Sp_jugador3" Margin="10,368,900,109" MouseEnter="Sp_jugador3_MouseEnter" MouseLeave="Sp_jugador3_MouseLeave">
@@ -136,9 +136,9 @@
             <Separator Height="6" Margin="18,0,30,0" VerticalAlignment="Top" Background="#FF0F0101"/>
             <TextBlock x:Name="Tbk_saldo_jugador3" Text="1000" Foreground="#DDFFFFFF" FontSize="18" TextAlignment="Center" Height="26" Margin="0,3,0,0"/>
         </StackPanel>
-        <Ellipse x:Name="Elp_jugador3" Margin="158,356,829,96" Stroke="Black" MouseEnter="Elp_jugador3_MouseEnter" MouseLeave="Elp_jugador3_MouseLeave">
+        <Ellipse x:Name="Elp_jugador3" Margin="158,356,829,96" Stroke="Black" MouseEnter="Elp_jugador3_MouseEnter" MouseLeave="Elp_jugador3_MouseLeave" RenderTransformOrigin="0.501,0.5">
             <Ellipse.Fill>
-                <ImageBrush ImageSource="/Images/fazio.jpg"/>
+                <ImageBrush  />
             </Ellipse.Fill>
 
         </Ellipse>
@@ -155,7 +155,7 @@
         </StackPanel>
         <Ellipse x:Name="Elp_jugador1"  Margin="158,101,829,351" Stroke="Black" Width="93" Height="92">
             <Ellipse.Fill>
-                <ImageBrush ImageSource="/Images/gonzalo.jpg"/>
+                <ImageBrush/>
             </Ellipse.Fill>
         </Ellipse>
 
