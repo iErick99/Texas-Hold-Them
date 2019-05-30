@@ -1,0 +1,6 @@
+C:\Texas-Hold-Them\ActiveDirectory\Connection\bin\Release\Connection.dll
+C:\Texas-Hold-Them\ActiveDirectory\Connection\bin\Release\Connection.pdb
+C:\Texas-Hold-Them\ActiveDirectory\Connection\obj\Release\Connection.csprojAssemblyReference.cache
+C:\Texas-Hold-Them\ActiveDirectory\Connection\obj\Release\Connection.csproj.CoreCompileInputs.cache
+C:\Texas-Hold-Them\ActiveDirectory\Connection\obj\Release\Connection.dll
+C:\Texas-Hold-Them\ActiveDirectory\Connection\obj\Release\Connection.pdb

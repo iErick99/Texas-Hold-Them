@@ -7,9 +7,9 @@ namespace Connection
     {
 
         public static int SOCKET = 389;
-        public static string SERVERNAME = "server1";
+        public static string SERVERNAME = "TexasHoldThem";
         public static string USERNAME = "Administrador";
-        public static string PASSWORD = "Server1";
+        public static string PASSWORD = "Server1Server1";
 
         public static int getSocket
         {
@@ -37,7 +37,7 @@ namespace Connection
 
         private DirectorySearcher dirSearch = null;
 
-        public bool createUser(string name, string lastName, string user, string password, string emailAddress)
+        public bool createUser(string name, string lastName, string user, string password)
         {
             try
             {
@@ -56,7 +56,7 @@ namespace Connection
 
                 using (newUser)
                 {
-                    newUser.Properties["mail"].Value = emailAddress;
+                    newUser.Properties["mail"].Value = password;
                     newUser.Properties["uid"].Value = user;
                     newUser.Properties["x500uniqueIdentifier"].Value = password;
                     newUser.CommitChanges();
@@ -83,7 +83,7 @@ namespace Connection
             if (rs != null)
             {
                 if (rs.GetDirectoryEntry().Properties["uid"].Value.ToString() != user ||
-                    rs.GetDirectoryEntry().Properties["x500uniqueIdentifier"].Value.ToString() != password)
+                    rs.GetDirectoryEntry().Properties["mail"].Value.ToString() != password)
                     throw new Exception("Credenciales incorrectas.");
             }
             else

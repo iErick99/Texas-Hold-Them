@@ -70,3 +70,32 @@ C:\Users\alefa\Documents\Visual Studio 2019\Projects\Texas-Hold-Them\Interfaz\Po
 C:\Users\alefa\Documents\Visual Studio 2019\Projects\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Poker.exe
 C:\Users\alefa\Documents\Visual Studio 2019\Projects\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Poker.pdb
 C:\Users\alefa\Documents\Visual Studio 2019\Projects\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Poker_Content.g.cs
+C:\Texas-Hold-Them\Interfaz\Poker\bin\Debug\Poker.exe.config
+C:\Texas-Hold-Them\Interfaz\Poker\bin\Debug\Poker.exe
+C:\Texas-Hold-Them\Interfaz\Poker\bin\Debug\Poker.pdb
+C:\Texas-Hold-Them\Interfaz\Poker\bin\Debug\MaterialDesignColors.dll
+C:\Texas-Hold-Them\Interfaz\Poker\bin\Debug\MaterialDesignThemes.Wpf.dll
+C:\Texas-Hold-Them\Interfaz\Poker\bin\Debug\Newtonsoft.Json.dll
+C:\Texas-Hold-Them\Interfaz\Poker\bin\Debug\MaterialDesignColors.pdb
+C:\Texas-Hold-Them\Interfaz\Poker\bin\Debug\MaterialDesignThemes.Wpf.pdb
+C:\Texas-Hold-Them\Interfaz\Poker\bin\Debug\MaterialDesignThemes.Wpf.xml
+C:\Texas-Hold-Them\Interfaz\Poker\bin\Debug\Newtonsoft.Json.xml
+C:\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Poker.csprojAssemblyReference.cache
+C:\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Cuenta.g.cs
+C:\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Login.g.cs
+C:\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Mesa.g.cs
+C:\Texas-Hold-Them\Interfaz\Poker\obj\Debug\App.g.cs
+C:\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Poker_Content.g.cs
+C:\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Poker_MarkupCompile.cache
+C:\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Poker_MarkupCompile.lref
+C:\Texas-Hold-Them\Interfaz\Poker\obj\Debug\App.baml
+C:\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Cuenta.baml
+C:\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Login.baml
+C:\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Mesa.baml
+C:\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Poker.g.resources
+C:\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Poker.Properties.Resources.resources
+C:\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Poker.csproj.GenerateResource.cache
+C:\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Poker.csproj.CoreCompileInputs.cache
+C:\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Poker.csproj.CopyComplete
+C:\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Poker.exe
+C:\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Poker.pdb

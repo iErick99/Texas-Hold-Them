@@ -5,18 +5,20 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using Newtonsoft.Json;
+using Connection;
 
-namespace Servidor
+namespace Servidor 
 {
     class Server
     {
         private TcpListener socket;
-        static int numeroHilo = 0;
+        private ActiveDirectory AD = new ActiveDirectory();
+        static int numeroHilo = 1;
+
         public Server(string address, int port)
         {
-
             // Initialize server's socket
-            socket = new TcpListener(IPAddress.Parse(address), port);
+            socket = new TcpListener(/*IPAddress.Parse(address)*/ IPAddress.Any, port);
         }
 
         // Server starting method
@@ -24,9 +26,10 @@ namespace Servidor
         {
             // Listen connections
             socket.Start();
+
             Console.WriteLine(String.Format("Server started on {0}...", socket.LocalEndpoint));
         }
-
+            
         // Client connections receiver method
         public void Run()
         {
@@ -47,7 +50,7 @@ namespace Servidor
             finally
             {
                 socket.Stop();
-            }
+            }            
         }
 
         public void CreateClientThread(TcpClient client)
@@ -92,19 +95,19 @@ namespace Servidor
                     // TODO: Definir mas metodos del servidor
                     switch ((string)deserializedRequest.method)
                     {
-                        case "login":
-                            {
-                                if (deserializedRequest.usuario == "001" && deserializedRequest.password == "001")
+                        case "login": {
+                                try
                                 {
+                                    AD.authentication((string)deserializedRequest.usuario, (string)deserializedRequest.password);
                                     response = "{\"success\":true}";
                                 }
-
-                                else
+                                catch (Exception e)
                                 {
                                     response = "{\"success\":false}";
+                                    Console.WriteLine(e.Message.ToString());
                                 }
+                                    break;
                             }
-                            break;
 
                         case "raise":
                             {
@@ -137,7 +140,7 @@ namespace Servidor
                     dataStream.Flush();
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 Console.WriteLine(String.Format("{0} has disconnected", clientAddress));
             }

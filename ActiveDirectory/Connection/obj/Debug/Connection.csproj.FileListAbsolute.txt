@@ -4,3 +4,9 @@ C:\Users\LoLER\source\repos\Connection\Connection\obj\Debug\Connection.csprojAss
 C:\Users\LoLER\source\repos\Connection\Connection\obj\Debug\Connection.csproj.CoreCompileInputs.cache
 C:\Users\LoLER\source\repos\Connection\Connection\obj\Debug\Connection.dll
 C:\Users\LoLER\source\repos\Connection\Connection\obj\Debug\Connection.pdb
+C:\Texas-Hold-Them\ActiveDirectory\Connection\bin\Debug\Connection.dll
+C:\Texas-Hold-Them\ActiveDirectory\Connection\bin\Debug\Connection.pdb
+C:\Texas-Hold-Them\ActiveDirectory\Connection\obj\Debug\Connection.csprojAssemblyReference.cache
+C:\Texas-Hold-Them\ActiveDirectory\Connection\obj\Debug\Connection.csproj.CoreCompileInputs.cache
+C:\Texas-Hold-Them\ActiveDirectory\Connection\obj\Debug\Connection.dll
+C:\Texas-Hold-Them\ActiveDirectory\Connection\obj\Debug\Connection.pdb
