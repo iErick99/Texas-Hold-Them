@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Dynamic;
 using System.Net;
 using System.Net.Sockets;
@@ -115,6 +115,21 @@ namespace Servidor
                                 response = "{\"success\":true}";
                             }
                             break;
+
+                        case "create":
+                            {
+                                try
+                                {
+                                    AD.createUser((string)deserializedRequest.usuario, (string)deserializedRequest.password);
+                                    response = "{\"success\":true}";
+                                }
+                                catch (Exception e)
+                                {
+                                    response = "{\"success\":false}";
+                                    Console.WriteLine(e.Message.ToString());
+                                }
+                                break;
+                            }
 
                         case "pass":
                             {
