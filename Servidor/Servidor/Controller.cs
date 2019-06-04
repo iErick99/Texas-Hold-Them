@@ -46,23 +46,6 @@ namespace Servidor
 
             apuestaMinima = 50;
 
-            Thread h1 = new Thread(new ThreadStart(mutexH1));
-            Thread h2 = new Thread(new ThreadStart(mutexH2));
-            Thread h3 = new Thread(new ThreadStart(mutexH3));
-            Thread h4 = new Thread(new ThreadStart(mutexH4));
-
-            h1.Start();
-            //h1.Join();
-
-            h2.Start();
-            //h2.Join();
-
-            h3.Start();
-            //h3.Join();
-
-            h4.Start();
-            //h4.Join();
-
             this.mutexGeneral();
 
         }
@@ -96,13 +79,6 @@ namespace Servidor
 
                 }
 
-                switch (contHilos)
-                {
-                    case 1: { hilo1 = true; break; }
-                    case 2: { hilo2 = true; break; }
-                    case 3: { hilo3 = true; break; }
-                    case 4: { hilo4 = true; break; }
-                }
                 Thread.Sleep(1000);
                 Console.ReadLine();
                 if (instruccion != "")
@@ -114,7 +90,7 @@ namespace Servidor
                     contHilos++;
                     if (contHilos == 5) { contHilos = 1; vuelta = true; }
 
-                    instruccion = "a";
+                    instruccion = "";
                 }
             }
         }
@@ -196,7 +172,6 @@ namespace Servidor
                     jugador.setApostado(0);
                     jugador.setJugando(true);
                 }
-                //contHilos = 1;
                 if (cartas.getMesa().Count() == 5)
                 {
                     nuevo_juego = true;
@@ -206,6 +181,7 @@ namespace Servidor
                     //////////////////////////////////
                     pozo = 0;
                     contHilos = 0;
+                    instruccion = "nuevoJuego";
                 }
                 else
                 {
@@ -223,97 +199,7 @@ namespace Servidor
             }
             return true;
         }
-        public void mutexH1()
-        {
-            while (true)
-            {
-                if (hilo1)
-                {
-                    server.ReceiveRequests(jugadores[0].Client);
-                    Console.WriteLine("Hilo 1 hablando ...");
-
-                    ///esto es mientras, es para una prueba
-                    jugadores[0].setApostado(jugadores[0].getApostado() + 50);
-                    jugadores[0].setMonto(jugadores[0].getMonto() - 50);
-                    pozo += 50;
-                    if (apuesta < jugadores[0].getApostado())
-                    {
-                        int x = jugadores[0].getApostado() - apuesta;
-                        apuesta += x;
-                    }
-                    //////////////////////////////////////
-
-                    ///////////////////////////////
-                    Console.WriteLine("J1 apostado: " + jugadores[0].getApostado());
-                    Console.WriteLine("Monto de j1: " + jugadores[0].getMonto());
-                    ////////////////////////////////
-
-                    //Thread.Sleep(1000);
-                    instruccion = "hols";
-                    jugadores[0].setJugando(true);
-                    hilo1 = false;
-                }
-            }
-        }
-        public void mutexH2()
-        {
-
-            while (true)
-            {
-                if (hilo2)
-                {
-
-                    Console.WriteLine("Hilo 2 hablando ...");
-                    ///////////////////////////////
-                    Console.WriteLine("J2 apostado: " + jugadores[1].getApostado());
-                    Console.WriteLine("Monto de j2: " + jugadores[1].getMonto());
-                    ////////////////////////////////
-                    //Thread.Sleep(1000);
-                    instruccion = "NO";
-                    jugadores[1].setJugando(false);
-                    hilo2 = false;
-                }
-            }
-        }
-        public void mutexH3()
-        {
-            while (true)
-            {
-                if (hilo3)
-                {
-                    Console.WriteLine("Hilo 3 hablando ...");
-                    ///////////////////////////////
-                    Console.WriteLine("J3 apostado: " + jugadores[2].getApostado());
-                    Console.WriteLine("Monto de j3: " + jugadores[2].getMonto());
-                    ////////////////////////////////
-                    //Thread.Sleep(1000);
-                    instruccion = "NO";
-                    jugadores[2].setJugando(false);
-                    hilo3 = false;
-                }
-
-            }
-        }
-
-        public void mutexH4()
-        {
-            while (true)
-            {
-                if (hilo4)
-                {
-                    Console.WriteLine("Hilo 4 hablando ...");
-                    ///////////////////////////////
-                    Console.WriteLine("J4 apostado: " + jugadores[3].getApostado());
-                    Console.WriteLine("Monto de j4: " + jugadores[3].getMonto());
-                    ////////////////////////////////
-                    //Thread.Sleep(1000);
-                    instruccion = "NO";
-                    jugadores[3].setJugando(false);
-                    hilo4 = false;
-
-                }
-            }
-        }
+        
 
         public void apostar(string nombreJugador, string instruccion, int raise)
         {

@@ -17,7 +17,7 @@ namespace Servidor
         List<Jugador> jugadores = new List<Jugador>();
         int numeroJugador = 1;
         public Controller controller;
-
+        public Thread hController;
         public Server(string address, int port)
         {
             // Initialize server's socket
@@ -28,6 +28,7 @@ namespace Servidor
         public void Start()
         {
             // Listen connections
+            hController = new Thread(new ThreadStart(controller.inicio));
             socket.Start();
 
             Console.WriteLine(String.Format("Server started on {0}...", socket.LocalEndpoint));
@@ -67,7 +68,7 @@ namespace Servidor
             controller.Jugadores = jugadores;
             if (jugadores.Count == 4)
             {
-                controller.inicio();
+                hController.Start();
             }
             Thread clientThread = new Thread(() => ReceiveRequests(jugador.Client));
             numeroJugador += 1;
