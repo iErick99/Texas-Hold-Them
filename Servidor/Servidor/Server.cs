@@ -6,19 +6,21 @@ using System.Text;
 using System.Threading;
 using Newtonsoft.Json;
 using Connection;
+using System.Collections.Generic;
 
-namespace Servidor 
+namespace Servidor
 {
     class Server
     {
         private TcpListener socket;
         private ActiveDirectory AD = new ActiveDirectory();
-        static int numeroHilo = 1;
+        List<Jugador> jugadores = new List<Jugador>();
+        int numeroJugador = 1;
 
         public Server(string address, int port)
         {
             // Initialize server's socket
-            socket = new TcpListener(/*IPAddress.Parse(address)*/ IPAddress.Any, port);
+            socket = new TcpListener(IPAddress.Any, port);
         }
 
         // Server starting method
@@ -29,7 +31,7 @@ namespace Servidor
 
             Console.WriteLine(String.Format("Server started on {0}...", socket.LocalEndpoint));
         }
-            
+
         // Client connections receiver method
         public void Run()
         {
@@ -37,10 +39,12 @@ namespace Servidor
             {
                 while (true)
                 {
-                    TcpClient client = socket.AcceptTcpClient();
-                    this.CreateClientThread(client);
-
-                    Console.WriteLine(String.Format("{0} has connected! Waiting for request...", (client.Client.RemoteEndPoint).ToString()));
+                    if (jugadores.Count != 4)
+                    {
+                        TcpClient client = socket.AcceptTcpClient();
+                        this.CreateClientThread(client);
+                        Console.WriteLine(String.Format("{0} has connected! Waiting for request...", (client.Client.RemoteEndPoint).ToString()));
+                    }
                 }
             }
             catch (Exception exc)
@@ -50,20 +54,23 @@ namespace Servidor
             finally
             {
                 socket.Stop();
-            }            
+            }
         }
 
         public void CreateClientThread(TcpClient client)
         {
-            Thread clientThread = new Thread(() => ReceiveRequests(client, numeroHilo++));
-
+            Jugador jugador = new Jugador();
+            jugador.Client = client;
+            jugador.NumeroJugador = numeroJugador;
+            jugadores.Add(jugador);
+            Thread clientThread = new Thread(() => ReceiveRequests(jugador.Client));
+            numeroJugador += 1;
             clientThread.Start();
         }
 
         // Clients' request parsing method
-        public void ReceiveRequests(TcpClient client, int numero)
+        public void ReceiveRequests(TcpClient client)
         {
-            Console.Write(numero);
             NetworkStream dataStream;
             int requestSize;
             string clientAddress = (client.Client.RemoteEndPoint).ToString();
@@ -95,24 +102,29 @@ namespace Servidor
                     // TODO: Definir mas metodos del servidor
                     switch ((string)deserializedRequest.method)
                     {
-                        case "login": {
+                        case "login":
+                            {
                                 try
                                 {
                                     AD.authentication((string)deserializedRequest.usuario, (string)deserializedRequest.password);
                                     response = "{\"success\":true}";
+
                                 }
                                 catch (Exception e)
                                 {
                                     response = "{\"success\":false}";
                                     Console.WriteLine(e.Message.ToString());
                                 }
-                                    break;
+
+                                break;
                             }
 
                         case "raise":
                             {
-                                var apuesta = deserializedRequest.apuesta;
-                                response = "{\"success\":true}";
+                                int apuesta = deserializedRequest.raise;
+                                Console.WriteLine(apuesta);
+                                BroadCast("{dinero: " + apuesta + "}");
+
                             }
                             break;
 
@@ -152,6 +164,7 @@ namespace Servidor
                     responseBuffer = Encoding.ASCII.GetBytes(response);
 
                     dataStream.Write(responseBuffer, 0, responseBuffer.Length);
+                    Console.WriteLine(response);
                     dataStream.Flush();
                 }
             }
@@ -160,5 +173,22 @@ namespace Servidor
                 Console.WriteLine(String.Format("{0} has disconnected", clientAddress));
             }
         }
+
+        public void BroadCast(String response)
+        {
+            for (int i = 0; i < jugadores.Count; i++)
+            {
+
+                NetworkStream dataStream;
+                byte[] responseBuffer;
+                dataStream = jugadores[i].Client.GetStream();
+
+                responseBuffer = Encoding.ASCII.GetBytes(response);
+
+                dataStream.Write(responseBuffer, 0, responseBuffer.Length);
+                dataStream.Flush();
+            }
+        }
+
     }
 }

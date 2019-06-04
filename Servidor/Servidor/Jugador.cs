@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,6 +11,7 @@ namespace Servidor
     {
         private string nombre;
         private string clave;
+        private int numeroJugador;
 
         private int apostado;
         private int monto;
@@ -18,6 +20,8 @@ namespace Servidor
         private Carta carta2;
 
         private bool jugando;
+
+        private TcpClient client;
 
         public Jugador()
         {
@@ -29,7 +33,16 @@ namespace Servidor
             carta2 = null;
             jugando = true;
         }
-
+        public TcpClient Client
+        {
+            get { return client; }
+            set { client = value; }
+        }
+        public int NumeroJugador
+        {
+            get { return numeroJugador; }
+            set { numeroJugador = value; }
+        }
         public string getNombre() { return nombre; }
         public string getClave() { return clave; }
         public int getMonto() { return monto; }

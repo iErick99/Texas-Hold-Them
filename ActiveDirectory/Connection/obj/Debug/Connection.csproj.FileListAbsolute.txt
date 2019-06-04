@@ -10,3 +10,9 @@ C:\Texas-Hold-Them\ActiveDirectory\Connection\obj\Debug\Connection.csprojAssembl
 C:\Texas-Hold-Them\ActiveDirectory\Connection\obj\Debug\Connection.csproj.CoreCompileInputs.cache
 C:\Texas-Hold-Them\ActiveDirectory\Connection\obj\Debug\Connection.dll
 C:\Texas-Hold-Them\ActiveDirectory\Connection\obj\Debug\Connection.pdb
+C:\Users\LoLER\OneDrive - Universidad Nacional de Costa Rica\Documentos\Sistemas Operativos\Texas-Hold-Them\ActiveDirectory\Connection\bin\Debug\Connection.dll
+C:\Users\LoLER\OneDrive - Universidad Nacional de Costa Rica\Documentos\Sistemas Operativos\Texas-Hold-Them\ActiveDirectory\Connection\bin\Debug\Connection.pdb
+C:\Users\LoLER\OneDrive - Universidad Nacional de Costa Rica\Documentos\Sistemas Operativos\Texas-Hold-Them\ActiveDirectory\Connection\obj\Debug\Connection.csprojAssemblyReference.cache
+C:\Users\LoLER\OneDrive - Universidad Nacional de Costa Rica\Documentos\Sistemas Operativos\Texas-Hold-Them\ActiveDirectory\Connection\obj\Debug\Connection.csproj.CoreCompileInputs.cache
+C:\Users\LoLER\OneDrive - Universidad Nacional de Costa Rica\Documentos\Sistemas Operativos\Texas-Hold-Them\ActiveDirectory\Connection\obj\Debug\Connection.dll
+C:\Users\LoLER\OneDrive - Universidad Nacional de Costa Rica\Documentos\Sistemas Operativos\Texas-Hold-Them\ActiveDirectory\Connection\obj\Debug\Connection.pdb
