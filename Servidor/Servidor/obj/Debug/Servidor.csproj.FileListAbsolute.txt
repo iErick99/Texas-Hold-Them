@@ -30,3 +30,5 @@ C:\Texas-Hold-Them\Servidor\Servidor\obj\Debug\Servidor.exe
 C:\Texas-Hold-Them\Servidor\Servidor\obj\Debug\Servidor.pdb
 C:\Texas-Hold-Them\Servidor\Servidor\bin\Debug\Connection.dll
 C:\Texas-Hold-Them\Servidor\Servidor\bin\Debug\Connection.pdb
+C:\Users\jaalf\Desktop\Texas-Hold-Them\Servidor\Servidor\bin\Debug\Connection.dll
+C:\Users\jaalf\Desktop\Texas-Hold-Them\Servidor\Servidor\bin\Debug\Connection.pdb

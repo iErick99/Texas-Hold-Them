@@ -79,6 +79,7 @@ namespace Servidor
             int contHilos = 1;
             int ciega = 0;
 
+
             while (true)
             {
 
@@ -118,7 +119,7 @@ namespace Servidor
                     contHilos++;
                     if (contHilos == 5) { contHilos = 1; vuelta = true;}
                     
-                    instruccion = "a";
+                    instruccion = "";
                 }
             }
         }
@@ -223,6 +224,7 @@ namespace Servidor
                     //////////////////////////////////
                     pozo = 0;
                     contHilos = 0;
+                    instruccion = "nuevoJuego";
                 }
                 else
                 {
