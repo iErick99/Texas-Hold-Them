@@ -214,7 +214,6 @@ namespace Servidor
                 j2.setJugando(true);
                 j3.setJugando(true);
                 j4.setJugando(true);
-                //contHilos = 1;
                 if (cartas.getMesa().Count() == 5)
                 {
                     nuevo_juego = true;
