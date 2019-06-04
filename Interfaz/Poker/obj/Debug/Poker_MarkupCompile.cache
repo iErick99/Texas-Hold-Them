@@ -4,29 +4,17 @@
 winexe
 C#
 .cs
-<<<<<<< HEAD
-C:\Texas-Hold-Them\Interfaz\Poker\obj\Debug\
-=======
-C:\Users\Esteban\Desktop\texas\Texas-Hold-Them\Interfaz\Poker\obj\Debug\
->>>>>>> master
+C:\Users\Gonzalo\Desktop\Texas-Hold-Them\Interfaz\Poker\obj\Debug\
 Poker
 none
 false
 DEBUG;TRACE
-<<<<<<< HEAD
-C:\Texas-Hold-Them\Interfaz\Poker\App.xaml
+C:\Users\Gonzalo\Desktop\Texas-Hold-Them\Interfaz\Poker\App.xaml
 3855091885
 5-1198567839
-8-2010978869
-16-853327824
-=======
-C:\Users\Esteban\Desktop\texas\Texas-Hold-Them\Interfaz\Poker\App.xaml
-3855091885
-5-1198567839
-8-2010978869
-16442677007
->>>>>>> master
+9-1374858786
+161526864435
 Cuenta.xaml;Login.xaml;Mesa.xaml;
 
-False
+True
 

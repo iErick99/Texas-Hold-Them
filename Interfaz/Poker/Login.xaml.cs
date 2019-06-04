@@ -48,31 +48,40 @@ namespace Poker {
             this.cuenta.Show();
         }
 
-        private void Btn_iniciar_Click(object sender, RoutedEventArgs e) {
-            try {
-                this.jugador.method = "login";
-                this.jugador.usuario = this.txt_usuario.Text;
-                this.jugador.password = this.psw_contrasena.Password;
-                Poker.Client.cliente.Connect(this.txt_ip.Text, Int32.Parse(this.txt_puerto.Text));
-                
+        private void Btn_iniciar_Click(object sender, RoutedEventArgs e)
+        {
+            Client client = new Client();
 
-                var result = JsonConvert.DeserializeObject<dynamic>(Poker.Client.cliente.SendRequest(JsonConvert.SerializeObject(jugador)));
+            client.Connect("13.90.205.129", 100);
 
-                if (result.success == true) {
-                    this.mesa = new Mesa();
-                    MessageBox.Show("Inicio Correctamente", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
-                    this.Hide();
-                    this.mesa.Show();
-                }
-
-                else {
-                    MessageBox.Show("Credenciales incorrectos", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-            } 
-
-            catch (Exception exc) {
-                MessageBox.Show(exc.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            while (true)
+            {
+                Console.WriteLine(client.AcceptBroadcast());
             }
+            //try {
+            //    this.jugador.method = "login";
+            //    this.jugador.usuario = this.txt_usuario.Text;
+            //    this.jugador.password = this.psw_contrasena.Password;
+            //    Poker.Client.cliente.Connect(this.txt_ip.Text, Int32.Parse(this.txt_puerto.Text));
+
+
+            //    var result = JsonConvert.DeserializeObject<dynamic>(Poker.Client.cliente.SendRequest(JsonConvert.SerializeObject(jugador)));
+
+            //    if (result.success == true) {
+            //        this.mesa = new Mesa();
+            //        MessageBox.Show("Inicio Correctamente", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+            //        this.Hide();
+            //        this.mesa.Show();
+            //    }
+
+            //    else {
+            //        MessageBox.Show("Credenciales incorrectos", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            //    }
+            //} 
+
+            //catch (Exception exc) {
+            //    MessageBox.Show(exc.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            //}
         }
 
         private void Window_KeyUp(object sender, KeyEventArgs e) {
