@@ -29,22 +29,16 @@ namespace Client
             Console.WriteLine("Connection established!");
         }
 
-        // Client request sender method. It returns the server's response as a string (JSON format)
-        public string SendRequest(string request)
+        public string AcceptBroadcast()
         {
             NetworkStream dataStream;
             int responseSize;
             string response = String.Empty;
-            byte[] requestBuffer;
             byte[] responseBuffer;
 
             try
             {
-                // Encode and send request to server
                 dataStream = socket.GetStream();
-                requestBuffer = Encoding.ASCII.GetBytes(request);
-                dataStream.Write(requestBuffer, 0, requestBuffer.Length);
-                dataStream.Flush();
 
                 // Parse and print server's response
                 responseBuffer = new byte[2048];
@@ -58,6 +52,26 @@ namespace Client
             }
 
             return response;
+        }
+
+        // Client request sender method. It returns the server's response as a string (JSON format)
+        public void SendRequest(string request)
+        {
+            NetworkStream dataStream;
+            byte[] requestBuffer;
+
+            try
+            {
+                // Encode and send request to server
+                dataStream = socket.GetStream();
+                requestBuffer = Encoding.ASCII.GetBytes(request);
+                dataStream.Write(requestBuffer, 0, requestBuffer.Length);
+                dataStream.Flush();
+            }
+            catch (Exception exc)
+            {
+                Console.WriteLine(exc.Message);
+            }
         }
     }
 }
