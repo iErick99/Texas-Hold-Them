@@ -132,14 +132,15 @@ namespace Poker {
 
             this.Tbk_saldo_jugador3.Text = Int32.Parse(this.Tbk_saldo_jugador3.Text) - (int)this.Lbl_apuesta.Content + "";
             Fuera = true;
-
             
             this.jugador.method = "raise";
             this.jugador.raise = (int)Lbl_apuesta.Content + "";
             this.Sld_apuesta.Value = 0;
 
-            var result = JsonConvert.DeserializeObject<dynamic>(Poker.Client.cliente.SendRequest(JsonConvert.SerializeObject(jugador)));
- 
+            Client.client.SendData(JsonConvert.SerializeObject(jugador));
+
+            var result = JsonConvert.DeserializeObject<dynamic>(Client.client.GetData());
+
             int cordX = 28, cordY = 0;
 
             if (cantidad != 0) {

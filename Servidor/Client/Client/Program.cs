@@ -13,7 +13,9 @@ namespace Client
 
             while (true)
             {
-                Console.WriteLine(client.AcceptBroadcast());
+                Thread.Sleep(5000);
+                client.SendData(String.Format("{{\"method\": \"raise\", \"cantidad\": {0}}}", 5));
+                Console.WriteLine(client.GetData());
             }
         }
     }

@@ -2,12 +2,11 @@
 using System.Net.Sockets;
 using System.Text;
 
-namespace Poker
+namespace Client
 {
-    public class Client
+    class Client
     {
         private TcpClient socket = new TcpClient();
-        public static Client client = new Client();
 
         // Client server connection method
         public void Connect(string address, int port)
@@ -24,7 +23,7 @@ namespace Poker
                 catch (SocketException)
                 {
                     Console.Clear();
-                    Console.WriteLine(String.Format("Connection attempts: {0}", attempts.ToString()));
+                    Console.WriteLine(String.Format("Connection attempts: {0}" , attempts.ToString()));
                 }
             }
 
