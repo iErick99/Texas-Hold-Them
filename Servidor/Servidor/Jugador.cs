@@ -18,6 +18,7 @@ namespace Servidor
 
         private Carta carta1;
         private Carta carta2;
+        private double valorMano;
 
         private bool jugando;
 
@@ -32,6 +33,7 @@ namespace Servidor
             carta1 = null;
             carta2 = null;
             jugando = true;
+            valorMano = 0;
         }
         public TcpClient Client
         {
@@ -49,11 +51,13 @@ namespace Servidor
         public int getApostado() { return apostado; }
         public Carta getCarta1() { return carta1; }
         public Carta getCarta2() { return carta2; }
+        public double getValorMano() { return valorMano; }
         public bool getJugando() { return jugando; }
         public void setMonto(int mon) { monto = mon; }
         public void setApostado(int apos) { apostado = apos; }
         public void setCarta1(Carta c) { carta1 = c; }
         public void setCarta2(Carta c) { carta2 = c; }
+        public void setValorMano(double vM) { valorMano = vM; }
         public void setJugando(bool j) { jugando = j; }
     }
 }

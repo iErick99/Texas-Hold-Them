@@ -280,6 +280,7 @@ namespace Servidor {
 
         public static double EvaluarMano(List<Carta> cartas) {
             valorMano = 0;
+            cartas = cartas.OrderBy(o => o.getNumero()).ToList();
 
             escaleraReal(cartas);
             if (valorMano != 0) {

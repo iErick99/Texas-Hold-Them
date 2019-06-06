@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="Carta.cs" />
     <Compile Include="Controller.cs" />
+    <Compile Include="EvaluadorMano.cs" />
     <Compile Include="Jugador.cs" />
     <Compile Include="ModelCartas.cs" />
     <Compile Include="Program.cs" />
