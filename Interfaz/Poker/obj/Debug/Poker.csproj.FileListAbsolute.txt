@@ -160,3 +160,32 @@ C:\Users\Gonzalo\Desktop\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Poker.Properti
 C:\Users\Gonzalo\Desktop\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Poker.csproj.GenerateResource.cache
 C:\Users\Gonzalo\Desktop\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Poker.csproj.CoreCompileInputs.cache
 C:\Users\Gonzalo\Desktop\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Poker.csproj.CopyComplete
+C:\Users\Gonzalo Gonzalez\Desktop\Texas-Hold-Them\Interfaz\Poker\bin\Debug\Poker.exe.config
+C:\Users\Gonzalo Gonzalez\Desktop\Texas-Hold-Them\Interfaz\Poker\bin\Debug\Poker.exe
+C:\Users\Gonzalo Gonzalez\Desktop\Texas-Hold-Them\Interfaz\Poker\bin\Debug\Poker.pdb
+C:\Users\Gonzalo Gonzalez\Desktop\Texas-Hold-Them\Interfaz\Poker\bin\Debug\MaterialDesignColors.dll
+C:\Users\Gonzalo Gonzalez\Desktop\Texas-Hold-Them\Interfaz\Poker\bin\Debug\MaterialDesignThemes.Wpf.dll
+C:\Users\Gonzalo Gonzalez\Desktop\Texas-Hold-Them\Interfaz\Poker\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Gonzalo Gonzalez\Desktop\Texas-Hold-Them\Interfaz\Poker\bin\Debug\MaterialDesignColors.pdb
+C:\Users\Gonzalo Gonzalez\Desktop\Texas-Hold-Them\Interfaz\Poker\bin\Debug\MaterialDesignThemes.Wpf.pdb
+C:\Users\Gonzalo Gonzalez\Desktop\Texas-Hold-Them\Interfaz\Poker\bin\Debug\MaterialDesignThemes.Wpf.xml
+C:\Users\Gonzalo Gonzalez\Desktop\Texas-Hold-Them\Interfaz\Poker\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Gonzalo Gonzalez\Desktop\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Poker.csprojAssemblyReference.cache
+C:\Users\Gonzalo Gonzalez\Desktop\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Cuenta.g.cs
+C:\Users\Gonzalo Gonzalez\Desktop\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Login.g.cs
+C:\Users\Gonzalo Gonzalez\Desktop\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Mesa.g.cs
+C:\Users\Gonzalo Gonzalez\Desktop\Texas-Hold-Them\Interfaz\Poker\obj\Debug\App.g.cs
+C:\Users\Gonzalo Gonzalez\Desktop\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Poker_Content.g.cs
+C:\Users\Gonzalo Gonzalez\Desktop\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Poker_MarkupCompile.cache
+C:\Users\Gonzalo Gonzalez\Desktop\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Poker_MarkupCompile.lref
+C:\Users\Gonzalo Gonzalez\Desktop\Texas-Hold-Them\Interfaz\Poker\obj\Debug\App.baml
+C:\Users\Gonzalo Gonzalez\Desktop\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Cuenta.baml
+C:\Users\Gonzalo Gonzalez\Desktop\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Login.baml
+C:\Users\Gonzalo Gonzalez\Desktop\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Mesa.baml
+C:\Users\Gonzalo Gonzalez\Desktop\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Poker.g.resources
+C:\Users\Gonzalo Gonzalez\Desktop\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Poker.Properties.Resources.resources
+C:\Users\Gonzalo Gonzalez\Desktop\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Poker.csproj.GenerateResource.cache
+C:\Users\Gonzalo Gonzalez\Desktop\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Poker.csproj.CoreCompileInputs.cache
+C:\Users\Gonzalo Gonzalez\Desktop\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Poker.csproj.CopyComplete
+C:\Users\Gonzalo Gonzalez\Desktop\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Poker.exe
+C:\Users\Gonzalo Gonzalez\Desktop\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Poker.pdb

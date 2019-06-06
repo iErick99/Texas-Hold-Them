@@ -62,8 +62,8 @@ namespace Poker
             {
                 Client.client.Connect(this.txt_ip.Text, Int32.Parse(this.txt_puerto.Text));
 
-                this.jugador.method = "create";
-                this.jugador.usuario = "iMamerick99";
+                this.jugador.method = "login";
+                this.jugador.usuario = "iErick99";
                 this.jugador.password = "Server1";
 
                 Client.client.SendData(JsonConvert.SerializeObject(jugador));
@@ -72,7 +72,7 @@ namespace Poker
 
                 if (result.success == true)
                 {
-                    this.mesa = new Mesa();
+                    this.mesa = new Mesa(txt_usuario.Text);
                     MessageBox.Show("Inicio Correctamente", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
                     this.Hide();
                     this.mesa.Show();
@@ -99,8 +99,8 @@ namespace Poker
                     Client.client.Connect(this.txt_ip.Text, Int32.Parse(this.txt_puerto.Text));
 
                     this.jugador.method = "login";
-                    this.jugador.usuario = "iErick99";
-                    this.jugador.password = "Server1";
+                    this.jugador.usuario = txt_usuario.Text;
+                    this.jugador.password = psw_contrasena.Password;
 
                     Client.client.SendData(JsonConvert.SerializeObject(jugador));
 
@@ -108,7 +108,7 @@ namespace Poker
 
                     if (result.success == true)
                     {
-                        this.mesa = new Mesa();
+                        this.mesa = new Mesa(txt_usuario.Text);
                         MessageBox.Show("Inicio Correctamente", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
                         this.Hide();
                         this.mesa.Show();

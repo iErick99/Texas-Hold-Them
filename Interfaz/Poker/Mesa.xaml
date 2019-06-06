@@ -159,7 +159,8 @@
             </Ellipse.Fill>
         </Ellipse>
 
-        <TextBlock TextWrapping="Wrap" Text="Bote: 250" FontSize="18" Margin="0,0,0,100" Foreground="#DDFFFFFF" FontWeight="Bold" Height="19" VerticalAlignment="Center" HorizontalAlignment="Center" Width="114"/>
+        <TextBlock x:Name="boteLabel" TextWrapping="Wrap" Text="Bote:" FontSize="18" Margin="499,198,467,328" Foreground="#DDFFFFFF" FontWeight="Bold" Height="18" VerticalAlignment="Center" HorizontalAlignment="Center" Width="114"/>
+        <TextBlock x:Name="bote" TextWrapping="Wrap" Text="250" FontSize="18" Margin="551,198,415,326" Foreground="#DDFFFFFF" FontWeight="Bold" Height="20" VerticalAlignment="Center" HorizontalAlignment="Center" Width="114" RenderTransformOrigin="0.746,0.462"/>
         <ProgressBar x:Name="Pgb_tiempo" Style="{x:Null}" Value="15" Height="Auto" Margin="655,16,108,128" Maximum="15" SmallChange="1" Background="Transparent" BorderBrush="Black" Foreground="Red" BorderThickness="1" Grid.Row="1" ValueChanged="Pgb_tiempo_ValueChanged"/>
 
         <Label x:Name="Lbl_tiempo" Content="Tiempo:" HorizontalAlignment="Left" Margin="564,12,0,0" VerticalAlignment="Top" Width="80" Grid.Row="1" FontSize="18" FontWeight="Bold" Foreground="#DDFFFFFF"/>
@@ -184,7 +185,7 @@
         <Image x:Name="Img_ficha_dealer_jugador3" Margin="257,410,801,114" Source="Images/Fichas/chip-d.png" Stretch="None"/>
         <Image x:Name="Img_ficha_dealer_jugador4" Margin="801,410,257,114" Source="Images/Fichas/chip-d.png" Stretch="None" Visibility="Hidden"/>
         <Grid x:Name="Grd_fichas">
-            
+
         </Grid>
 
     </Grid>
