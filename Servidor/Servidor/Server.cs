@@ -16,7 +16,8 @@ namespace Servidor
         private ActiveDirectory AD = new ActiveDirectory();
         List<Jugador> jugadores = new List<Jugador>();
         int numeroJugador = 1;
-
+        public Controller controller;
+        public Thread hController;
         public Server(string address, int port)
         {
             // Initialize server's socket
@@ -27,6 +28,7 @@ namespace Servidor
         public void Start()
         {
             // Listen connections
+            hController = new Thread(new ThreadStart(controller.inicio));
             socket.Start();
 
             Console.WriteLine(String.Format("Server started on {0}...", socket.LocalEndpoint));
@@ -63,6 +65,11 @@ namespace Servidor
             jugador.Client = client;
             jugador.NumeroJugador = numeroJugador;
             jugadores.Add(jugador);
+            controller.Jugadores = jugadores;
+            if (jugadores.Count == 4)
+            {
+                hController.Start();
+            }
             Thread clientThread = new Thread(() => ReceiveRequests(jugador.Client));
             numeroJugador += 1;
             clientThread.Start();
@@ -78,6 +85,7 @@ namespace Servidor
             string response;
             byte[] requestBuffer;
             byte[] responseBuffer;
+            string nombreJugador = "";
 
             try
             {
@@ -108,6 +116,7 @@ namespace Servidor
                                 {
                                     AD.authentication((string)deserializedRequest.usuario, (string)deserializedRequest.password);
                                     response = "{\"success\":true}";
+                                    nombreJugador = (string)deserializedRequest.usuario;
 
                                 }
                                 catch (Exception e)
@@ -122,9 +131,9 @@ namespace Servidor
                         case "raise":
                             {
                                 int apuesta = deserializedRequest.raise;
+                                controller.apostar(nombreJugador, "apostar", apuesta);
                                 Console.WriteLine(apuesta);
-                                BroadCast("{dinero: " + apuesta + "}");
-
+                                SendGameInformation();
                             }
                             break;
 
@@ -172,6 +181,27 @@ namespace Servidor
             {
                 Console.WriteLine(String.Format("{0} has disconnected", clientAddress));
             }
+        }
+
+        public void SendGameInformation()
+        {
+            /*String informacion = "{ jugadores: [";
+            foreach (Jugador jugador in jugadores)
+            {
+                informacion += "{ nombre:" + jugador.getNombre();
+                informacion += ", apuesta:" + jugador.getApostado();
+                informacion += ", monto:" + jugador.getMonto();
+                informacion += ", carta_1:" + jugador.getCarta1();
+                informacion += ", carta_2:" + jugador.getCarta2() + "}";
+            }
+
+            //informacion = "mesaCartas: " + controller.mo  + "}";
+
+            informacion += "]}";*/
+
+            String informacion = "{ 'jugadores': [ { 'nombre': 'Faziop', 'carta1': { 'numero': 2, 'simbolo': 'Corazones' }, 'carta2': { 'numero': 3, 'simbolo': 'Corazones' }, 'saldo': 1000, 'apuesta': 0 }, { 'nombre': 'GonzaCRC', 'carta1': { 'numero': 3, 'simbolo': 'Corazones' }, 'carta2': { 'numero': 4, 'simbolo': 'Corazones' }, 'saldo': 1000, 'apuesta': 0 }, { 'nombre': 'Bleysh', 'carta1': { 'numero': 5, 'simbolo': 'Corazones' }, 'carta2': { 'numero': 6, 'simbolo': 'Corazones' }, 'saldo': 1000, 'apuesta': 0 }, { 'nombre': 'iErick99', 'carta1': { 'numero': 7, 'simbolo': 'Corazones' }, 'carta2': { 'numero': 8, 'simbolo': 'Corazones' }, 'saldo': 800, 'apuesta': 200 } ], 'mesa': { 'carta1': { 'numero': 5, 'simbolo': 'Treboles' }, 'carta2': { 'numero': 6, 'simbolo': 'Treboles' }, 'carta3': { 'numero': 7, 'simbolo': 'Treboles' }, 'carta4': { 'numero': 8, 'simbolo': 'Treboles' }, 'carta5': { 'numero': 9, 'simbolo': 'Treboles' } } }";
+
+            BroadCast(informacion);
         }
 
         public void BroadCast(String response)
