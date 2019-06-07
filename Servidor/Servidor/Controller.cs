@@ -172,10 +172,11 @@ namespace Servidor
                 {
                     nuevo_juego = true;
                     //DEFINIR GANADOR
-                    /////////////prueba////////////
-                    jugadores[0].setMonto(jugadores[0].getMonto() + pozo);
+                    /////////////////////////
+                    this.escogerGanador();
                     //////////////////////////////////
                     pozo = 0;
+                    apuesta = 0;
                     contHilos = 0;
                     instruccion = "nuevoJuego";
                 }
@@ -199,7 +200,8 @@ namespace Servidor
 
         public void apostar(string nombreJugador, string instruccion, int raise)
         {
-            /*if(instruccion == "Apostar")
+            Jugador j = BuscarJugador(nombreJugador);
+            if(instruccion == "Apostar")
             {
                 j.setApostado(j.getApostado() + raise);
                 j.setMonto(j.getMonto() - raise);
@@ -220,7 +222,79 @@ namespace Servidor
             {
                 j.setJugando(false);
             }
-            */
+            instruccion = "sigaRecto";
+        }
+
+        public Jugador BuscarJugador(string nombreJugador)
+        {
+            if (jugadores[0].getNombre() == nombreJugador) return jugadores[0];
+            if (jugadores[1].getNombre() == nombreJugador) return jugadores[1];
+            if (jugadores[2].getNombre() == nombreJugador) return jugadores[2];
+            if (jugadores[3].getNombre() == nombreJugador) return jugadores[3];
+            return null;
+        }
+
+        public void escogerGanador()
+        {
+            if (jugadores[0].getJugando())
+            {
+                cartas.getMesa().Add(jugadores[0].getCarta1());
+                cartas.getMesa().Add(jugadores[0].getCarta2());
+                jugadores[0].setValorMano(EvaluadorMano.EvaluarMano(cartas.getMesa()));
+                cartas.getMesa().Remove(jugadores[0].getCarta1());
+                cartas.getMesa().Remove(jugadores[0].getCarta2());
+            }
+
+            if (jugadores[1].getJugando())
+            {
+                cartas.getMesa().Add(jugadores[1].getCarta1());
+                cartas.getMesa().Add(jugadores[1].getCarta2());
+                jugadores[1].setValorMano(EvaluadorMano.EvaluarMano(cartas.getMesa()));
+                cartas.getMesa().Remove(jugadores[1].getCarta1());
+                cartas.getMesa().Remove(jugadores[1].getCarta2());
+            }
+
+            if (jugadores[2].getJugando())
+            {
+                cartas.getMesa().Add(jugadores[2].getCarta1());
+                cartas.getMesa().Add(jugadores[2].getCarta2());
+                jugadores[2].setValorMano(EvaluadorMano.EvaluarMano(cartas.getMesa()));
+                cartas.getMesa().Remove(jugadores[2].getCarta1());
+                cartas.getMesa().Remove(jugadores[2].getCarta2());
+            }
+
+            if (jugadores[3].getJugando())
+            {
+                cartas.getMesa().Add(jugadores[3].getCarta1());
+                cartas.getMesa().Add(jugadores[3].getCarta2());
+                jugadores[3].setValorMano(EvaluadorMano.EvaluarMano(cartas.getMesa()));
+                cartas.getMesa().Remove(jugadores[3].getCarta1());
+                cartas.getMesa().Remove(jugadores[3].getCarta2());
+            }
+
+            if (jugadores[0].getValorMano() > jugadores[1].getValorMano() && jugadores[0].getValorMano() > jugadores[2].getValorMano() && jugadores[0].getValorMano() > jugadores[3].getValorMano())
+            {
+                Console.WriteLine("Ganador: Jugador 0");
+                jugadores[0].setMonto(jugadores[0].getMonto() + pozo);
+            }
+
+            else if (jugadores[1].getValorMano() > jugadores[0].getValorMano() && jugadores[1].getValorMano() > jugadores[2].getValorMano() && jugadores[1].getValorMano() > jugadores[3].getValorMano())
+            {
+                Console.WriteLine("Ganador: Jugador 1");
+                jugadores[1].setMonto(jugadores[1].getMonto() + pozo);
+            }
+
+            else if (jugadores[2].getValorMano() > jugadores[0].getValorMano() && jugadores[2].getValorMano() > jugadores[1].getValorMano() && jugadores[2].getValorMano() > jugadores[3].getValorMano())
+            {
+                Console.WriteLine("Ganador: Jugador 2");
+                jugadores[2].setMonto(jugadores[2].getMonto() + pozo);
+            }
+
+            else if (jugadores[3].getValorMano() > jugadores[0].getValorMano() && jugadores[3].getValorMano() > jugadores[1].getValorMano() && jugadores[3].getValorMano() > jugadores[2].getValorMano())
+            {
+                Console.WriteLine("Ganador: Jugador 3");
+                jugadores[3].setMonto(jugadores[3].getMonto() + pozo);
+            }
         }
     }
 }

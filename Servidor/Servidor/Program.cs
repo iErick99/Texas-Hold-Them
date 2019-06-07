@@ -14,6 +14,8 @@ namespace Servidor
 
             //Controller controller = new Controller();
             //controller.inicio();
+
+            Dealer d = new Dealer();
         }
     }
 }

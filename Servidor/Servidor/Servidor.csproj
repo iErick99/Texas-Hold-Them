@@ -51,7 +51,11 @@
   <ItemGroup>
     <Compile Include="Carta.cs" />
     <Compile Include="Controller.cs" />
+    <Compile Include="Dealer.cs" />
+    <Compile Include="EvaluadorMano.cs" />
+    <Compile Include="Juego.cs" />
     <Compile Include="Jugador.cs" />
+    <Compile Include="Mesa.cs" />
     <Compile Include="ModelCartas.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
