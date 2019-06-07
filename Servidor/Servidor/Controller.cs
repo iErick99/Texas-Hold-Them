@@ -294,7 +294,7 @@ namespace Servidor
                 jugadores[2].setMonto(jugadores[2].getMonto() + pozo);
             }
 
-            else
+            else if (jugadores[3].getValorMano() > jugadores[0].getValorMano() && jugadores[3].getValorMano() > jugadores[1].getValorMano() && jugadores[3].getValorMano() > jugadores[2].getValorMano())
             {
                 Console.WriteLine("Ganador: Jugador 3");
                 jugadores[3].setMonto(jugadores[3].getMonto() + pozo);
