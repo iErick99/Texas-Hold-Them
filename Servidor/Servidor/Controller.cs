@@ -25,7 +25,6 @@ namespace Servidor
         public ModelCartas cartas;
 
         private List<Jugador> jugadores = new List<Jugador>();
-        Server server = new Server(IPAddress.Any.ToString(), 100);
 
         public List<Jugador> Jugadores
         {
@@ -35,9 +34,6 @@ namespace Servidor
 
         public Controller()
         {
-            server.Start();
-            server.Run();
-            server.controller = this;
             cartas = new ModelCartas();
 
         }

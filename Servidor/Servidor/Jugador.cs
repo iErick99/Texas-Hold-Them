@@ -43,7 +43,12 @@ namespace Servidor
             get { return numeroJugador; }
             set { numeroJugador = value; }
         }
-        public string getNombre() { return nombre; }
+        public string Nombre
+        {
+            get { return nombre; }
+            set { nombre = value; }
+        }
+
         public string getClave() { return clave; }
         public int getMonto() { return monto; }
         public int getApostado() { return apostado; }
