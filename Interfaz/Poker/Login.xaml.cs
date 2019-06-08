@@ -53,8 +53,8 @@ namespace Poker
                 Client.client.Connect("13.90.205.129", 100);
 
                 this.jugador.method = "login";
-                this.jugador.user = "iErick99";
-                this.jugador.password = "Server1";
+                this.jugador.user = txt_usuario.Text;
+                this.jugador.password = "123";
 
                 Client.client.SendData(JsonConvert.SerializeObject(jugador));
 
@@ -62,7 +62,7 @@ namespace Poker
 
                 if (result.success == true)
                 {
-                    this.mesa = new Mesa("iErick99");
+                    this.mesa = new Mesa(txt_usuario.Text);
                     MessageBox.Show("Inicio Correctamente", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
                     this.Hide();
                     this.mesa.Show();

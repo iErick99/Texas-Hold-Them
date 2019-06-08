@@ -95,6 +95,7 @@
     <Compile Include="Cuenta.xaml.cs">
       <DependentUpon>Cuenta.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ListenerMesa.cs" />
     <Compile Include="Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
       <SubType>Code</SubType>
