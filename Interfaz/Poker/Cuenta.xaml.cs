@@ -23,11 +23,13 @@ namespace Poker
     {
 
         private dynamic jugador;
+        private Login login;
 
         public Cuenta()
         {
             InitializeComponent();
-            jugador = new ExpandoObject();
+            this.jugador = new ExpandoObject();
+            this.login = new Login();
         }
 
         private void Brd_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -71,6 +73,12 @@ namespace Poker
                 this.psw_contrasena.Password = "";
                 this.psw_confirmarContrasena.Password = "";
             }
+        }
+
+        private void Btn_volver_Click(object sender, RoutedEventArgs e) 
+        {
+            this.Hide();
+            this.login.Show();
         }
     }
 }
