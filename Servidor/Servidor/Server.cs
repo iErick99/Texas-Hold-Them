@@ -154,7 +154,7 @@ namespace Servidor
 
                         case "pass":
                             {
-
+                                controller.apostar(jugador.Nombre, "Pasar", 0);
                             }
                             break;
 
@@ -167,11 +167,13 @@ namespace Servidor
 
                         case "fold":
                             {
+                                controller.apostar(jugador.Nombre, "Botar", 0);
                             }
                             break;
 
                         case "call":
                             {
+                                controller.apostar(jugador.Nombre, "Igualar", 0);
                             }
                             break;
 
