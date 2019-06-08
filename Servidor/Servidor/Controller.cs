@@ -26,6 +26,8 @@ namespace Servidor
 
         private List<Jugador> jugadores = new List<Jugador>();
 
+        public String turno = "";
+
         public List<Jugador> Jugadores
         {
             get { return jugadores; }
@@ -35,6 +37,8 @@ namespace Servidor
         public Controller()
         {
             cartas = new ModelCartas();
+            //ARRACO EL SERVER
+            //llAMO 4 HILOS 
         }
         public void inicio()
         {
@@ -56,31 +60,17 @@ namespace Servidor
 
             while (true)
             {
-
                 if (nuevo_juego) { this.nuevoJuego(ref nuevo_juego, contHilos); ciega++; if (ciega == 5) { ciega = 1; } }
-                if (vuelta)
+                if (vuelta){ this.cobro(ref nuevo_juego, ref contHilos, ref vuelta); }
+                switch (contHilos)
                 {
-                    this.cobro(ref nuevo_juego, ref contHilos, ref vuelta);
-                    ////////////////prueba//////////
-                    string str = "";
-                    foreach (Carta c in cartas.getMesa())
-                    {
-                        str += (c.getNumero() + c.getSimbolo() + " ");
-                    }
-                    Console.WriteLine("Cartas: " + str);
-                    Console.WriteLine("Pozo:" + pozo);
-                    Console.WriteLine("apuesta:" + apuesta);
-                    ///////////////////////////////
-
+                    case 1: { turno = jugadores[0].Nombre; break; }
+                    case 2: { turno = jugadores[1].Nombre; break; }
+                    case 3: { turno = jugadores[2].Nombre; break; }
+                    case 4: { turno = jugadores[3].Nombre; break; }
                 }
-
-                Thread.Sleep(1000);
-                Console.ReadLine();
                 if (instruccion != "")
                 {
-                    //////////////////////////////////////
-
-                    //hacer la instruccion
                     if (contHilos == 0) { contHilos = ciega; }
                     contHilos++;
                     if (contHilos == 5) { contHilos = 1; vuelta = true; }

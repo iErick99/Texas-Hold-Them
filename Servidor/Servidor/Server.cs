@@ -16,7 +16,7 @@ namespace Servidor
         private ActiveDirectory AD = new ActiveDirectory();
         public Controller controller;
         public int contadorTurno = 0;
-       // public Thread hController;
+        public Thread hController;
         public Server(string address, int port)
         {
             controller = new Controller();
@@ -28,7 +28,8 @@ namespace Servidor
         public void Start()
         {
             // Listen connections
-            //hController = new Thread(new ThreadStart(controller.inicio));
+            
+            hController = new Thread(new ThreadStart(controller.inicio));
             socket.Start();
 
             Console.WriteLine(String.Format("Server started on {0}...", socket.LocalEndpoint));
@@ -66,7 +67,7 @@ namespace Servidor
             controller.Jugadores.Add(jugador);
             if (controller.Jugadores.Count == 4)
             {
-                controller.repartirCartas();
+                hController.Start();
             }
             Thread clientThread = new Thread(() => ReceiveRequests(jugador));
             clientThread.Start();
@@ -131,7 +132,7 @@ namespace Servidor
                         case "raise":
                             {
                                 int apuesta = deserializedRequest.raise;
-                                //controller.apostar(nombreJugador, "apostar", apuesta);
+                                controller.apostar(jugador.Nombre, "apostar", apuesta);
                                 Console.WriteLine(apuesta);
                             }
                             break;
