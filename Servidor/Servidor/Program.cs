@@ -12,9 +12,6 @@ namespace Servidor
             server.Run();
 
 
-            //Controller controller = new Controller();
-            //controller.inicio();
-
             Dealer d = new Dealer();
         }
     }

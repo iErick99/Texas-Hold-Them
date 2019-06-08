@@ -15,7 +15,8 @@ namespace Servidor
         private TcpListener socket;
         private ActiveDirectory AD = new ActiveDirectory();
         public Controller controller;
-       // public Thread hController;
+        public int contadorTurno = 0;
+        public Thread hController;
         public Server(string address, int port)
         {
             controller = new Controller();
@@ -27,7 +28,8 @@ namespace Servidor
         public void Start()
         {
             // Listen connections
-            //hController = new Thread(new ThreadStart(controller.inicio));
+            
+            hController = new Thread(new ThreadStart(controller.inicio));
             socket.Start();
 
             Console.WriteLine(String.Format("Server started on {0}...", socket.LocalEndpoint));
@@ -65,7 +67,7 @@ namespace Servidor
             controller.Jugadores.Add(jugador);
             if (controller.Jugadores.Count == 4)
             {
-                controller.repartirCartas();
+                hController.Start();
             }
             Thread clientThread = new Thread(() => ReceiveRequests(jugador));
             clientThread.Start();
@@ -109,7 +111,7 @@ namespace Servidor
                             {
                                 try
                                 {
-                                    AD.authentication((string)deserializedRequest.user, (string)deserializedRequest.password);
+                                    //AD.authentication((string)deserializedRequest.user, (string)deserializedRequest.password);
                                     response = "{\"success\":true}";
                                     responseBuffer = Encoding.ASCII.GetBytes(response);
                                     dataStream.Write(responseBuffer, 0, responseBuffer.Length);
@@ -117,7 +119,6 @@ namespace Servidor
                                     dataStream.Flush();
                                     jugador.Nombre = (string)deserializedRequest.user;
                                     SendGameInformation();
-
                                 }
                                 catch (Exception e)
                                 {
@@ -131,7 +132,7 @@ namespace Servidor
                         case "raise":
                             {
                                 int apuesta = deserializedRequest.raise;
-                                //controller.apostar(nombreJugador, "apostar", apuesta);
+                                controller.apostar(jugador.Nombre, "apostar", apuesta);
                                 Console.WriteLine(apuesta);
                             }
                             break;
@@ -140,7 +141,7 @@ namespace Servidor
                             {
                                 try
                                 {
-                                    AD.createUser((string)deserializedRequest.usuario, (string)deserializedRequest.password);
+                                    AD.createUser((string)deserializedRequest.name, (string)deserializedRequest.usuario, (string)deserializedRequest.password);
                                     response = "{\"success\":true}";
                                 }
                                 catch (Exception e)
@@ -153,16 +154,26 @@ namespace Servidor
 
                         case "pass":
                             {
+                                controller.apostar(jugador.Nombre, "Pasar", 0);
+                            }
+                            break;
+
+                        case "prueba":
+                            {
+                                contadorTurno += 1;
+                                SendGameInformation();
                             }
                             break;
 
                         case "fold":
                             {
+                                controller.apostar(jugador.Nombre, "Botar", 0);
                             }
                             break;
 
                         case "call":
                             {
+                                controller.apostar(jugador.Nombre, "Igualar", 0);
                             }
                             break;
 
@@ -180,14 +191,34 @@ namespace Servidor
 
         public void SendGameInformation()
         {
-            String informacion = "{ 'dealer': 'salu4', 'turn': 'iErick99', 'players': [ ";
+            //String informacion = "{ 'dealer': 'salu4', 'turn': 'iErick99', 'players': [ ";
+
+            //Borrar esta basura
+            String informacion;
+
+            if (contadorTurno == 3)
+                contadorTurno = 0;
+
+            if (controller.Jugadores.Count != 4)
+            {
+                informacion = "{ 'dealer': 'salu4', 'players': [ ";
+            }
+            else
+            {
+                informacion = "{ 'dealer': 'salu4', 'turn': '" + controller.Jugadores[contadorTurno].Nombre + "', 'players': [ ";
+            }
+
+            //
             for (int i = 0; i < controller.Jugadores.Count; i++)
             {
                 informacion += "{ 'name': '" + controller.Jugadores[i].Nombre + "'";
-                //informacion += ", 'card1': { 'number': " + jugador.getCarta1().getNumero() + ", 'symbol': " + jugador.getCarta1().getSimbolo() + "}";
-                //informacion += ", 'card2': { 'number': " + jugador.getCarta2().getNumero() + ", 'symbol': " + jugador.getCarta2().getSimbolo() + "}";
-                informacion += ", 'card1': { 'number': 2, 'symbol': 'Diamantes'}";
-                informacion += ", 'card2': { 'number': 2, 'symbol': 'Corazones'}";
+                informacion += ", 'cards': [";
+                if (controller.Jugadores[i].getCarta1() != null && controller.Jugadores[i].getCarta2() != null)
+                {
+                    informacion += " { 'number': " + controller.Jugadores[i].getCarta1().getNumero() + ", 'symbol': '" + controller.Jugadores[i].getCarta1().getSimbolo() + "'}";
+                    informacion += ", { 'number': " + controller.Jugadores[i].getCarta2().getNumero() + ", 'symbol': '" + controller.Jugadores[i].getCarta2().getSimbolo() + "'}";
+                }
+                informacion += "]";
                 informacion += ", 'balance': " + controller.Jugadores[i].getMonto();
                 informacion += ", 'bet': " + controller.Jugadores[i].getApostado() + "}";
                 if (i != controller.Jugadores.Count - 1)
@@ -196,7 +227,7 @@ namespace Servidor
 
             //informacion = "mesaCartas: " + controller.mo  + "}";
 
-            informacion += "], 'table': { 'pot': 100, 'card1': { 'number': 5, 'symbol': 'Treboles' }, 'card2': { 'number': 6, 'symbol': 'Treboles' }, 'card3': { 'number': 7, 'symbol': 'Treboles' }, 'card4': { 'number': 8, 'symbol': 'Treboles' }, 'card5': { 'number': 9, 'symbol': 'Treboles' } } }";
+            informacion += "], 'table': { 'pot': 100, 'cards': [ { 'number': 5, 'symbol': 'Treboles' }, { 'number': 6, 'symbol': 'Treboles' }, { 'number': 7, 'symbol': 'Treboles' }, { 'number': 8, 'symbol': 'Treboles' }, { 'number': 9, 'symbol': 'Treboles' } ] } }";
 
             Console.WriteLine(String.Format("{0}", informacion));
 

@@ -37,7 +37,7 @@ namespace Connection
 
         private DirectorySearcher dirSearch = null;
 
-        public bool createUser(string user, string password)
+        public bool createUser(string name, string user, string password)
         {
             try
             {
@@ -52,13 +52,12 @@ namespace Connection
                     throw new Exception("El usuario ya existe.");
                 }
 
-                DirectoryEntry newUser = adUserFolder.Children.Add("CN=" + user, "user");
+                DirectoryEntry newUser = adUserFolder.Children.Add("CN=" + name, "user");
 
                 using (newUser)
                 {
                     newUser.Properties["mail"].Value = password;
                     newUser.Properties["uid"].Value = user;
-                    newUser.Properties["x500uniqueIdentifier"].Value = password;
                     newUser.CommitChanges();
                 }
 
