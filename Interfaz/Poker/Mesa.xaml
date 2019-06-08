@@ -69,7 +69,7 @@
             <StackPanel Grid.Column="0" Grid.Row="0" Orientation="Horizontal">
                 <Button x:Name="Btn_fold" Content="Fold"  Width="120" Height="65" Foreground="White" BorderBrush="#FFAA2424" Background="#FFAA2424" FontSize="18" FontWeight="Bold" Margin="40,0,0,0" Click="Btn_fold_Click" IsEnabled="False"/>
                 <Button x:Name="Btn_pass" Content="Pass"  Width="120" Height="65" Foreground="White" BorderBrush="#FFAA2424" Background="#FFAA2424" FontSize="18" FontWeight="Bold" Margin="10,0,0,0" Click="Btn_pass_Click" IsEnabled="False"/>
-                <Button x:Name="Btn_call" Content="Call" Width="120" Height="65" Foreground="White" BorderBrush="#FFAA2424" Background="#FFAA2424" FontSize="18" FontWeight="Bold" Margin="10,0,0,0" Click="Btn_raise_Click" IsEnabled="False"/>
+                <Button x:Name="Btn_call" Content="Call" Width="120" Height="65" Foreground="White" BorderBrush="#FFAA2424" Background="#FFAA2424" FontSize="18" FontWeight="Bold" Margin="10,0,0,0" IsEnabled="False" Click="Btn_call_Click"/>
                 <Button x:Name="Btn_raise" Content="Raise" Width="120" Height="65" Foreground="White" BorderBrush="#FFAA2424" Background="#FFAA2424" FontSize="18" FontWeight="Bold" Margin="10,0,0,0" Click="Btn_raise_Click" IsEnabled="False"/>
             </StackPanel>
 
@@ -80,9 +80,6 @@
                 </Button>
                 <Slider x:Name="Sld_apuesta" Height="38" Width="192" Margin="10,15,10,0" ValueChanged="Sld_apuesta_ValueChanged" Maximum="1000"/>
                 <Button x:Name="Btn_sumar" Foreground="#DD000000" Click="Btn_sumar_Click" Margin="10,0">
-                    <materialDesign:PackIcon Kind="Plus"/>
-                </Button>
-                <Button x:Name="Btn_sumar2" Foreground="#DD000000" Click="Btn_sumar2_Click" Margin="10,0">
                     <materialDesign:PackIcon Kind="Plus"/>
                 </Button>
             </StackPanel>
@@ -129,7 +126,7 @@
                 <ImageBrush />
             </Ellipse.Fill>
         </Ellipse>
-        <StackPanel x:Name="Sp_jugador3" Margin="10,368,900,109" MouseEnter="Sp_jugador3_MouseEnter" MouseLeave="Sp_jugador3_MouseLeave">
+        <StackPanel x:Name="Sp_jugador3" Margin="10,368,900,109">
             <StackPanel.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="Black" Offset="0"/>
@@ -140,7 +137,7 @@
             <Separator Height="6" Margin="18,0,30,0" VerticalAlignment="Top" Background="#FF0F0101"/>
             <TextBlock x:Name="Tbk_saldo_jugador3" Foreground="#DDFFFFFF" FontSize="18" TextAlignment="Center" Height="26" Margin="0,3,0,0"/>
         </StackPanel>
-        <Ellipse x:Name="Elp_jugador3" Margin="158,356,829,96" Stroke="Black" MouseEnter="Elp_jugador3_MouseEnter" MouseLeave="Elp_jugador3_MouseLeave" RenderTransformOrigin="0.501,0.5">
+        <Ellipse x:Name="Elp_jugador3" Margin="158,356,829,96" Stroke="Black" RenderTransformOrigin="0.501,0.5">
             <Ellipse.Fill>
                 <ImageBrush  />
             </Ellipse.Fill>

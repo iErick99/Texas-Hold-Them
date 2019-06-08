@@ -8,11 +8,11 @@
         {
             this.mesa = mesa;
         }
-        public void escuchar()
+        public void escucharBroadcasts()
         {
             while (true)
             {
-                this.mesa.paint(Client.client.GetData());
+                this.mesa.paint(this.mesa.client.GetData());
             }
         }
     }

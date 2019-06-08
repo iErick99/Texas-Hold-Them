@@ -7,9 +7,8 @@ namespace Poker
     public class Client
     {
         private TcpClient socket = new TcpClient();
-        public static Client client = new Client();
 
-        // Client server connection method
+        // Client's server connection method
         public void Connect(string address, int port)
         {
             int attempts = 0;
@@ -31,7 +30,7 @@ namespace Poker
             Console.WriteLine("Connection established!");
         }
 
-        // Client data getter method
+        // Client's data getter method
         public string GetData()
         {
             NetworkStream dataStream;
@@ -41,9 +40,9 @@ namespace Poker
 
             try
             {
+                // Parse and print server's response
                 dataStream = socket.GetStream();
 
-                // Parse and print server's response
                 responseBuffer = new byte[2048];
                 responseSize = dataStream.Read(responseBuffer, 0, responseBuffer.Length);
                 response = Encoding.ASCII.GetString(responseBuffer, 0, responseSize);
@@ -56,7 +55,7 @@ namespace Poker
             return response;
         }
 
-        // Client data sender method
+        // Client's data sender method
         public void SendData(string request)
         {
             NetworkStream dataStream;

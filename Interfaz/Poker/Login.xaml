@@ -12,7 +12,7 @@
         FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         Icon="/Images/logo.png"
-        Title="Login" Height="470" Width="425" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True" ResizeMode="NoResize" KeyUp="Window_KeyUp">
+        Title="Login" Height="470" Width="425" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True" ResizeMode="NoResize">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
