@@ -35,7 +35,6 @@ namespace Servidor
         public Controller()
         {
             cartas = new ModelCartas();
-
         }
         public void inicio()
         {
@@ -227,10 +226,10 @@ namespace Servidor
 
         public Jugador BuscarJugador(string nombreJugador)
         {
-            if (jugadores[0].getNombre() == nombreJugador) return jugadores[0];
-            if (jugadores[1].getNombre() == nombreJugador) return jugadores[1];
-            if (jugadores[2].getNombre() == nombreJugador) return jugadores[2];
-            if (jugadores[3].getNombre() == nombreJugador) return jugadores[3];
+            if (jugadores[0].Nombre == nombreJugador) return jugadores[0];
+            if (jugadores[1].Nombre == nombreJugador) return jugadores[1];
+            if (jugadores[2].Nombre == nombreJugador) return jugadores[2];
+            if (jugadores[3].Nombre == nombreJugador) return jugadores[3];
             return null;
         }
 
