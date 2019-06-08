@@ -9,6 +9,8 @@ using System.Media;
 using System.Dynamic;
 using Newtonsoft.Json;
 using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Poker
 {
@@ -22,81 +24,112 @@ namespace Poker
         private int cantidad;
         private dynamic jugador;
         private string usuario;
+        private ListenerMesa listener;
 
         public Mesa(String usuario)
         {
             InitializeComponent();
+
             this.Fuera = false;
             Sonido = new SoundPlayer();
             Timer = new DispatcherTimer();
             Timer.Tick += new EventHandler(Timer_Tick);
             Timer.Interval = TimeSpan.FromSeconds(1);
-            Timer.Start();
             this.Ancho = false;
             this.cantidad = 0;
             this.jugador = new ExpandoObject();
             this.usuario = usuario;
+            this.listener = new ListenerMesa(this);
         }
 
-        private void paint(string datos)
+        public void paint(string datos)
         {
-            var informacion = JsonConvert.DeserializeObject<dynamic>(datos);
-
-            Img_flop1.Source = new BitmapImage(new Uri(String.Format("../../Images/Cartas/{0}/{1}.png", informacion.mesa.carta1.simbolo, informacion.mesa.carta1.numero), UriKind.Relative));
-            Img_flop2.Source = new BitmapImage(new Uri(String.Format("../../Images/Cartas/{0}/{1}.png", informacion.mesa.carta2.simbolo, informacion.mesa.carta2.numero), UriKind.Relative));
-            Img_flop3.Source = new BitmapImage(new Uri(String.Format("../../Images/Cartas/{0}/{1}.png", informacion.mesa.carta3.simbolo, informacion.mesa.carta3.numero), UriKind.Relative));
-            Img_turn.Source = new BitmapImage(new Uri(String.Format("../../Images/Cartas/{0}/{1}.png", informacion.mesa.carta4.simbolo, informacion.mesa.carta4.numero), UriKind.Relative));
-            Img_river.Source = new BitmapImage(new Uri(String.Format("../../Images/Cartas/{0}/{1}.png", informacion.mesa.carta5.simbolo, informacion.mesa.carta5.numero), UriKind.Relative));
-
-            bote.Text = informacion.mesa.bote;
-
-            List<TextBlock> nombresDejugadores = new List<TextBlock>();
-            nombresDejugadores.Add(Tbk_jugador1);
-            nombresDejugadores.Add(Tbk_jugador2);
-            nombresDejugadores.Add(Tbk_jugador3);
-            nombresDejugadores.Add(Tbk_jugador4);
-
-            List<TextBlock> saldosDejugadores = new List<TextBlock>();
-            saldosDejugadores.Add(Tbk_saldo_jugador1);
-            saldosDejugadores.Add(Tbk_saldo_jugador2);
-            saldosDejugadores.Add(Tbk_saldo_jugador3);
-            saldosDejugadores.Add(Tbk_saldo_jugador4);
-
-            List<TextBlock> apuestasDejugadores = new List<TextBlock>();
-            apuestasDejugadores.Add(Tbk_apuesta_jugador1);
-            apuestasDejugadores.Add(Tbk_apuesta_jugador2);
-            apuestasDejugadores.Add(Tbk_apuesta_jugador3);
-            apuestasDejugadores.Add(Tbk_apuesta_jugador4);
-
-            List<List<Image>> cartasDeJugadores = new List<List<Image>>();
-            List<Image> cartasDeJugador1 = new List<Image>();
-            cartasDeJugador1.Add(Img_carta1_jugador1);
-            cartasDeJugador1.Add(Img_carta2_jugador1);
-            cartasDeJugadores.Add(cartasDeJugador1);
-
-            List<Image> cartasDeJugador2 = new List<Image>();
-            cartasDeJugador2.Add(Img_carta1_jugador2);
-            cartasDeJugador2.Add(Img_carta2_jugador2);
-            cartasDeJugadores.Add(cartasDeJugador2);
-
-            List<Image> cartasDeJugador3 = new List<Image>();
-            cartasDeJugador3.Add(Img_carta1_jugador3);
-            cartasDeJugador3.Add(Img_carta2_jugador3);
-            cartasDeJugadores.Add(cartasDeJugador3);
-
-            List<Image> cartasDeJugador4 = new List<Image>();
-            cartasDeJugador4.Add(Img_carta1_jugador4);
-            cartasDeJugador4.Add(Img_carta2_jugador4);
-            cartasDeJugadores.Add(cartasDeJugador4);
-
-            for (int i = 0; i < 4; i++)
+            Dispatcher.Invoke(new Action(() =>
             {
-                nombresDejugadores[i].Text = informacion.jugadores[i].nombre;
-                saldosDejugadores[i].Text = informacion.jugadores[i].saldo;
-                apuestasDejugadores[i].Text = informacion.jugadores[i].apuesta;
-                cartasDeJugadores[i][0].Source = new BitmapImage(new Uri(String.Format("../../Images/Cartas/{0}/{1}.png", informacion.jugadores[i].carta1.simbolo, informacion.jugadores[i].carta1.numero), UriKind.Relative));
-                cartasDeJugadores[i][1].Source = new BitmapImage(new Uri(String.Format("../../Images/Cartas/{0}/{1}.png", informacion.jugadores[i].carta2.simbolo, informacion.jugadores[i].carta2.numero), UriKind.Relative));
-            }
+                var informacion = JsonConvert.DeserializeObject<dynamic>(datos);
+
+                bote.Text = informacion.table.pot;
+
+                List<Image> cartasDeMesa = new List<Image>();
+                cartasDeMesa.Add(Img_flop1);
+                cartasDeMesa.Add(Img_flop2);
+                cartasDeMesa.Add(Img_flop3);
+                cartasDeMesa.Add(Img_turn);
+                cartasDeMesa.Add(Img_river);
+
+                for (int i = 0; i < informacion.table.cards.Count; i++)
+                {
+                    cartasDeMesa[i].Source = new BitmapImage(new Uri(String.Format("../../Images/Cartas/{0}/{1}.png", informacion.table.cards[i].symbol, informacion.table.cards[i].number), UriKind.Relative));
+                }
+
+                List<TextBlock> nombresDejugadores = new List<TextBlock>();
+                nombresDejugadores.Add(Tbk_jugador1);
+                nombresDejugadores.Add(Tbk_jugador2);
+                nombresDejugadores.Add(Tbk_jugador3);
+                nombresDejugadores.Add(Tbk_jugador4);
+
+                List<TextBlock> saldosDejugadores = new List<TextBlock>();
+                saldosDejugadores.Add(Tbk_saldo_jugador1);
+                saldosDejugadores.Add(Tbk_saldo_jugador2);
+                saldosDejugadores.Add(Tbk_saldo_jugador3);
+                saldosDejugadores.Add(Tbk_saldo_jugador4);
+
+                List<TextBlock> apuestasDejugadores = new List<TextBlock>();
+                apuestasDejugadores.Add(Tbk_apuesta_jugador1);
+                apuestasDejugadores.Add(Tbk_apuesta_jugador2);
+                apuestasDejugadores.Add(Tbk_apuesta_jugador3);
+                apuestasDejugadores.Add(Tbk_apuesta_jugador4);
+
+                List<List<Image>> cartasDeJugadores = new List<List<Image>>();
+                List<Image> cartasDeJugador1 = new List<Image>();
+                cartasDeJugador1.Add(Img_carta1_jugador1);
+                cartasDeJugador1.Add(Img_carta2_jugador1);
+                cartasDeJugadores.Add(cartasDeJugador1);
+
+                List<Image> cartasDeJugador2 = new List<Image>();
+                cartasDeJugador2.Add(Img_carta1_jugador2);
+                cartasDeJugador2.Add(Img_carta2_jugador2);
+                cartasDeJugadores.Add(cartasDeJugador2);
+
+                List<Image> cartasDeJugador3 = new List<Image>();
+                cartasDeJugador3.Add(Img_carta1_jugador3);
+                cartasDeJugador3.Add(Img_carta2_jugador3);
+                cartasDeJugadores.Add(cartasDeJugador3);
+
+                List<Image> cartasDeJugador4 = new List<Image>();
+                cartasDeJugador4.Add(Img_carta1_jugador4);
+                cartasDeJugador4.Add(Img_carta2_jugador4);
+                cartasDeJugadores.Add(cartasDeJugador4);
+
+                for (int i = 0; i < informacion.players.Count; i++)
+                {
+                    nombresDejugadores[i].Text = informacion.players[i].name;
+                    saldosDejugadores[i].Text = informacion.players[i].balance;
+                    apuestasDejugadores[i].Text = informacion.players[i].bet;
+
+                    for (int j = 0; j < informacion.players[i].cards.Count; j++)
+                    {
+                        cartasDeJugadores[i][j].Source = new BitmapImage(new Uri(String.Format("../../Images/Cartas/{0}/{1}.png", informacion.players[i].cards[j].symbol, informacion.players[i].cards[j].number), UriKind.Relative));
+                    }
+                }
+
+                if (informacion.turn == this.usuario)
+                {
+                    this.Btn_fold.IsEnabled = true;
+                    this.Btn_pass.IsEnabled = true;
+                    this.Btn_call.IsEnabled = true;
+                    this.Btn_raise.IsEnabled = true;
+                    this.Pgb_tiempo.Value = 40;
+                    Timer.Start();
+                }
+                else
+                {
+                    this.Btn_fold.IsEnabled = false;
+                    this.Btn_pass.IsEnabled = false;
+                    this.Btn_call.IsEnabled = false;
+                    this.Btn_raise.IsEnabled = false;
+                }
+            }), DispatcherPriority.ContextIdle);
         }
 
         private void Btn_cerrar_Click(object sender, RoutedEventArgs e)
@@ -215,8 +248,6 @@ namespace Poker
             this.Sld_apuesta.Value = 0;
 
             Client.client.SendData(JsonConvert.SerializeObject(jugador));
-
-            this.paint(Client.client.GetData());
 
             int cordX = 28, cordY = 0;
 
@@ -358,6 +389,17 @@ namespace Poker
             {
                 this.Btn_fold_Click(sender, e);
             }
+        }
+
+        private void Btn_sumar2_Click(object sender, RoutedEventArgs e)
+        {
+            Client.client.SendData("{\"method\": \"prueba\"}");
+        }
+
+        private void Wnd_ventana_ContentRendered(object sender, EventArgs e)
+        {
+            Thread thread = new Thread(() => this.listener.escuchar());
+            thread.Start();
         }
     }
 }

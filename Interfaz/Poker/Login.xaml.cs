@@ -1,19 +1,9 @@
 ﻿using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.Dynamic;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Poker
 {
@@ -60,11 +50,11 @@ namespace Poker
         {
             try
             {
-                Client.client.Connect(this.txt_ip.Text, Int32.Parse(this.txt_puerto.Text));
+                Client.client.Connect("13.90.205.129", 100);
 
                 this.jugador.method = "login";
-                this.jugador.usuario = "iErick99";
-                this.jugador.password = "Server1";
+                this.jugador.user = txt_usuario.Text;
+                this.jugador.password = "123";
 
                 Client.client.SendData(JsonConvert.SerializeObject(jugador));
 
@@ -96,10 +86,10 @@ namespace Poker
             {
                 try
                 {
-                    Client.client.Connect(this.txt_ip.Text, Int32.Parse(this.txt_puerto.Text));
+                    Client.client.Connect("13.90.205.129", 100);
 
                     this.jugador.method = "login";
-                    this.jugador.usuario = txt_usuario.Text;
+                    this.jugador.user = txt_usuario.Text;
                     this.jugador.password = psw_contrasena.Password;
 
                     Client.client.SendData(JsonConvert.SerializeObject(jugador));
@@ -111,9 +101,7 @@ namespace Poker
                         this.mesa = new Mesa(txt_usuario.Text);
                         MessageBox.Show("Inicio Correctamente", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
                         this.Hide();
-                        this.mesa.Show();
                     }
-
                     else
                     {
                         MessageBox.Show("Credenciales incorrectos", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
