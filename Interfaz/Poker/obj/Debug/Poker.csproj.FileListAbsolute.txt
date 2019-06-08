@@ -189,3 +189,5 @@ C:\Users\Gonzalo Gonzalez\Desktop\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Poker
 C:\Users\Gonzalo Gonzalez\Desktop\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Poker.csproj.CopyComplete
 C:\Users\Gonzalo Gonzalez\Desktop\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Poker.exe
 C:\Users\Gonzalo Gonzalez\Desktop\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Poker.pdb
+C:\Users\alefa\Documents\Visual Studio 2019\Projects\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Servidor.g.cs
+C:\Users\alefa\Documents\Visual Studio 2019\Projects\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Servidor.baml
