@@ -9,6 +9,7 @@ using System.Media;
 using System.Dynamic;
 using Newtonsoft.Json;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace Poker
 {
@@ -38,17 +39,42 @@ namespace Poker
             this.usuario = usuario;
         }
 
-        private void paint(string datos)
+        public void escucharBroadcasts()
         {
-            var informacion = JsonConvert.DeserializeObject<dynamic>(datos);
+            var informacion = JsonConvert.DeserializeObject<dynamic>(Client.client.GetData());
 
-            Img_flop1.Source = new BitmapImage(new Uri(String.Format("../../Images/Cartas/{0}/{1}.png", informacion.mesa.carta1.simbolo, informacion.mesa.carta1.numero), UriKind.Relative));
-            Img_flop2.Source = new BitmapImage(new Uri(String.Format("../../Images/Cartas/{0}/{1}.png", informacion.mesa.carta2.simbolo, informacion.mesa.carta2.numero), UriKind.Relative));
-            Img_flop3.Source = new BitmapImage(new Uri(String.Format("../../Images/Cartas/{0}/{1}.png", informacion.mesa.carta3.simbolo, informacion.mesa.carta3.numero), UriKind.Relative));
-            Img_turn.Source = new BitmapImage(new Uri(String.Format("../../Images/Cartas/{0}/{1}.png", informacion.mesa.carta4.simbolo, informacion.mesa.carta4.numero), UriKind.Relative));
-            Img_river.Source = new BitmapImage(new Uri(String.Format("../../Images/Cartas/{0}/{1}.png", informacion.mesa.carta5.simbolo, informacion.mesa.carta5.numero), UriKind.Relative));
+            if (informacion.turn == this.usuario)
+            {
+                this.Btn_fold.IsEnabled = true;
+                this.Btn_pass.IsEnabled = true;
+                this.Btn_call.IsEnabled = true;
+                this.Btn_raise.IsEnabled = true;
 
-            bote.Text = informacion.mesa.bote;
+                this.Pgb_tiempo.Value = 40;
+            }
+            else
+            {
+                this.Btn_fold.IsEnabled = false;
+                this.Btn_pass.IsEnabled = false;
+                this.Btn_call.IsEnabled = false;
+                this.Btn_raise.IsEnabled = false;
+
+                this.Pgb_tiempo.Value = 0;
+            }
+
+            bote.Text = informacion.table.pot;
+
+            List<Image> cartasDeMesa = new List<Image>();
+            cartasDeMesa.Add(Img_flop1);
+            cartasDeMesa.Add(Img_flop2);
+            cartasDeMesa.Add(Img_flop3);
+            cartasDeMesa.Add(Img_turn);
+            cartasDeMesa.Add(Img_river);
+
+            for (int i = 0; i < informacion.table.cards.Count; i++)
+            {
+                cartasDeMesa[i].Source = new BitmapImage(new Uri(String.Format("../../Images/Cartas/{0}/{1}.png", informacion.table.cards[i].symbol, informacion.table.cards[i].number), UriKind.Relative));
+            }
 
             List<TextBlock> nombresDejugadores = new List<TextBlock>();
             nombresDejugadores.Add(Tbk_jugador1);
@@ -89,13 +115,17 @@ namespace Poker
             cartasDeJugador4.Add(Img_carta2_jugador4);
             cartasDeJugadores.Add(cartasDeJugador4);
 
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < informacion.players.Count; i++)
             {
-                nombresDejugadores[i].Text = informacion.jugadores[i].nombre;
-                saldosDejugadores[i].Text = informacion.jugadores[i].saldo;
-                apuestasDejugadores[i].Text = informacion.jugadores[i].apuesta;
-                cartasDeJugadores[i][0].Source = new BitmapImage(new Uri(String.Format("../../Images/Cartas/{0}/{1}.png", informacion.jugadores[i].carta1.simbolo, informacion.jugadores[i].carta1.numero), UriKind.Relative));
-                cartasDeJugadores[i][1].Source = new BitmapImage(new Uri(String.Format("../../Images/Cartas/{0}/{1}.png", informacion.jugadores[i].carta2.simbolo, informacion.jugadores[i].carta2.numero), UriKind.Relative));
+                nombresDejugadores[i].Text = informacion.players[i].name;
+                saldosDejugadores[i].Text = informacion.players[i].balance;
+                apuestasDejugadores[i].Text = informacion.players[i].bet;
+
+
+                for (int j = 0; i < informacion.players[i].cards.Count; j++)
+                {
+                    cartasDeJugadores[i][j].Source = new BitmapImage(new Uri(String.Format("../../Images/Cartas/{0}/{1}.png", informacion.players[i].cards[j].symbol, informacion.players[i].cards[j].number), UriKind.Relative));
+                }
             }
         }
 
@@ -215,8 +245,6 @@ namespace Poker
             this.Sld_apuesta.Value = 0;
 
             Client.client.SendData(JsonConvert.SerializeObject(jugador));
-
-            this.paint(Client.client.GetData());
 
             int cordX = 28, cordY = 0;
 
@@ -358,6 +386,11 @@ namespace Poker
             {
                 this.Btn_fold_Click(sender, e);
             }
+        }
+
+        private void Wnd_ventana_Activated(object sender, EventArgs e)
+        {
+            this.escucharBroadcasts();
         }
     }
 }
