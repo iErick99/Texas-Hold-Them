@@ -36,10 +36,10 @@ namespace Servidor
                 cartas.Add(c);
                 switch (contSim)
                 {
-                    case 0: { cartas[contCar].setSimbolo("Corazon"); break; }
-                    case 1: { cartas[contCar].setSimbolo("Espada"); break; }
-                    case 2: { cartas[contCar].setSimbolo("Diamante"); break; }
-                    case 3: { cartas[contCar].setSimbolo("Trebol"); break; }
+                    case 0: { cartas[contCar].setSimbolo("Corazones"); break; }
+                    case 1: { cartas[contCar].setSimbolo("Espadas"); break; }
+                    case 2: { cartas[contCar].setSimbolo("Diamantes"); break; }
+                    case 3: { cartas[contCar].setSimbolo("Treboles"); break; }
                 }
 
                 switch (contNum)

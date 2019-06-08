@@ -8,12 +8,14 @@ namespace Servidor
             // Aca puse la dir. IP loopback por mientras para que no tengan que estarla cambiando al correrlo
             Server server = new Server(IPAddress.Any.ToString(), 100);
 
-            //server.Start();
-            //server.Run();
+            server.Start();
+            server.Run();
 
 
-            Controller controller = new Controller();
-            controller.inicio();
+            //Controller controller = new Controller();
+            //controller.inicio();
+
+            Dealer d = new Dealer();
         }
     }
 }

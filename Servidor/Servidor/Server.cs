@@ -14,12 +14,11 @@ namespace Servidor
     {
         private TcpListener socket;
         private ActiveDirectory AD = new ActiveDirectory();
-        List<Jugador> jugadores = new List<Jugador>();
-        int numeroJugador = 1;
         public Controller controller;
-        public Thread hController;
+       // public Thread hController;
         public Server(string address, int port)
         {
+            controller = new Controller();
             // Initialize server's socket
             socket = new TcpListener(IPAddress.Any, port);
         }
@@ -28,7 +27,7 @@ namespace Servidor
         public void Start()
         {
             // Listen connections
-            hController = new Thread(new ThreadStart(controller.inicio));
+            //hController = new Thread(new ThreadStart(controller.inicio));
             socket.Start();
 
             Console.WriteLine(String.Format("Server started on {0}...", socket.LocalEndpoint));
@@ -41,7 +40,7 @@ namespace Servidor
             {
                 while (true)
                 {
-                    if (jugadores.Count != 4)
+                    if (controller.Jugadores.Count != 4)
                     {
                         TcpClient client = socket.AcceptTcpClient();
                         this.CreateClientThread(client);
@@ -63,36 +62,32 @@ namespace Servidor
         {
             Jugador jugador = new Jugador();
             jugador.Client = client;
-            jugador.NumeroJugador = numeroJugador;
-            jugadores.Add(jugador);
-            controller.Jugadores = jugadores;
-            if (jugadores.Count == 4)
+            controller.Jugadores.Add(jugador);
+            if (controller.Jugadores.Count == 4)
             {
-                hController.Start();
+                controller.repartirCartas();
             }
-            Thread clientThread = new Thread(() => ReceiveRequests(jugador.Client));
-            numeroJugador += 1;
+            Thread clientThread = new Thread(() => ReceiveRequests(jugador));
             clientThread.Start();
         }
 
         // Clients' request parsing method
-        public void ReceiveRequests(TcpClient client)
+        public void ReceiveRequests(Jugador jugador)
         {
             NetworkStream dataStream;
             int requestSize;
-            string clientAddress = (client.Client.RemoteEndPoint).ToString();
+            string clientAddress = (jugador.Client.Client.RemoteEndPoint).ToString();
             string request;
             string response;
             byte[] requestBuffer;
             byte[] responseBuffer;
-            string nombreJugador = "";
 
             try
             {
                 while (true)
                 {
                     // Parse client's received data
-                    dataStream = client.GetStream();
+                    dataStream = jugador.Client.GetStream();
 
                     requestBuffer = new byte[2048];
                     requestSize = dataStream.Read(requestBuffer, 0, requestBuffer.Length);
@@ -114,9 +109,14 @@ namespace Servidor
                             {
                                 try
                                 {
-                                    AD.authentication((string)deserializedRequest.usuario, (string)deserializedRequest.password);
+                                    AD.authentication((string)deserializedRequest.user, (string)deserializedRequest.password);
                                     response = "{\"success\":true}";
-                                    nombreJugador = (string)deserializedRequest.usuario;
+                                    responseBuffer = Encoding.ASCII.GetBytes(response);
+                                    dataStream.Write(responseBuffer, 0, responseBuffer.Length);
+                                    Console.WriteLine(response);
+                                    dataStream.Flush();
+                                    jugador.Nombre = (string)deserializedRequest.user;
+                                    SendGameInformation();
 
                                 }
                                 catch (Exception e)
@@ -131,9 +131,8 @@ namespace Servidor
                         case "raise":
                             {
                                 int apuesta = deserializedRequest.raise;
-                                controller.apostar(nombreJugador, "apostar", apuesta);
+                                //controller.apostar(nombreJugador, "apostar", apuesta);
                                 Console.WriteLine(apuesta);
-                                SendGameInformation();
                             }
                             break;
 
@@ -170,11 +169,7 @@ namespace Servidor
                         default: response = "{\"success\":false}"; break;
                     }
 
-                    responseBuffer = Encoding.ASCII.GetBytes(response);
-
-                    dataStream.Write(responseBuffer, 0, responseBuffer.Length);
-                    Console.WriteLine(response);
-                    dataStream.Flush();
+                    
                 }
             }
             catch (Exception e)
@@ -185,33 +180,37 @@ namespace Servidor
 
         public void SendGameInformation()
         {
-            /*String informacion = "{ jugadores: [";
-            foreach (Jugador jugador in jugadores)
+            String informacion = "{ 'dealer': 'salu4', 'turn': 'iErick99', 'players': [ ";
+            for (int i = 0; i < controller.Jugadores.Count; i++)
             {
-                informacion += "{ nombre:" + jugador.getNombre();
-                informacion += ", apuesta:" + jugador.getApostado();
-                informacion += ", monto:" + jugador.getMonto();
-                informacion += ", carta_1:" + jugador.getCarta1();
-                informacion += ", carta_2:" + jugador.getCarta2() + "}";
+                informacion += "{ 'name': '" + controller.Jugadores[i].Nombre + "'";
+                //informacion += ", 'card1': { 'number': " + jugador.getCarta1().getNumero() + ", 'symbol': " + jugador.getCarta1().getSimbolo() + "}";
+                //informacion += ", 'card2': { 'number': " + jugador.getCarta2().getNumero() + ", 'symbol': " + jugador.getCarta2().getSimbolo() + "}";
+                informacion += ", 'card1': { 'number': 2, 'symbol': 'Diamantes'}";
+                informacion += ", 'card2': { 'number': 2, 'symbol': 'Corazones'}";
+                informacion += ", 'balance': " + controller.Jugadores[i].getMonto();
+                informacion += ", 'bet': " + controller.Jugadores[i].getApostado() + "}";
+                if (i != controller.Jugadores.Count - 1)
+                    informacion += ",";
             }
 
             //informacion = "mesaCartas: " + controller.mo  + "}";
 
-            informacion += "]}";*/
+            informacion += "], 'table': { 'pot': 100, 'card1': { 'number': 5, 'symbol': 'Treboles' }, 'card2': { 'number': 6, 'symbol': 'Treboles' }, 'card3': { 'number': 7, 'symbol': 'Treboles' }, 'card4': { 'number': 8, 'symbol': 'Treboles' }, 'card5': { 'number': 9, 'symbol': 'Treboles' } } }";
 
-            String informacion = "{ 'jugadores': [ { 'nombre': 'Faziop', 'carta1': { 'numero': 2, 'simbolo': 'Corazones' }, 'carta2': { 'numero': 3, 'simbolo': 'Corazones' }, 'saldo': 1000, 'apuesta': 0 }, { 'nombre': 'GonzaCRC', 'carta1': { 'numero': 3, 'simbolo': 'Corazones' }, 'carta2': { 'numero': 4, 'simbolo': 'Corazones' }, 'saldo': 1000, 'apuesta': 0 }, { 'nombre': 'Bleysh', 'carta1': { 'numero': 5, 'simbolo': 'Corazones' }, 'carta2': { 'numero': 6, 'simbolo': 'Corazones' }, 'saldo': 1000, 'apuesta': 0 }, { 'nombre': 'iErick99', 'carta1': { 'numero': 7, 'simbolo': 'Corazones' }, 'carta2': { 'numero': 8, 'simbolo': 'Corazones' }, 'saldo': 800, 'apuesta': 200 } ], 'mesa': { 'carta1': { 'numero': 5, 'simbolo': 'Treboles' }, 'carta2': { 'numero': 6, 'simbolo': 'Treboles' }, 'carta3': { 'numero': 7, 'simbolo': 'Treboles' }, 'carta4': { 'numero': 8, 'simbolo': 'Treboles' }, 'carta5': { 'numero': 9, 'simbolo': 'Treboles' } } }";
+            Console.WriteLine(String.Format("{0}", informacion));
 
             BroadCast(informacion);
         }
 
         public void BroadCast(String response)
         {
-            for (int i = 0; i < jugadores.Count; i++)
+            for (int i = 0; i < controller.Jugadores.Count; i++)
             {
 
                 NetworkStream dataStream;
                 byte[] responseBuffer;
-                dataStream = jugadores[i].Client.GetStream();
+                dataStream = controller.Jugadores[i].Client.GetStream();
 
                 responseBuffer = Encoding.ASCII.GetBytes(response);
 
@@ -219,6 +218,5 @@ namespace Servidor
                 dataStream.Flush();
             }
         }
-
     }
 }
