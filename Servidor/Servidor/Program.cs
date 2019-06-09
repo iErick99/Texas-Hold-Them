@@ -11,7 +11,6 @@ namespace Servidor
             server.Start();
             server.Run();
 
-
             Dealer d = new Dealer();
         }
     }
