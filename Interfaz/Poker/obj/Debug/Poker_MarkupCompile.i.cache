@@ -12,9 +12,15 @@ DEBUG;TRACE
 C:\Users\alefa\Documents\Visual Studio 2019\Projects\Texas-Hold-Them\Interfaz\Poker\App.xaml
 4-2031375403
 5-1198567839
+<<<<<<< HEAD
+111591061690
+161526864435
+Cuenta.xaml;Login.xaml;Mesa.xaml;
+=======
 11-1566610462
 16534383669
 Cuenta.xaml;Login.xaml;Mesa.xaml;Servidor.xaml;
+>>>>>>> master
 
 True
 

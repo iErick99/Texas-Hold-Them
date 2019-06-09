@@ -44,35 +44,35 @@ namespace Poker
 
         private void Btn_crear_Click(object sender, RoutedEventArgs e)
         {
-            if (this.psw_confirmarContrasena.Password.Equals(this.psw_contrasena.Password))
-            {
-                Client.client.Connect("13.90.205.129", 100);
+            //if (this.psw_confirmarContrasena.Password.Equals(this.psw_contrasena.Password))
+            //{
+            //    Client.client.Connect("13.90.205.129", 100);
 
-                jugador.method = "create";
-                jugador.name = this.txt_usuario.Text;
-                jugador.usuario = this.txt_usuario.Text;
-                jugador.password = this.psw_contrasena.Password;
+            //    jugador.method = "create";
+            //    jugador.name = this.txt_usuario.Text;
+            //    jugador.usuario = this.txt_usuario.Text;
+            //    jugador.password = this.psw_contrasena.Password;
 
-                Client.client.SendData(JsonConvert.SerializeObject(jugador));
+            //    Client.client.SendData(JsonConvert.SerializeObject(jugador));
 
-                var result = JsonConvert.DeserializeObject<dynamic>(Client.client.GetData());
+            //    var result = JsonConvert.DeserializeObject<dynamic>(Client.client.GetData());
 
-                if (result.success == true)
-                {
-                    MessageBox.Show("Inicio Correctamente", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
-                    this.Hide();
-                }
-                else
-                {
-                    MessageBox.Show("Credenciales incorrectos", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-            }
-            else
-            {
-                MessageBox.Show("Contraseñas no coinciden", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                this.psw_contrasena.Password = "";
-                this.psw_confirmarContrasena.Password = "";
-            }
+            //    if (result.success == true)
+            //    {
+            //        MessageBox.Show("Inicio Correctamente", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+            //        this.Hide();
+            //    }
+            //    else
+            //    {
+            //        MessageBox.Show("Credenciales incorrectos", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            //    }
+            //}
+            //else
+            //{
+            //    MessageBox.Show("Contraseñas no coinciden", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            //    this.psw_contrasena.Password = "";
+            //    this.psw_confirmarContrasena.Password = "";
+            //}
         }
 
         private void Btn_volver_Click(object sender, RoutedEventArgs e) 

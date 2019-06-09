@@ -6,39 +6,34 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 using System.Media;
-using System.Dynamic;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace Poker
 {
     public partial class Mesa : Window
     {
-
-        private bool Fuera;
-        private SoundPlayer Sonido;
         private DispatcherTimer Timer;
         private bool Ancho;
+        private bool esMiTurno;
         private int cantidad;
-        private dynamic jugador;
-        private string usuario;
+        private Jugador jugador;
         private ListenerMesa listener;
+        public Client client { get; set; }
 
-        public Mesa(String usuario)
+        public Mesa(String nombreDeUsuario, Client client)
         {
             InitializeComponent();
+            this.client = client;
+            this.jugador = new Jugador();
+            this.jugador.NombreDeUsuario = nombreDeUsuario;
 
-            this.Fuera = false;
-            Sonido = new SoundPlayer();
             Timer = new DispatcherTimer();
             Timer.Tick += new EventHandler(Timer_Tick);
             Timer.Interval = TimeSpan.FromSeconds(1);
             this.Ancho = false;
             this.cantidad = 0;
-            this.jugador = new ExpandoObject();
-            this.usuario = usuario;
             this.listener = new ListenerMesa(this);
         }
 
@@ -113,7 +108,7 @@ namespace Poker
                     }
                 }
 
-                if (informacion.turn == this.usuario)
+                if (informacion.turn == this.jugador.NombreDeUsuario)
                 {
                     this.Btn_fold.IsEnabled = true;
                     this.Btn_pass.IsEnabled = true;
@@ -121,6 +116,8 @@ namespace Poker
                     this.Btn_raise.IsEnabled = true;
                     this.Pgb_tiempo.Value = 40;
                     Timer.Start();
+
+                    this.esMiTurno = true;
                 }
                 else
                 {
@@ -129,6 +126,129 @@ namespace Poker
                     this.Btn_call.IsEnabled = false;
                     this.Btn_raise.IsEnabled = false;
                 }
+
+                // Pintar las fichillas de cada bichillo ah?
+                //int cordY = 0;
+
+                //if (cantidad != 0)
+                //{
+                //    this.Grd_fichas.Children.Clear();
+                //    cantidad = 0;
+                //}
+
+                //while (apuesta != 0)
+                //{
+                //    if (apuesta % 1000 == 0)
+                //    {
+                //        Image ficha = new Image();
+                //        ficha.Name = "Img_ficha" + cantidad;
+                //        ficha.Margin = new Thickness(301, 410 - cordY, 753, 110 + cordY);
+                //        cordY += 4;
+
+                //        BitmapImage bitmap = new BitmapImage();
+                //        bitmap.BeginInit();
+                //        bitmap.UriSource = new Uri("../../Images/Fichas/chip1000.png", UriKind.Relative);
+                //        bitmap.EndInit();
+
+                //        ficha.Source = bitmap;
+                //        ficha.Stretch = Stretch.None;
+                //        this.Grd_fichas.Children.Add(ficha);
+                //        apuesta -= 1000;
+                //    }
+
+                //    else if (apuesta % 500 == 0)
+                //    {
+                //        Image ficha = new Image();
+                //        ficha.Name = "Img_fichas" + cantidad;
+                //        ficha.Margin = new Thickness(301, 410 - cordY, 753, 110 + cordY);
+                //        cordY += 4;
+
+                //        BitmapImage bitmap = new BitmapImage();
+                //        bitmap.BeginInit();
+                //        bitmap.UriSource = new Uri("../../Images/Fichas/chip500.png", UriKind.Relative);
+                //        bitmap.EndInit();
+
+                //        ficha.Source = bitmap;
+                //        ficha.Stretch = Stretch.None;
+                //        this.Grd_fichas.Children.Add(ficha);
+                //        apuesta -= 500;
+                //    }
+
+                //    else if (apuesta % 100 == 0)
+                //    {
+                //        Image ficha = new Image();
+                //        ficha.Name = "Img_fichas" + cantidad;
+                //        ficha.Margin = new Thickness(301, 410 - cordY, 753, 110 + cordY);
+                //        cordY += 4;
+
+                //        BitmapImage bitmap = new BitmapImage();
+                //        bitmap.BeginInit();
+                //        bitmap.UriSource = new Uri("../../Images/Fichas/chip100.png", UriKind.Relative);
+                //        bitmap.EndInit();
+
+                //        ficha.Source = bitmap;
+                //        ficha.Stretch = Stretch.None;
+                //        this.Grd_fichas.Children.Add(ficha);
+                //        apuesta -= 100;
+                //    }
+
+                //    else if (apuesta % 25 == 0)
+                //    {
+                //        Image ficha = new Image();
+                //        ficha.Name = "Img_fichas" + cantidad;
+                //        ficha.Margin = new Thickness(301, 410 - cordY, 753, 110 + cordY);
+                //        cordY += 4;
+
+                //        BitmapImage bitmap = new BitmapImage();
+                //        bitmap.BeginInit();
+                //        bitmap.UriSource = new Uri("../../Images/Fichas/chip25.png", UriKind.Relative);
+                //        bitmap.EndInit();
+
+                //        ficha.Source = bitmap;
+                //        ficha.Stretch = Stretch.None;
+                //        this.Grd_fichas.Children.Add(ficha);
+                //        apuesta -= 25;
+                //    }
+
+                //    else if (apuesta % 5 == 0)
+                //    {
+                //        Image ficha = new Image();
+                //        ficha.Name = "Img_fichas" + cantidad;
+                //        ficha.Margin = new Thickness(301, 410 - cordY, 753, 110 + cordY);
+                //        cordY += 4;
+
+                //        BitmapImage bitmap = new BitmapImage();
+                //        bitmap.BeginInit();
+                //        bitmap.UriSource = new Uri("../../Images/Fichas/chip5.png", UriKind.Relative);
+                //        bitmap.EndInit();
+
+                //        ficha.Source = bitmap;
+                //        ficha.Stretch = Stretch.None;
+                //        this.Grd_fichas.Children.Add(ficha);
+                //        apuesta -= 5;
+                //    }
+
+                //    else
+                //    {
+                //        Image ficha = new Image();
+                //        ficha.Name = "Img_fichas" + cantidad;
+                //        ficha.Margin = new Thickness(301, 410 - cordY, 753, 110 + cordY);
+                //        cordY += 4;
+
+                //        BitmapImage bitmap = new BitmapImage();
+                //        bitmap.BeginInit();
+                //        bitmap.UriSource = new Uri("../../Images/Fichas/chip1.png", UriKind.Relative);
+                //        bitmap.EndInit();
+
+                //        ficha.Source = bitmap;
+                //        ficha.Stretch = Stretch.None;
+                //        this.Grd_fichas.Children.Add(ficha);
+                //        apuesta -= 1;
+                //    }
+
+                //    cantidad++;
+                //}
+
             }), DispatcherPriority.ContextIdle);
         }
 
@@ -164,50 +284,41 @@ namespace Poker
 
         private void Btn_fold_Click(object sender, RoutedEventArgs e)
         {
-            if (!this.Fuera)
+            this.client.SendData("{{\"method\": \"fold\"}}");
+
+            new SoundPlayer("../../Sounds/fold.wav").Play();
+            this.esMiTurno = false;
+        }
+
+        private void Btn_pass_Click(object sender, RoutedEventArgs e)
+        {
+            if (Tbk_apuesta_jugador1.Text.Equals("0") || Tbk_apuesta_jugador2.Text.Equals("0") || Tbk_apuesta_jugador3.Text.Equals("0") || Tbk_apuesta_jugador4.Text.Equals("0")) 
             {
-                this.Img_carta1_jugador3.Visibility = Visibility.Hidden;
-                this.Img_carta2_jugador3.Visibility = Visibility.Hidden;
-                Sonido.SoundLocation = "../../Sounds/fold.wav";
-                Sonido.Play();
-                this.Fuera = true;
+                this.client.SendData("{{\"method\": \"pass\"}}");
+
+                new SoundPlayer("../../Sounds/pass.wav").Play();
+                this.esMiTurno = false;
             }
         }
 
-        private void Elp_jugador3_MouseEnter(object sender, MouseEventArgs e)
+        private void Btn_call_Click(object sender, RoutedEventArgs e)
         {
+            this.client.SendData("{{\"method\": \"call\"}}");
 
-            if (this.Fuera)
-            {
-                this.Img_carta1_jugador3.Opacity = 0.60;
-                this.Img_carta2_jugador3.Opacity = 0.60;
-                this.Img_carta1_jugador3.Visibility = Visibility.Visible;
-                this.Img_carta2_jugador3.Visibility = Visibility.Visible;
-            }
+            new SoundPlayer("../../Sounds/raise.wav").Play();
+            this.esMiTurno = false;
         }
 
-        private void Elp_jugador3_MouseLeave(object sender, MouseEventArgs e)
+        private void Btn_raise_Click(object sender, RoutedEventArgs e)
         {
-            if (this.Fuera)
-            {
-                this.Img_carta1_jugador3.Visibility = Visibility.Hidden;
-                this.Img_carta2_jugador3.Visibility = Visibility.Hidden;
-            }
-        }
+            this.client.SendData(String.Format("{{\"method\": \"raise\", \"quantity\": {0}}}", (int)Lbl_apuesta.Content));
 
-        private void Sp_jugador3_MouseEnter(object sender, MouseEventArgs e)
-        {
-            this.Elp_jugador3_MouseEnter(sender, e);
+            new SoundPlayer("../../Sounds/raise.wav").Play();
+            this.esMiTurno = false;
         }
-
-        private void Sp_jugador3_MouseLeave(object sender, MouseEventArgs e)
-        {
-            this.Elp_jugador3_MouseLeave(sender, e);
-        }
-
         private void Timer_Tick(object sender, EventArgs e)
         {
-            if (this.Pgb_tiempo.Value > 0 && !Fuera)
+            if (this.Pgb_tiempo.Value > 0)
             {
                 this.Pgb_tiempo.Value -= 1;
 
@@ -232,173 +343,23 @@ namespace Poker
             }
         }
 
-        private void Btn_raise_Click(object sender, RoutedEventArgs e)
-        {
-            Sonido.SoundLocation = "../../Sounds/raise.wav";
-            Sonido.Play();
-
-            this.Tbk_apuesta_jugador3.Text = this.Lbl_apuesta.Content + "";
-            int apuesta = Int32.Parse(Tbk_apuesta_jugador3.Text);
-
-            this.Tbk_saldo_jugador3.Text = Int32.Parse(this.Tbk_saldo_jugador3.Text) - (int)this.Lbl_apuesta.Content + "";
-            Fuera = true;
-
-            this.jugador.method = "raise";
-            this.jugador.raise = (int)Lbl_apuesta.Content + "";
-            this.Sld_apuesta.Value = 0;
-
-            Client.client.SendData(JsonConvert.SerializeObject(jugador));
-
-            int cordX = 28, cordY = 0;
-
-            if (cantidad != 0)
-            {
-                this.Grd_fichas.Children.Clear();
-                cantidad = 0;
-            }
-
-            while (apuesta != 0)
-            {
-                if (apuesta % 1000 == 0)
-                {
-                    Image ficha = new Image();
-                    ficha.Name = "Img_ficha" + cantidad;
-                    ficha.Margin = new Thickness(301, 410 - cordY, 753, 110 + cordY);
-                    cordY += 4;
-
-                    BitmapImage bitmap = new BitmapImage();
-                    bitmap.BeginInit();
-                    bitmap.UriSource = new Uri("../../Images/Fichas/chip1000.png", UriKind.Relative);
-                    bitmap.EndInit();
-
-                    ficha.Source = bitmap;
-                    ficha.Stretch = Stretch.None;
-                    this.Grd_fichas.Children.Add(ficha);
-                    apuesta -= 1000;
-                }
-
-                else if (apuesta % 500 == 0)
-                {
-                    Image ficha = new Image();
-                    ficha.Name = "Img_fichas" + cantidad;
-                    ficha.Margin = new Thickness(301, 410 - cordY, 753, 110 + cordY);
-                    cordY += 4;
-
-                    BitmapImage bitmap = new BitmapImage();
-                    bitmap.BeginInit();
-                    bitmap.UriSource = new Uri("../../Images/Fichas/chip500.png", UriKind.Relative);
-                    bitmap.EndInit();
-
-                    ficha.Source = bitmap;
-                    ficha.Stretch = Stretch.None;
-                    this.Grd_fichas.Children.Add(ficha);
-                    apuesta -= 500;
-                }
-
-                else if (apuesta % 100 == 0)
-                {
-                    Image ficha = new Image();
-                    ficha.Name = "Img_fichas" + cantidad;
-                    ficha.Margin = new Thickness(301, 410 - cordY, 753, 110 + cordY);
-                    cordY += 4;
-
-                    BitmapImage bitmap = new BitmapImage();
-                    bitmap.BeginInit();
-                    bitmap.UriSource = new Uri("../../Images/Fichas/chip100.png", UriKind.Relative);
-                    bitmap.EndInit();
-
-                    ficha.Source = bitmap;
-                    ficha.Stretch = Stretch.None;
-                    this.Grd_fichas.Children.Add(ficha);
-                    apuesta -= 100;
-                }
-
-                else if (apuesta % 25 == 0)
-                {
-                    Image ficha = new Image();
-                    ficha.Name = "Img_fichas" + cantidad;
-                    ficha.Margin = new Thickness(301, 410 - cordY, 753, 110 + cordY);
-                    cordY += 4;
-
-                    BitmapImage bitmap = new BitmapImage();
-                    bitmap.BeginInit();
-                    bitmap.UriSource = new Uri("../../Images/Fichas/chip25.png", UriKind.Relative);
-                    bitmap.EndInit();
-
-                    ficha.Source = bitmap;
-                    ficha.Stretch = Stretch.None;
-                    this.Grd_fichas.Children.Add(ficha);
-                    apuesta -= 25;
-                }
-
-                else if (apuesta % 5 == 0)
-                {
-                    Image ficha = new Image();
-                    ficha.Name = "Img_fichas" + cantidad;
-                    ficha.Margin = new Thickness(301, 410 - cordY, 753, 110 + cordY);
-                    cordY += 4;
-
-                    BitmapImage bitmap = new BitmapImage();
-                    bitmap.BeginInit();
-                    bitmap.UriSource = new Uri("../../Images/Fichas/chip5.png", UriKind.Relative);
-                    bitmap.EndInit();
-
-                    ficha.Source = bitmap;
-                    ficha.Stretch = Stretch.None;
-                    this.Grd_fichas.Children.Add(ficha);
-                    apuesta -= 5;
-                }
-
-                else
-                {
-                    Image ficha = new Image();
-                    ficha.Name = "Img_fichas" + cantidad;
-                    ficha.Margin = new Thickness(301, 410 - cordY, 753, 110 + cordY);
-                    cordY += 4;
-
-                    BitmapImage bitmap = new BitmapImage();
-                    bitmap.BeginInit();
-                    bitmap.UriSource = new Uri("../../Images/Fichas/chip1.png", UriKind.Relative);
-                    bitmap.EndInit();
-
-                    ficha.Source = bitmap;
-                    ficha.Stretch = Stretch.None;
-                    this.Grd_fichas.Children.Add(ficha);
-                    apuesta -= 1;
-                }
-
-                cantidad++;
-            }
-        }
-
-        private void Btn_pass_Click(object sender, RoutedEventArgs e)
-        {
-            Sonido.SoundLocation = "../../Sounds/pass.wav";
-            Sonido.Play();
-        }
-
         private void Pgb_tiempo_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             if (this.Pgb_tiempo.Value == 5)
             {
-                Sonido.SoundLocation = "../../Sounds/alert.wav";
-                Sonido.Play();
+                new SoundPlayer("../../Sounds/alert.wav").Play();
             }
 
-            else if (this.Pgb_tiempo.Value == 0)
+            else if (this.Pgb_tiempo.Value == 0 && esMiTurno)
             {
-                this.Btn_fold_Click(sender, e);
+                this.client.SendData("{{\"method\": \"fold\"}}");
+                new SoundPlayer("../../Sounds/fold.wav").Play();
             }
-        }
-
-        private void Btn_sumar2_Click(object sender, RoutedEventArgs e)
-        {
-            Client.client.SendData("{\"method\": \"prueba\"}");
         }
 
         private void Wnd_ventana_ContentRendered(object sender, EventArgs e)
         {
-            Thread thread = new Thread(() => this.listener.escuchar());
+            Thread thread = new Thread(() => this.listener.escucharBroadcasts());
             thread.Start();
         }
     }
