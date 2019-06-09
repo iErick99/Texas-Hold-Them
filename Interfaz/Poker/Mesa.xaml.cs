@@ -43,6 +43,25 @@ namespace Poker
             {
                 var informacion = JsonConvert.DeserializeObject<dynamic>(datos);
 
+                if (informacion.turn == this.jugador.NombreDeUsuario)
+                {
+                    this.Btn_fold.IsEnabled = true;
+                    this.Btn_pass.IsEnabled = true;
+                    this.Btn_call.IsEnabled = true;
+                    this.Btn_raise.IsEnabled = true;
+                    this.Pgb_tiempo.Value = 40;
+                    Timer.Start();
+
+                    this.esMiTurno = true;
+                }
+                else
+                {
+                    this.Btn_fold.IsEnabled = false;
+                    this.Btn_pass.IsEnabled = false;
+                    this.Btn_call.IsEnabled = false;
+                    this.Btn_raise.IsEnabled = false;
+                }
+
                 bote.Text = informacion.table.pot;
 
                 List<Image> cartasDeMesa = new List<Image>();
@@ -104,27 +123,15 @@ namespace Poker
 
                     for (int j = 0; j < informacion.players[i].cards.Count; j++)
                     {
-                        cartasDeJugadores[i][j].Source = new BitmapImage(new Uri(String.Format("../../Images/Cartas/{0}/{1}.png", informacion.players[i].cards[j].symbol, informacion.players[i].cards[j].number), UriKind.Relative));
+                        if (informacion.players[i].name == this.jugador.NombreDeUsuario)
+                        {
+                            cartasDeJugadores[i][j].Source = new BitmapImage(new Uri(String.Format("../../Images/Cartas/{0}/{1}.png", informacion.players[i].cards[j].symbol, informacion.players[i].cards[j].number), UriKind.Relative));
+                        }
+                        else
+                        {
+                            cartasDeJugadores[i][j].Source = new BitmapImage(new Uri("../../Images/Cartas/carta volteada.jpg", UriKind.Relative));
+                        }
                     }
-                }
-
-                if (informacion.turn == this.jugador.NombreDeUsuario)
-                {
-                    this.Btn_fold.IsEnabled = true;
-                    this.Btn_pass.IsEnabled = true;
-                    this.Btn_call.IsEnabled = true;
-                    this.Btn_raise.IsEnabled = true;
-                    this.Pgb_tiempo.Value = 40;
-                    Timer.Start();
-
-                    this.esMiTurno = true;
-                }
-                else
-                {
-                    this.Btn_fold.IsEnabled = false;
-                    this.Btn_pass.IsEnabled = false;
-                    this.Btn_call.IsEnabled = false;
-                    this.Btn_raise.IsEnabled = false;
                 }
 
                 // Pintar las fichillas de cada bichillo ah?
