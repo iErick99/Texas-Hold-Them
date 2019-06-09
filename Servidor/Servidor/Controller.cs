@@ -10,36 +10,48 @@ namespace Servidor
 {
     class Controller
     {
-        public int pozo = 0;
-        public int apuesta = 0;
-
-        public int apuestaMinima = 0;
-
-        public bool hilo1;
-        public bool hilo2;
-        public bool hilo3;
-        public bool hilo4;
-
-        public string instruccion = "";
-
-        public ModelCartas cartas;
-
+        private int pozo = 0;
+        private int apuesta = 0;
+        private int apuestaMinima = 0;
+        private string instruccion = "";
+        private ModelCartas cartas;
         private List<Jugador> jugadores = new List<Jugador>();
+        private String turno = "";
 
-        public String turno = "";
 
-        public List<Jugador> Jugadores
-        {
-            get { return jugadores; }
-            set { jugadores = value; }
-        }
-
+        public bool nuevo_juego = true;//sirve para identificar si va empezar un nuevo juego
+        public bool vuelta = true;//Sirve solamente para dar permiso que se ejecute el metodo "cobro"
+                                  //y se activa cuando al menos los 4 jugadores ya participaron. Esto sirve por si en una jugada 
+                                  //nadie aposto y la apuesta queda en 0;
+        public int contHilos = 1;
+        public int ciega = 0;
         public Controller()
         {
             cartas = new ModelCartas();
             //ARRACO EL SERVER
             //llAMO 4 HILOS 
         }
+        public int Pozo
+        {
+            get { return pozo; }
+            set { pozo = value; }
+        }
+        public ModelCartas Cartas
+        {
+            get { return cartas; }
+            set { cartas = value; }
+        }
+        public List<Jugador> Jugadores
+        {
+            get { return jugadores; }
+            set { jugadores = value; }
+        }
+        public String Turno
+        {
+            get { return turno; }
+            set { turno = value; }
+        }
+
         public void inicio()
         {
 
@@ -51,15 +63,6 @@ namespace Servidor
 
         public void mutexGeneral()
         {
-            bool nuevo_juego = true;//sirve para identificar si va empezar un nuevo juego
-            bool vuelta = true;//Sirve solamente para dar permiso que se ejecute el metodo "cobro"
-            //y se activa cuando al menos los 4 jugadores ya participaron. Esto sirve por si en una jugada 
-            //nadie aposto y la apuesta queda en 0;
-            int contHilos = 1;
-            int ciega = 0;
-
-            while (true)
-            {
                 if (nuevo_juego) { this.nuevoJuego(ref nuevo_juego, contHilos); ciega++; if (ciega == 5) { ciega = 1; } }
                 if (vuelta){ this.cobro(ref nuevo_juego, ref contHilos, ref vuelta); }
                 switch (contHilos)
@@ -77,7 +80,7 @@ namespace Servidor
 
                     instruccion = "";
                 }
-            }
+        
         }
 
         public void nuevoJuego(ref bool nuevoJuego, int jugador)
@@ -195,6 +198,7 @@ namespace Servidor
                 j.setApostado(j.getApostado() + raise);
                 j.setMonto(j.getMonto() - raise);
                 pozo += raise;
+                Console.WriteLine(instruccion);
                 if (apuesta < j.getApostado())
                 {
                     int x = j.getApostado() - apuesta;
@@ -212,6 +216,27 @@ namespace Servidor
                 j.setJugando(false);
             }
             instruccion = "sigaRecto";
+
+            if (nuevo_juego) { this.nuevoJuego(ref nuevo_juego, contHilos); ciega++; if (ciega == 5) { ciega = 1; } }
+            if (vuelta) { this.cobro(ref nuevo_juego, ref contHilos, ref vuelta); }
+            if (instruccion != "")
+            {
+                if (contHilos == 0) { contHilos = ciega; }
+                contHilos++;
+                if (contHilos == 5) { contHilos = 1; vuelta = true; }
+
+                instruccion = "";
+            }
+            switch (contHilos)
+            {
+                case 1: { turno = jugadores[0].Nombre; break; }
+                case 2: { turno = jugadores[1].Nombre; break; }
+                case 3: { turno = jugadores[2].Nombre; break; }
+                case 4: { turno = jugadores[3].Nombre; break; }
+            }
+            
+
+
         }
 
         public Jugador BuscarJugador(string nombreJugador)

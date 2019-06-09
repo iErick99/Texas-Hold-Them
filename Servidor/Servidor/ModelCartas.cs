@@ -18,7 +18,11 @@ namespace Servidor
         public List<Carta> getCartasOficiales() { return cartas; }
         public List<Carta> getCartas() { return disponibles; }
         public List<Carta> getMesa() { return mesa; }
-
+        public List<Carta> Mesa
+        {
+            get { return mesa; }
+            set { mesa = value; }
+        }
         public ModelCartas()
         {
             cartas = new List<Carta>();
