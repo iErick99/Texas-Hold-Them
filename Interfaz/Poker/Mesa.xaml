@@ -97,12 +97,12 @@
             <Separator Height="6" Margin="30,0,18,0" VerticalAlignment="Top" Background="#FF0F0101"/>
             <TextBlock x:Name="Tbk_saldo_jugador2" Foreground="#DDFFFFFF" FontSize="18" TextAlignment="Center" Height="26" Margin="0,3,0,0"/>
         </StackPanel>
-        <Ellipse x:Name="Elp_jugador2" Margin="829,101,158,352" Stroke="Black" Width="93" Height="92">
+        <Ellipse x:Name="Elp_jugador2" Margin="829,101,158,352" Stroke="Black" Width="93" Height="92" StrokeThickness="3">
             <Ellipse.Fill>
                 <ImageBrush/>
             </Ellipse.Fill>
         </Ellipse>
-        <StackPanel x:Name="Sp_jugador4" Margin="900,368,10,109" RenderTransformOrigin="0.5,0.5">
+        <StackPanel x:Name="Sp_jugador3" Margin="900,368,10,109" RenderTransformOrigin="0.5,0.5">
             <StackPanel.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -117,27 +117,27 @@
                     <GradientStop Color="#FFAA2424" Offset="1"/>
                 </LinearGradientBrush>
             </StackPanel.Background>
-            <TextBlock x:Name="Tbk_jugador4" Foreground="#DDFFFFFF" FontSize="18" TextAlignment="Center" Height="26" Margin="0,8,0,0"/>
+            <TextBlock x:Name="Tbk_jugador3" Foreground="#DDFFFFFF" FontSize="18" TextAlignment="Center" Height="26" Margin="0,8,0,0"/>
             <Separator Height="6" Margin="30,0,18,0" VerticalAlignment="Top" Background="#FF0F0101"/>
-            <TextBlock x:Name="Tbk_saldo_jugador4" Foreground="#DDFFFFFF" FontSize="18" TextAlignment="Center" Height="26" Margin="0,3,0,0"/>
+            <TextBlock x:Name="Tbk_saldo_jugador3" Foreground="#DDFFFFFF" FontSize="18" TextAlignment="Center" Height="26" Margin="0,3,0,0"/>
         </StackPanel>
-        <Ellipse x:Name="Elp_jugador4"  Margin="829,356,158,96" Stroke="Black">
+        <Ellipse x:Name="Elp_jugador3"  Margin="829,356,158,96" Stroke="Black" StrokeThickness="3">
             <Ellipse.Fill>
                 <ImageBrush />
             </Ellipse.Fill>
         </Ellipse>
-        <StackPanel x:Name="Sp_jugador3" Margin="10,368,900,109">
+        <StackPanel x:Name="Sp_jugador4" Margin="10,368,900,109">
             <StackPanel.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="Black" Offset="0"/>
                     <GradientStop Color="#FFAA2424" Offset="1"/>
                 </LinearGradientBrush>
             </StackPanel.Background>
-            <TextBlock x:Name="Tbk_jugador3" Foreground="#DDFFFFFF" FontSize="18" TextAlignment="Center" Height="26" Margin="0,8,0,0"/>
+            <TextBlock x:Name="Tbk_jugador4" Foreground="#DDFFFFFF" FontSize="18" TextAlignment="Center" Height="26" Margin="0,8,0,0"/>
             <Separator Height="6" Margin="18,0,30,0" VerticalAlignment="Top" Background="#FF0F0101"/>
-            <TextBlock x:Name="Tbk_saldo_jugador3" Foreground="#DDFFFFFF" FontSize="18" TextAlignment="Center" Height="26" Margin="0,3,0,0"/>
+            <TextBlock x:Name="Tbk_saldo_jugador4" Foreground="#DDFFFFFF" FontSize="18" TextAlignment="Center" Height="26" Margin="0,3,0,0"/>
         </StackPanel>
-        <Ellipse x:Name="Elp_jugador3" Margin="158,356,829,96" Stroke="Black" RenderTransformOrigin="0.501,0.5">
+        <Ellipse x:Name="Elp_jugador4" Margin="158,356,829,96" Stroke="Black" RenderTransformOrigin="0.501,0.5" StrokeThickness="3">
             <Ellipse.Fill>
                 <ImageBrush  />
             </Ellipse.Fill>
@@ -154,7 +154,7 @@
             <Separator Height="6" Margin="18,0,30,0" VerticalAlignment="Top" Background="#FF0F0101"/>
             <TextBlock x:Name="Tbk_saldo_jugador1" Foreground="#DDFFFFFF" FontSize="18" TextAlignment="Center" Height="26" Margin="0,3,0,0"/>
         </StackPanel>
-        <Ellipse x:Name="Elp_jugador1"  Margin="158,101,829,351" Stroke="Black" Width="93" Height="92">
+        <Ellipse x:Name="Elp_jugador1"  Margin="158,101,829,351" Stroke="Black" Width="93" Height="92" StrokeThickness="3">
             <Ellipse.Fill>
                 <ImageBrush/>
             </Ellipse.Fill>
@@ -162,13 +162,13 @@
 
         <TextBlock x:Name="boteLabel" TextWrapping="Wrap" Text="Bote:" FontSize="18" Margin="499,198,467,328" Foreground="#DDFFFFFF" FontWeight="Bold" Height="18" VerticalAlignment="Center" HorizontalAlignment="Center" Width="114"/>
         <TextBlock x:Name="bote" TextWrapping="Wrap" Text="250" FontSize="18" Margin="551,198,415,326" Foreground="#DDFFFFFF" FontWeight="Bold" Height="20" VerticalAlignment="Center" HorizontalAlignment="Center" Width="114" RenderTransformOrigin="0.746,0.462"/>
-        <ProgressBar x:Name="Pgb_tiempo" Style="{x:Null}" Value="0" Height="Auto" Margin="655,16,108,128" Maximum="15" SmallChange="1" Background="Transparent" BorderBrush="Black" Foreground="Red" BorderThickness="1" Grid.Row="1" ValueChanged="Pgb_tiempo_ValueChanged"/>
+        <ProgressBar x:Name="Pgb_tiempo" Style="{x:Null}" Value="0" Height="Auto" Margin="655,16,108,128" Maximum="40" SmallChange="1" Background="Transparent" BorderBrush="Black" Foreground="Red" BorderThickness="1" Grid.Row="1" ValueChanged="Pgb_tiempo_ValueChanged"/>
 
         <Label x:Name="Lbl_tiempo" Content="Tiempo:" HorizontalAlignment="Left" Margin="564,12,0,0" VerticalAlignment="Top" Width="80" Grid.Row="1" FontSize="18" FontWeight="Bold" Foreground="#DDFFFFFF"/>
         <TextBlock x:Name="Tbk_apuesta_jugador1" Margin="260,152,766,374" FontSize="18" FontWeight="Bold" Foreground="#DDFFFFFF" Text=""/>
         <TextBlock x:Name="Tbk_apuesta_jugador2" Margin="766,152,260,374" FontSize="18" FontWeight="Bold" Foreground="#DDFFFFFF" Text="" TextAlignment="Right"/>
-        <TextBlock x:Name="Tbk_apuesta_jugador3" Margin="260,380,766,146" FontSize="18" FontWeight="Bold" Foreground="#DDFFFFFF" Text=""/>
-        <TextBlock x:Name="Tbk_apuesta_jugador4" Margin="766,380,260,146" FontSize="18" FontWeight="Bold" Foreground="#DDFFFFFF" Text="" TextAlignment="Right"/>
+        <TextBlock x:Name="Tbk_apuesta_jugador4" Margin="260,380,766,146" FontSize="18" FontWeight="Bold" Foreground="#DDFFFFFF" Text=""/>
+        <TextBlock x:Name="Tbk_apuesta_jugador3" Margin="766,380,260,146" FontSize="18" FontWeight="Bold" Foreground="#DDFFFFFF" Text="" TextAlignment="Right"/>
 
         <Image x:Name="Img_carta1_jugador1" Margin="10,184,989,254" Stretch="Fill"/>
         <Image x:Name="Img_carta2_jugador1" Margin="96,184,903,254" Stretch="Fill"/>
@@ -176,18 +176,30 @@
         <Image x:Name="Img_carta1_jugador2" Margin="989,184,10,254" Stretch="Fill"/>
         <Image x:Name="Img_carta2_jugador2" Margin="903,184,96,254" Stretch="Fill"/>
 
-        <Image x:Name="Img_carta1_jugador3" Margin="10,438,989,0" Stretch="Fill"/>
-        <Image x:Name="Img_carta2_jugador3" Margin="96,438,903,0" Stretch="Fill"/>
+        <Image x:Name="Img_carta1_jugador4" Margin="10,438,989,0" Stretch="Fill"/>
+        <Image x:Name="Img_carta2_jugador4" Margin="96,438,903,0" Stretch="Fill"/>
 
-        <Image x:Name="Img_carta1_jugador4" Margin="989,438,10,0" Stretch="Fill"/>
-        <Image x:Name="Img_carta2_jugador4" Margin="903,438,96,0" Stretch="Fill"/>
+        <Image x:Name="Img_carta1_jugador3" Margin="989,438,10,0" Stretch="Fill"/>
+        <Image x:Name="Img_carta2_jugador3" Margin="903,438,96,0" Stretch="Fill"/>
         <Image x:Name="Img_ficha_dealer_jugador1" Margin="257,124,801,400" Source="Images/Fichas/chip-d.png" Stretch="None" Visibility="Hidden"/>
-        <Image x:Name="Img_ficha_dealer_jugadro2" Margin="801,124,257,400" Source="Images/Fichas/chip-d.png" Stretch="None" Visibility="Hidden"/>
-        <Image x:Name="Img_ficha_dealer_jugador3" Margin="257,410,801,114" Source="Images/Fichas/chip-d.png" Stretch="None"/>
-        <Image x:Name="Img_ficha_dealer_jugador4" Margin="801,410,257,114" Source="Images/Fichas/chip-d.png" Stretch="None" Visibility="Hidden"/>
-        <Grid x:Name="Grd_fichas">
+        <Image x:Name="Img_ficha_dealer_jugador2" Margin="801,124,257,400" Source="Images/Fichas/chip-d.png" Stretch="None" Visibility="Hidden"/>
+        <Image x:Name="Img_ficha_dealer_jugador4" Margin="257,410,801,114" Source="Images/Fichas/chip-d.png" Stretch="None" Visibility="Hidden"/>
+        <Image x:Name="Img_ficha_dealer_jugador3" Margin="801,410,257,114" Source="Images/Fichas/chip-d.png" Stretch="None" Visibility="Hidden"/>
+        <Grid x:Name="Grd_fichas_jugador1">
 
         </Grid>
+
+      <Grid x:Name="Grd_fichas_jugador2">
+
+      </Grid>
+
+      <Grid x:Name="Grd_fichas_jugador3">
+
+      </Grid>
+
+      <Grid x:Name="Grd_fichas_jugador4">
+
+      </Grid>
 
     </Grid>
 </Window>

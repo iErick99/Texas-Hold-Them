@@ -1,7 +1,5 @@
 ﻿using Newtonsoft.Json;
 using System;
-using System.Dynamic;
-using System.Threading;
 using System.Windows;
 using System.Windows.Input;
 

@@ -193,3 +193,5 @@ C:\Users\alefa\Documents\Visual Studio 2019\Projects\Texas-Hold-Them\Interfaz\Po
 C:\Users\alefa\Documents\Visual Studio 2019\Projects\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Servidor.baml
 C:\Users\Gonzalo\Desktop\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Servidor.g.cs
 C:\Users\Gonzalo\Desktop\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Servidor.baml
+C:\Users\Gonzalo Gonzalez\Desktop\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Servidor.g.cs
+C:\Users\Gonzalo Gonzalez\Desktop\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Servidor.baml
