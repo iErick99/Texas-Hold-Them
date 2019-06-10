@@ -23,13 +23,13 @@ namespace Poker
     {
 
         private dynamic jugador;
-        private Login login;
+        private Client client;
 
-        public Cuenta()
+        public Cuenta(Client client)
         {
             InitializeComponent();
             this.jugador = new ExpandoObject();
-            this.login = new Login();
+            this.client = client;
         }
 
         private void Brd_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -45,15 +45,15 @@ namespace Poker
         private void Btn_crear_Click(object sender, RoutedEventArgs e)
         {
             if (this.psw_confirmarContrasena.Password.Equals(this.psw_contrasena.Password)) {
-                Client.client.Connect(this.txt_ip.Text, Int32.Parse(this.txt_puerto.Text));
+                client.Connect(this.txt_ip.Text, Int32.Parse(this.txt_puerto.Text));
 
                 jugador.method = "create";
                 jugador.user = this.txt_usuario.Text;
                 jugador.password = this.psw_contrasena.Password;
 
-                Client.client.SendData(JsonConvert.SerializeObject(jugador));
+                client.SendData(JsonConvert.SerializeObject(jugador));
 
-                var result = JsonConvert.DeserializeObject<dynamic>(Client.client.GetData());
+                var result = JsonConvert.DeserializeObject<dynamic>(client.GetData());
 
                 if (result.success == true) {
                     MessageBox.Show("Creada correctamente", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -75,7 +75,6 @@ namespace Poker
         private void Btn_volver_Click(object sender, RoutedEventArgs e) 
         {
             this.Hide();
-            this.login.Show();
         }
     }
 }

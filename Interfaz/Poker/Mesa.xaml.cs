@@ -159,7 +159,7 @@ namespace Poker
 
                         if (this.Sld_apuesta.Maximum <= this.Sld_apuesta.Minimum) 
                         {
-                            this.this.Sld_apuesta.Maximum = this.Sld_apuesta.Minimum;
+                            this.Sld_apuesta.Maximum = this.Sld_apuesta.Minimum;
                         }
                     }
 
