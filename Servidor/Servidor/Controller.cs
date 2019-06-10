@@ -238,8 +238,14 @@ namespace Servidor
 
                 instruccion = "";
             }
-            asignarTurno(contHilos);
-            
+            switch (contHilos)
+            {
+                case 1: { turno = jugadores[0].Nombre; break; }
+                case 2: { turno = jugadores[1].Nombre; break; }
+                case 3: { turno = jugadores[2].Nombre; break; }
+                case 4: { turno = jugadores[3].Nombre; break; }
+            }
+
 
 
         }
