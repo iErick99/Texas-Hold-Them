@@ -84,6 +84,12 @@ namespace Poker
                 cartasDeMesa.Add(Img_turn);
                 cartasDeMesa.Add(Img_river);
 
+                for (int i = 0; i < 5; i++)
+                {
+                    // Ver si funciona asi
+                    cartasDeMesa[i].Source = null;
+                }
+
                 for (int i = 0; i < informacion.table.cards.Count; i++)
                 {
                     this.Grd_fichas_jugador1.Children.Clear();
@@ -139,19 +145,32 @@ namespace Poker
                     apuestasDejugadores[i].Text = informacion.players[i].bet;
                     this.pintarFichas(Int32.Parse(apuestasDejugadores[i].Text), i);
 
+                    double minimo = 0;
+                    if (Double.Parse(apuestasDejugadores[i].Text) > minimo) 
+                    {
+                        minimo = Double.Parse(apuestasDejugadores[i].Text);
+                        this.Sld_apuesta.Minimum = minimo;
+                    }
+
                     if (informacion.players[i].name == informacion.turn)
                     {
                         elipsesDeJugador[i].Stroke = (Brush)new BrushConverter().ConvertFrom("Red");
                         this.Sld_apuesta.Maximum = Double.Parse(saldosDejugadores[i].Text);
-                        if (!apuestasDejugadores[i].Text.Equals("0"))
+
+                        if (this.Sld_apuesta.Maximum <= this.Sld_apuesta.Minimum) 
                         {
-                            this.Btn_pass.IsEnabled = false;
+                            this.this.Sld_apuesta.Maximum = this.Sld_apuesta.Minimum;
                         }
                     }
 
                     if (informacion.players[i].name == informacion.dealer)
                     {
                         fichasDeDealer[i].Visibility = Visibility.Visible;
+                    }
+
+                    for (int k = 0; k < 2; k++)
+                    {
+                        cartasDeJugadores[i][k].Source = null;
                     }
 
                     for (int j = 0; j < informacion.players[i].cards.Count; j++)
@@ -433,6 +452,7 @@ namespace Poker
         {
             this.jugador.EsSuTurno = false;
 
+            this.Pgb_tiempo.Value = 0;
             this.Btn_fold.IsEnabled = false;
             this.Btn_pass.IsEnabled = false;
             this.Btn_call.IsEnabled = false;
