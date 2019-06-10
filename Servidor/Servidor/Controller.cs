@@ -206,18 +206,29 @@ namespace Servidor
             }
             if(instruccion == "Igualar")
             {
-                int aux = apuesta - j.getApostado();
-                j.setApostado(apuesta);
-                pozo += aux;
-                j.setMonto(j.getMonto() - aux);
+                if (j.getMonto() > apuesta)
+                {
+                    int aux = apuesta - j.getApostado();
+                    j.setApostado(apuesta);
+                    pozo += aux;
+                    j.setMonto(j.getMonto() - aux);
+                }
+                else
+                {
+                    j.setApostado(j.getMonto());
+                    pozo += j.getMonto();
+                    j.setMonto(0);
+                }
             }
             if (instruccion == "Botar")
             {
                 j.setJugando(false);
+                j.setCarta1(null);
+                j.setCarta2(null);
             }
             instruccion = "sigaRecto";
 
-            if (nuevo_juego) { this.nuevoJuego(ref nuevo_juego, contHilos); ciega++; if (ciega == 5) { ciega = 1; } }
+            if (nuevo_juego) { this.nuevoJuego(ref nuevo_juego, contHilos); ciega++; if (ciega == 5) { ciega = 1; apuestaMinima += 50; } }
             if (vuelta) { this.cobro(ref nuevo_juego, ref contHilos, ref vuelta); }
             if (instruccion != "")
             {
