@@ -129,7 +129,6 @@ namespace Servidor
                     }
             }
             apuesta = apuestaMinima * 2;
-            this.cartas.vaciarMesa();
             this.repartirCartas();
             nuevoJuego = false;
         }
@@ -171,6 +170,7 @@ namespace Servidor
                     apuesta = 0;
                     contHilos = 0;
                     instruccion = "nuevoJuego";
+                    this.cartas.vaciarMesa();
                 }
                 else
                 {
@@ -238,13 +238,7 @@ namespace Servidor
 
                 instruccion = "";
             }
-            switch (contHilos)
-            {
-                case 1: { turno = jugadores[0].Nombre; break; }
-                case 2: { turno = jugadores[1].Nombre; break; }
-                case 3: { turno = jugadores[2].Nombre; break; }
-                case 4: { turno = jugadores[3].Nombre; break; }
-            }
+            asignarTurno(contHilos);
             
 
 
@@ -259,6 +253,22 @@ namespace Servidor
             return null;
         }
 
+        public string asignarTurno(int x)
+        {
+            if (x == 0)
+            {
+                if (nuevo_juego) { this.nuevoJuego(ref nuevo_juego, contHilos); ciega++; if (ciega == 5) { ciega = 1; apuestaMinima += 50; } }
+                x++;
+            }
+            while (true)
+            {
+                if (x == 1 && jugadores[0].getJugando() == true) { return jugadores[0].Nombre; }
+                if (x == 2 && jugadores[1].getJugando() == true) { return jugadores[1].Nombre; }
+                if (x == 3 && jugadores[2].getJugando() == true) { return jugadores[2].Nombre; }
+                if (x == 4 && jugadores[3].getJugando() == true) { return jugadores[3].Nombre; }
+                x++;
+            }
+        }
         public void escogerGanador()
         {
             if (jugadores[0].getJugando())
