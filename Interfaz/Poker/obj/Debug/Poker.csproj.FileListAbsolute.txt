@@ -195,3 +195,34 @@ C:\Users\Gonzalo\Desktop\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Servidor.g.cs
 C:\Users\Gonzalo\Desktop\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Servidor.baml
 C:\Users\Gonzalo Gonzalez\Desktop\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Servidor.g.cs
 C:\Users\Gonzalo Gonzalez\Desktop\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Servidor.baml
+C:\Users\jaalf\Desktop\Texas-Hold-Them\Interfaz\Poker\bin\Debug\Poker.exe.config
+C:\Users\jaalf\Desktop\Texas-Hold-Them\Interfaz\Poker\bin\Debug\Poker.exe
+C:\Users\jaalf\Desktop\Texas-Hold-Them\Interfaz\Poker\bin\Debug\Poker.pdb
+C:\Users\jaalf\Desktop\Texas-Hold-Them\Interfaz\Poker\bin\Debug\MaterialDesignColors.dll
+C:\Users\jaalf\Desktop\Texas-Hold-Them\Interfaz\Poker\bin\Debug\MaterialDesignThemes.Wpf.dll
+C:\Users\jaalf\Desktop\Texas-Hold-Them\Interfaz\Poker\bin\Debug\Newtonsoft.Json.dll
+C:\Users\jaalf\Desktop\Texas-Hold-Them\Interfaz\Poker\bin\Debug\MaterialDesignColors.pdb
+C:\Users\jaalf\Desktop\Texas-Hold-Them\Interfaz\Poker\bin\Debug\MaterialDesignThemes.Wpf.pdb
+C:\Users\jaalf\Desktop\Texas-Hold-Them\Interfaz\Poker\bin\Debug\MaterialDesignThemes.Wpf.xml
+C:\Users\jaalf\Desktop\Texas-Hold-Them\Interfaz\Poker\bin\Debug\Newtonsoft.Json.xml
+C:\Users\jaalf\Desktop\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Poker.csprojAssemblyReference.cache
+C:\Users\jaalf\Desktop\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Cuenta.g.cs
+C:\Users\jaalf\Desktop\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Login.g.cs
+C:\Users\jaalf\Desktop\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Mesa.g.cs
+C:\Users\jaalf\Desktop\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Servidor.g.cs
+C:\Users\jaalf\Desktop\Texas-Hold-Them\Interfaz\Poker\obj\Debug\App.g.cs
+C:\Users\jaalf\Desktop\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Poker_Content.g.cs
+C:\Users\jaalf\Desktop\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Poker_MarkupCompile.cache
+C:\Users\jaalf\Desktop\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Poker_MarkupCompile.lref
+C:\Users\jaalf\Desktop\Texas-Hold-Them\Interfaz\Poker\obj\Debug\App.baml
+C:\Users\jaalf\Desktop\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Cuenta.baml
+C:\Users\jaalf\Desktop\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Login.baml
+C:\Users\jaalf\Desktop\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Mesa.baml
+C:\Users\jaalf\Desktop\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Servidor.baml
+C:\Users\jaalf\Desktop\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Poker.g.resources
+C:\Users\jaalf\Desktop\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Poker.Properties.Resources.resources
+C:\Users\jaalf\Desktop\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Poker.csproj.GenerateResource.cache
+C:\Users\jaalf\Desktop\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Poker.csproj.CoreCompileInputs.cache
+C:\Users\jaalf\Desktop\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Poker.csproj.CopyComplete
+C:\Users\jaalf\Desktop\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Poker.exe
+C:\Users\jaalf\Desktop\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Poker.pdb
