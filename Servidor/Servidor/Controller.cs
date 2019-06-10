@@ -201,15 +201,15 @@ namespace Servidor
                 Console.WriteLine(instruccion);
                 if (apuesta < j.getApostado())
                 {
-                    int x = j.getApostado() - apuesta;
-                    apuesta += x;
+                    apuesta = j.getApostado();
                 }
             }
             if(instruccion == "Igualar")
             {
                 int aux = apuesta - j.getApostado();
-                j.setApostado(j.getApostado() + aux);
+                j.setApostado(apuesta);
                 pozo += aux;
+                j.setMonto(j.getMonto() - aux);
             }
             if (instruccion == "Botar")
             {
