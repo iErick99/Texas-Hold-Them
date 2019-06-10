@@ -18,7 +18,6 @@ namespace Servidor
         private List<Jugador> jugadores = new List<Jugador>();
         private String turno = "";
 
-
         public bool nuevo_juego = true;//sirve para identificar si va empezar un nuevo juego
         public bool vuelta = true;//Sirve solamente para dar permiso que se ejecute el metodo "cobro"
                                   //y se activa cuando al menos los 4 jugadores ya participaron. Esto sirve por si en una jugada 
@@ -129,6 +128,7 @@ namespace Servidor
                     }
             }
             apuesta = apuestaMinima * 2;
+            this.cartas.vaciarMesa();
             this.repartirCartas();
             nuevoJuego = false;
         }
@@ -238,15 +238,8 @@ namespace Servidor
 
                 instruccion = "";
             }
-            switch (contHilos)
-            {
-                case 1: { turno = jugadores[0].Nombre; break; }
-                case 2: { turno = jugadores[1].Nombre; break; }
-                case 3: { turno = jugadores[2].Nombre; break; }
-                case 4: { turno = jugadores[3].Nombre; break; }
-            }
 
-
+            turno = asignarTurno(contHilos);
 
         }
 
@@ -315,25 +308,25 @@ namespace Servidor
 
             if (jugadores[0].getValorMano() > jugadores[1].getValorMano() && jugadores[0].getValorMano() > jugadores[2].getValorMano() && jugadores[0].getValorMano() > jugadores[3].getValorMano())
             {
-                Console.WriteLine("Ganador: Jugador 0");
+                Console.WriteLine("Ganador: Jugador 0 con: " + jugadores[0].getValorMano());
                 jugadores[0].setMonto(jugadores[0].getMonto() + pozo);
             }
 
             else if (jugadores[1].getValorMano() > jugadores[0].getValorMano() && jugadores[1].getValorMano() > jugadores[2].getValorMano() && jugadores[1].getValorMano() > jugadores[3].getValorMano())
             {
-                Console.WriteLine("Ganador: Jugador 1");
+                Console.WriteLine("Ganador: Jugador 1 con: " + jugadores[1].getValorMano());
                 jugadores[1].setMonto(jugadores[1].getMonto() + pozo);
             }
 
             else if (jugadores[2].getValorMano() > jugadores[0].getValorMano() && jugadores[2].getValorMano() > jugadores[1].getValorMano() && jugadores[2].getValorMano() > jugadores[3].getValorMano())
             {
-                Console.WriteLine("Ganador: Jugador 2");
+                Console.WriteLine("Ganador: Jugador 2 con: " + jugadores[2].getValorMano());
                 jugadores[2].setMonto(jugadores[2].getMonto() + pozo);
             }
 
             else if (jugadores[3].getValorMano() > jugadores[0].getValorMano() && jugadores[3].getValorMano() > jugadores[1].getValorMano() && jugadores[3].getValorMano() > jugadores[2].getValorMano())
             {
-                Console.WriteLine("Ganador: Jugador 3");
+                Console.WriteLine("Ganador: Jugador 3 con: " + jugadores[3].getValorMano());
                 jugadores[3].setMonto(jugadores[3].getMonto() + pozo);
             }
         }

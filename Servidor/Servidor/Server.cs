@@ -160,12 +160,14 @@ namespace Servidor
                         case "fold":
                             {
                                 controller.apostar(jugador.Nombre, "Botar", 0);
+                                SendGameInformation();
                             }
                             break;
 
                         case "call":
                             {
                                 controller.apostar(jugador.Nombre, "Igualar", 0);
+                                SendGameInformation();
                             }
                             break;
 
@@ -183,9 +185,6 @@ namespace Servidor
 
         public void SendGameInformation()
         {
-            //String informacion = "{ 'dealer': 'salu4', 'turn': 'iErick99', 'players': [ ";
-
-            //Borrar esta basura
             String informacion;
 
             if (controller.Jugadores.Count != 4)
@@ -214,9 +213,7 @@ namespace Servidor
                     informacion += ",";
             }
 
-            //informacion = "mesaCartas: " + controller.mo  + "}";
-
-            informacion += "], 'table': { 'pot': 100, 'cards': [";
+            informacion += "], 'table': { 'pot': " + controller.Pozo  + " , 'cards': [";
             for (int i = 0; i < controller.Cartas.Mesa.Count; i++)
             {
                 informacion += "{ 'number': " + controller.Cartas.Mesa[i].getNumero() + ", 'symbol': '" + controller.Cartas.Mesa[i].getSimbolo() + "'}";
