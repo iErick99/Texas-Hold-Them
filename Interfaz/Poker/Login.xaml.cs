@@ -8,11 +8,14 @@ namespace Poker
 
     public partial class Login : Window
     {
-        Client client = new Client();
+        Client client;
+        Cuenta cuenta;
 
         public Login()
         {
             InitializeComponent();
+            client = new Client();
+            cuenta = new Cuenta(client);
         }
 
         private void Brd_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -28,6 +31,7 @@ namespace Poker
 
         private void Hl_registrate_Click(object sender, RoutedEventArgs e)
         {
+            this.cuenta.Show();
         }
 
         private void Btn_iniciar_Click(object sender, RoutedEventArgs e)
@@ -36,7 +40,7 @@ namespace Poker
             {
                 client.Connect("13.90.205.129", 100);
 
-                this.client.SendData(String.Format("{{\"method\": \"login\", \"user\": {0}, \"password\": {1}}}", txt_usuario.Text, psw_contrasena.Password));
+                this.client.SendData(String.Format("{{\"method\": \"login\", \"user\": \"{0}\", \"password\": \"{1}\"}}", txt_usuario.Text, psw_contrasena.Password));
 
                 var result = JsonConvert.DeserializeObject<dynamic>(this.client.GetData());
 
