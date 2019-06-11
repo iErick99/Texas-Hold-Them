@@ -44,7 +44,7 @@ namespace Poker {
                 client.Connect(this.txt_ip.Text, Int32.Parse(this.txt_puerto.Text));
                 MessageBox.Show("Conectado correctamente", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
                 login.Show();
-
+                this.Hide();
             }
 
             catch (Exception exc) {
