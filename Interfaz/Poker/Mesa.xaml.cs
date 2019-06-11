@@ -44,17 +44,6 @@ namespace Poker
 
                 bote.Text = informacion.table.pot;
 
-                if (informacion.turn == this.jugador.NombreDeUsuario)
-                {
-                    this.Btn_fold.IsEnabled = true;
-                    this.Btn_pass.IsEnabled = true;
-                    this.Btn_call.IsEnabled = true;
-                    this.Btn_raise.IsEnabled = true;
-                    this.Pgb_tiempo.Value = 40;
-
-                    this.jugador.EsSuTurno = true;
-                }
-
                 List<Image> fichasDeDealer = new List<Image>();
                 fichasDeDealer.Add(Img_ficha_dealer_jugador1);
                 fichasDeDealer.Add(Img_ficha_dealer_jugador2);
@@ -63,7 +52,8 @@ namespace Poker
 
                 for (int i = 0; i < 4; i++)
                 {
-                    fichasDeDealer[i].Visibility = Visibility.Collapsed;
+                    fichasDeDealer[i].Visibility = Visibility.Hidden;
+                    //fichasDeDealer[i].Opacity = 0;
                 }
 
                 List<Ellipse> elipsesDeJugador = new List<Ellipse>();
@@ -88,6 +78,10 @@ namespace Poker
                 {
                     // Ver si funciona asi
                     cartasDeMesa[i].Source = null;
+                    this.Grd_fichas_jugador1.Children.Clear();
+                    this.Grd_fichas_jugador2.Children.Clear();
+                    this.Grd_fichas_jugador3.Children.Clear();
+                    this.Grd_fichas_jugador4.Children.Clear();
                 }
 
                 for (int i = 0; i < informacion.table.cards.Count; i++)
@@ -145,19 +139,10 @@ namespace Poker
                     apuestasDejugadores[i].Text = informacion.players[i].bet;
                     this.pintarFichas(Int32.Parse(apuestasDejugadores[i].Text), i);
 
-                    double minimo = 0;
-                    if (Double.Parse(apuestasDejugadores[i].Text) >= minimo) 
-                    {
-                        minimo = Double.Parse(apuestasDejugadores[i].Text);
-                        this.Sld_apuesta.Minimum = minimo;
-                    }
-
                     if (informacion.players[i].name == informacion.turn)
                     {
                         elipsesDeJugador[i].Stroke = (Brush)new BrushConverter().ConvertFrom("Red");
                         this.Sld_apuesta.Maximum = Double.Parse(saldosDejugadores[i].Text);
-
-
                     }
 
                     if (informacion.players[i].name == informacion.dealer)
@@ -181,6 +166,45 @@ namespace Poker
                         {
                             cartasDeJugadores[i][j].Source = new BitmapImage(new Uri("../../Images/Cartas/carta volteada.jpg", UriKind.Relative));
                         }
+                    }
+                }
+
+                //Turno del jugador
+                if (informacion.turn == this.jugador.NombreDeUsuario) {
+                    bool hayApuesta = false;
+                    this.Btn_fold.IsEnabled = true;
+                    this.Btn_pass.IsEnabled = true;
+                    this.Btn_call.IsEnabled = true;
+                    this.Btn_raise.IsEnabled = true;
+                    this.jugador.EsSuTurno = true;
+                    this.Pgb_tiempo.Value = 40;
+
+                    double minimo = -1;
+
+                    for (int i = 0; i < informacion.players.Count; i++) {
+
+                        if (Double.Parse(apuestasDejugadores[i].Text) >= minimo) {
+                            minimo = Double.Parse(apuestasDejugadores[i].Text);
+                            this.Sld_apuesta.Minimum = minimo;
+                        }
+                    }
+
+                    for (int i = 0; i < informacion.players.Count; i++) {
+                        if (!apuestasDejugadores[i].Text.Equals("0")) {
+                            this.Btn_pass.IsEnabled = false;
+                            hayApuesta = true;
+                            break;
+                        }
+                    }
+
+                    if (apuestasDejugadores[0].Text.Equals(apuestasDejugadores[1].Text) && apuestasDejugadores[0].Text.Equals(apuestasDejugadores[2].Text) && apuestasDejugadores[0].Text.Equals(apuestasDejugadores[3].Text)) {
+                        this.Btn_pass.IsEnabled = true;
+                        hayApuesta = false;
+                    }
+
+                    if (!hayApuesta) {
+                        this.Btn_call.IsEnabled = false;
+                        this.Btn_fold.IsEnabled = false;
                     }
                 }
 
