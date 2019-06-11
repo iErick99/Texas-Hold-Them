@@ -45,7 +45,6 @@ namespace Poker
         private void Btn_crear_Click(object sender, RoutedEventArgs e)
         {
             if (this.psw_confirmarContrasena.Password.Equals(this.psw_contrasena.Password)) {
-                client.Connect(this.txt_ip.Text, Int32.Parse(this.txt_puerto.Text));
 
                 jugador.method = "create";
                 jugador.user = this.txt_usuario.Text;

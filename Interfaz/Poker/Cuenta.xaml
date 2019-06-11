@@ -12,7 +12,7 @@
         FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         Icon="/Images/logo.png"
-        Title="Login" Height="496.364" Width="425" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True">
+        Title="Login" Height="411.531" Width="425" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
@@ -54,12 +54,6 @@
                 <StackPanel Orientation="Horizontal" Margin="0 40 0 0">
                     <materialDesign:PackIcon Kind="Key" Foreground="{Binding ElementName=psw_contrasena}" VerticalAlignment="Bottom" Margin="0 4"/>
                     <PasswordBox x:Name="psw_confirmarContrasena" Width="300" materialDesign:HintAssist.Hint="Confirmar contraseña" materialDesign:HintAssist.IsFloating="True" CaretBrush="#FF950808"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" Margin="0 40 0 0">
-                    <materialDesign:PackIcon Kind="IpNetwork" Foreground="{Binding ElementName=txt_ip}" VerticalAlignment="Bottom" Margin="0 4"/>
-                    <TextBox x:Name="txt_ip" Width="150" materialDesign:HintAssist.Hint="IP Servidor" materialDesign:HintAssist.IsFloating="True" CaretBrush="#FF950808" />
-                    <materialDesign:PackIcon Kind="SerialPort" Foreground="{Binding ElementName=txt_puerto}" VerticalAlignment="Bottom" Margin="5,4,0,4"/>
-                    <TextBox x:Name="txt_puerto" Width="129" materialDesign:HintAssist.Hint="Puerto" materialDesign:HintAssist.IsFloating="True" CaretBrush="#FF950808" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="143,20,0,0">
                     <Button x:Name="Btn_volver" Content="Volver" Width="80" HorizontalAlignment="Right" Margin="0 0 0 0" Background="#FF950808" BorderBrush="#FF950808" Click="Btn_volver_Click"/>

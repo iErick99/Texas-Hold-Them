@@ -12,10 +12,10 @@ namespace Poker
         Client client;
         Cuenta cuenta;
 
-        public Login()
+        public Login(Client client)
         {
             InitializeComponent();
-            client = new Client();
+            this.client = client;
             cuenta = new Cuenta(client);
         }
 
@@ -37,10 +37,8 @@ namespace Poker
 
         private void Btn_iniciar_Click(object sender, RoutedEventArgs e)
         {
-            try
+            try 
             {
-                new SoundPlayer("../../Sounds/connect.wav").Play();
-                client.Connect("13.90.205.129", 100);
 
                 this.client.SendData(String.Format("{{\"method\": \"login\", \"user\": \"{0}\", \"password\": \"{1}\"}}", txt_usuario.Text, psw_contrasena.Password));
 
