@@ -39,7 +39,7 @@ namespace Servidor
             {
                 while (true)
                 {
-                    if (controller.Jugadores.Count != 4)
+                    if (controller.JugadoresEnLinea() != 4)
                     {
                         TcpClient client = socket.AcceptTcpClient();
                         this.CreateClientThread(client);
@@ -103,11 +103,36 @@ namespace Servidor
                             {
                                 try
                                 {
-                                    AD.authentication((string)deserializedRequest.user, (string)deserializedRequest.password);
+                                    String user = (string)deserializedRequest.user;
+                                    AD.authentication(user, (string)deserializedRequest.password);
                                     response = "{\"success\":true}";
-                                    jugador.Nombre = (string)deserializedRequest.user;
-                                    controller.Jugadores.Add(jugador);
+
                                     if (controller.Jugadores.Count == 4)
+                                    {
+                                        foreach (Jugador jugador2 in controller.Jugadores)
+                                        {
+                                            if (user == jugador2.Nombre)
+                                            {
+                                                jugador2.EnLinea = true;
+                                                jugador2.Client = client;
+                                                response = "{\"success\":true}";
+                                                break;
+                                            }
+                                            else
+                                            {
+                                                response = "{\"success\":false}";
+                                            }
+                                            
+                                        }
+                                    }
+                                    else
+                                    {
+                                        jugador.Nombre = (string)deserializedRequest.user;
+                                        jugador.EnLinea = true;
+                                        controller.Jugadores.Add(jugador);
+                                    }
+
+                                    if (controller.Jugadores.Count == 4 && controller.PartidaIniciada != true)
                                     {
                                         controller.inicio();
                                     }
@@ -131,7 +156,6 @@ namespace Servidor
                             {
                                 int apuesta = deserializedRequest.quantity;
                                 controller.apostar(jugador.Nombre, "Apostar", apuesta);
-                                Thread.Sleep(500);
                                 SendGameInformation();
                             }
                             break;
@@ -188,6 +212,20 @@ namespace Servidor
                                 SendGameInformation();
                             }
                             break;
+                        case "disconnect":
+                            {
+                                while (true)
+                                {
+                                    if (controller.Turno == jugador.Nombre)
+                                    {
+                                        jugador.EnLinea = false;
+                                        controller.apostar(jugador.Nombre, "Botar", 0);
+                                        SendGameInformation();
+                                        break;
+                                    }
+                                }
+                            }
+                            break;
 
                         default: response = "{\"success\":false}"; break;
                     }
@@ -197,6 +235,7 @@ namespace Servidor
             }
             catch (Exception e)
             {
+                Console.WriteLine(String.Format("{0} has disconnected", jugador.Nombre));
                 Console.WriteLine(String.Format("{0} has disconnected", clientAddress));
             }
         }
@@ -211,7 +250,7 @@ namespace Servidor
             }
             else
             {
-                informacion = "{ 'dealer': 'salu4', 'turn': '" + controller.Turno + "', 'players': [ ";
+                informacion = "{ 'dealer': '" + controller.dealer + "', 'turn': '" + controller.Turno + "', 'players': [ ";
             }
 
             //
