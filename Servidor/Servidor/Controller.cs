@@ -193,10 +193,13 @@ namespace Servidor
                     pozo = 0;
                     apuesta = 0;
                     this.cartas.vaciarMesa();
-                    contHilos = ciega;
+                    if (ciega == 5) {
+                        ciega = 1; apuestaMinima = apuestaMinima * 2; contHilos = 1;
+                    }
+                    else { contHilos = ciega; }
+                    
                     this.nuevoJuego(ref nuevo_juego, contHilos);
                     ciega++;
-                    if (ciega == 5) { ciega = 1; apuestaMinima = apuestaMinima * 2; }
                     contHilos--;
                 }
                 else

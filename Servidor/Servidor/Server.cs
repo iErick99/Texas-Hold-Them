@@ -170,7 +170,7 @@ namespace Servidor
                                     {
                                         if(jugadorCrear.Nombre == user)
                                         {
-                                            throw new Exception("Este usuario ya está logueado.");
+                                            throw new Exception("Este usuario ya estï¿½ logueado.");
                                         }
                                     }
 
