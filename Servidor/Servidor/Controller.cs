@@ -17,6 +17,7 @@ namespace Servidor
         private ModelCartas cartas;
         private List<Jugador> jugadores = new List<Jugador>();
         private String turno = "";
+        private int contVueltas=0;
 
         public bool nuevo_juego = true;//sirve para identificar si va empezar un nuevo juego
         public bool vuelta = true;//Sirve solamente para dar permiso que se ejecute el metodo "cobro"
@@ -84,6 +85,11 @@ namespace Servidor
 
         public void nuevoJuego(ref bool nuevoJuego, int jugador)
         {
+            foreach (Jugador j in jugadores)
+            {
+                j.setApostado(0);
+                j.setJugando(true);
+            }
             switch (jugador)
             {
                 case 1:
@@ -131,6 +137,9 @@ namespace Servidor
             this.cartas.vaciarMesa();
             this.repartirCartas();
             nuevoJuego = false;
+            contHilos += 2;
+            if (contHilos == 5) contHilos = 1;
+            if (contHilos == 6) contHilos = 2;
         }
         public void repartirCartas()
         {
@@ -152,12 +161,13 @@ namespace Servidor
         {
             if (verificarCobro())
             {
+                contVueltas = 0;
                 vuelta = false;
                 apuesta = 0;
                 foreach (Jugador jugador in jugadores)
                 {
                     jugador.setApostado(0);
-                    jugador.setJugando(true);
+                    //jugador.setJugando(true);
                 }
                 if (cartas.getMesa().Count() == 5)
                 {
@@ -225,16 +235,27 @@ namespace Servidor
                 j.setJugando(false);
                 j.setCarta1(null);
                 j.setCarta2(null);
+                Console.WriteLine("BOTO");
             }
             instruccion = "sigaRecto";
 
-            if (nuevo_juego) { this.nuevoJuego(ref nuevo_juego, contHilos); ciega++; if (ciega == 5) { ciega = 1; apuestaMinima += 50; } }
+            if (nuevo_juego) {
+                this.nuevoJuego(ref nuevo_juego, contHilos);
+                    ciega++;
+                if (ciega == 5) {
+                    ciega = 1; apuestaMinima += 50;
+                }
+
+            }
             if (vuelta) { this.cobro(ref nuevo_juego, ref contHilos, ref vuelta); }
+            Console.WriteLine(vuelta);
             if (instruccion != "")
             {
-                if (contHilos == 0) { contHilos = ciega; }
+                if (contHilos == 0) { contHilos = ciega; if (nuevo_juego) { this.nuevoJuego(ref nuevo_juego, ciega+1); ciega++; if (ciega == 5) { ciega = 1; apuestaMinima += 50; } } }
                 contHilos++;
-                if (contHilos == 5) { contHilos = 1; vuelta = true; }
+                contVueltas++;
+                if (contHilos == 5) { contHilos = 1; }
+                if (contVueltas == 4) { vuelta = true; }
 
                 instruccion = "";
             }

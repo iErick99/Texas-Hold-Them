@@ -110,18 +110,19 @@ namespace Servidor
                                 {
                                     AD.authentication((string)deserializedRequest.user, (string)deserializedRequest.password);
                                     response = "{\"success\":true}";
-                                    responseBuffer = Encoding.ASCII.GetBytes(response);
-                                    dataStream.Write(responseBuffer, 0, responseBuffer.Length);
-                                    Console.WriteLine(response);
-                                    dataStream.Flush();
-                                    jugador.Nombre = (string)deserializedRequest.user;
-                                    SendGameInformation();
                                 }
                                 catch (Exception e)
                                 {
                                     response = "{\"success\":false}";
                                     Console.WriteLine(e.Message.ToString());
                                 }
+
+                                responseBuffer = Encoding.ASCII.GetBytes(response);
+                                dataStream.Write(responseBuffer, 0, responseBuffer.Length);
+                                Console.WriteLine(response);
+                                dataStream.Flush();
+                                jugador.Nombre = (string)deserializedRequest.user;
+                                SendGameInformation();
 
                                 break;
                             }
@@ -139,7 +140,18 @@ namespace Servidor
                             {
                                 try
                                 {
-                                    AD.createUser((string)deserializedRequest.name, (string)deserializedRequest.user, (string)deserializedRequest.password);
+                                    String user = (string)deserializedRequest.user;
+                                    String password = (string)deserializedRequest.password;
+
+                                    foreach(Jugador jugadorCrear in controller.Jugadores)
+                                    {
+                                        if(jugadorCrear.Nombre == user)
+                                        {
+                                            throw new Exception("Este usuario ya está logueado.");
+                                        }
+                                    }
+
+                                    AD.createUser(user, user, password);
                                     response = "{\"success\":true}";
                                 }
                                 catch (Exception e)
@@ -147,6 +159,12 @@ namespace Servidor
                                     response = "{\"success\":false}";
                                     Console.WriteLine(e.Message.ToString());
                                 }
+
+                                responseBuffer = Encoding.ASCII.GetBytes(response);
+                                dataStream.Write(responseBuffer, 0, responseBuffer.Length);
+                                Console.WriteLine(response);
+                                dataStream.Flush();
+
                                 break;
                             }
 
@@ -223,7 +241,7 @@ namespace Servidor
 
             informacion += "] } }";
 
-            Console.WriteLine(String.Format("{0}", informacion));
+            //Console.WriteLine(String.Format("{0}", informacion));
 
             BroadCast(informacion);
         }
