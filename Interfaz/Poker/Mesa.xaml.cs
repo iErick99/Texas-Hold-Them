@@ -197,7 +197,7 @@ namespace Poker
                         }
                     }
 
-                    if (apuestasDejugadores[0].Text.Equals(apuestasDejugadores[1].Text.Equals(apuestasDejugadores[2].Text.Equals(apuestasDejugadores[3].Text)))) {
+                    if (apuestasDejugadores[0].Text.Equals(apuestasDejugadores[1].Text) && apuestasDejugadores[0].Text.Equals(apuestasDejugadores[2].Text) && apuestasDejugadores[0].Text.Equals(apuestasDejugadores[3].Text)) {
                         this.Btn_pass.IsEnabled = true;
                         hayApuesta = false;
                     }
