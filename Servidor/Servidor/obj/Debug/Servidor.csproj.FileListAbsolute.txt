@@ -18,18 +18,6 @@ C:\Users\jaalf\Desktop\Texas-Hold-Them\Servidor\Servidor\obj\Debug\Servidor.cspr
 C:\Users\jaalf\Desktop\Texas-Hold-Them\Servidor\Servidor\obj\Debug\Servidor.csproj.CopyComplete
 C:\Users\jaalf\Desktop\Texas-Hold-Them\Servidor\Servidor\obj\Debug\Servidor.exe
 C:\Users\jaalf\Desktop\Texas-Hold-Them\Servidor\Servidor\obj\Debug\Servidor.pdb
-C:\Texas-Hold-Them\Servidor\Servidor\bin\Debug\Servidor.exe.config
-C:\Texas-Hold-Them\Servidor\Servidor\bin\Debug\Servidor.exe
-C:\Texas-Hold-Them\Servidor\Servidor\bin\Debug\Servidor.pdb
-C:\Texas-Hold-Them\Servidor\Servidor\bin\Debug\Newtonsoft.Json.dll
-C:\Texas-Hold-Them\Servidor\Servidor\bin\Debug\Newtonsoft.Json.xml
-C:\Texas-Hold-Them\Servidor\Servidor\obj\Debug\Servidor.csprojAssemblyReference.cache
-C:\Texas-Hold-Them\Servidor\Servidor\obj\Debug\Servidor.csproj.CoreCompileInputs.cache
-C:\Texas-Hold-Them\Servidor\Servidor\obj\Debug\Servidor.csproj.CopyComplete
-C:\Texas-Hold-Them\Servidor\Servidor\obj\Debug\Servidor.exe
-C:\Texas-Hold-Them\Servidor\Servidor\obj\Debug\Servidor.pdb
-C:\Texas-Hold-Them\Servidor\Servidor\bin\Debug\Connection.dll
-C:\Texas-Hold-Them\Servidor\Servidor\bin\Debug\Connection.pdb
 C:\Users\jaalf\Desktop\Texas-Hold-Them\Servidor\Servidor\bin\Debug\Connection.dll
 C:\Users\jaalf\Desktop\Texas-Hold-Them\Servidor\Servidor\bin\Debug\Connection.pdb
 C:\Users\alefa\Documents\Visual Studio 2019\Projects\Texas-Hold-Them\Servidor\Servidor\bin\Debug\Servidor.exe.config
@@ -44,3 +32,15 @@ C:\Users\alefa\Documents\Visual Studio 2019\Projects\Texas-Hold-Them\Servidor\Se
 C:\Users\alefa\Documents\Visual Studio 2019\Projects\Texas-Hold-Them\Servidor\Servidor\obj\Debug\Servidor.csproj.CopyComplete
 C:\Users\alefa\Documents\Visual Studio 2019\Projects\Texas-Hold-Them\Servidor\Servidor\obj\Debug\Servidor.exe
 C:\Users\alefa\Documents\Visual Studio 2019\Projects\Texas-Hold-Them\Servidor\Servidor\obj\Debug\Servidor.pdb
+C:\Texas-Hold-Them\Servidor\Servidor\bin\Debug\Servidor.exe.config
+C:\Texas-Hold-Them\Servidor\Servidor\bin\Debug\Servidor.exe
+C:\Texas-Hold-Them\Servidor\Servidor\bin\Debug\Servidor.pdb
+C:\Texas-Hold-Them\Servidor\Servidor\bin\Debug\Connection.dll
+C:\Texas-Hold-Them\Servidor\Servidor\bin\Debug\Newtonsoft.Json.dll
+C:\Texas-Hold-Them\Servidor\Servidor\bin\Debug\Connection.pdb
+C:\Texas-Hold-Them\Servidor\Servidor\bin\Debug\Newtonsoft.Json.xml
+C:\Texas-Hold-Them\Servidor\Servidor\obj\Debug\Servidor.csprojAssemblyReference.cache
+C:\Texas-Hold-Them\Servidor\Servidor\obj\Debug\Servidor.csproj.CoreCompileInputs.cache
+C:\Texas-Hold-Them\Servidor\Servidor\obj\Debug\Servidor.csproj.CopyComplete
+C:\Texas-Hold-Them\Servidor\Servidor\obj\Debug\Servidor.exe
+C:\Texas-Hold-Them\Servidor\Servidor\obj\Debug\Servidor.pdb

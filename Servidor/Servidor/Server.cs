@@ -59,34 +59,29 @@ namespace Servidor
 
         public void CreateClientThread(TcpClient client)
         {
-            Jugador jugador = new Jugador();
-            jugador.Client = client;
-            controller.Jugadores.Add(jugador);
-            if (controller.Jugadores.Count == 4)
-            {
-                controller.inicio();
-            }
-            Thread clientThread = new Thread(() => ReceiveRequests(jugador));
+            Thread clientThread = new Thread(() => ReceiveRequests(client));
             clientThread.Start();
         }
 
         // Clients' request parsing method
-        public void ReceiveRequests(Jugador jugador)
+        public void ReceiveRequests(TcpClient client)
         {
             NetworkStream dataStream;
             int requestSize;
-            string clientAddress = (jugador.Client.Client.RemoteEndPoint).ToString();
+            string clientAddress = (client.Client.RemoteEndPoint).ToString();
             string request;
             string response;
             byte[] requestBuffer;
             byte[] responseBuffer;
+            Jugador jugador = new Jugador();
+            jugador.Client = client;
 
             try
             {
                 while (true)
                 {
                     // Parse client's received data
-                    dataStream = jugador.Client.GetStream();
+                    dataStream = client.GetStream();
 
                     requestBuffer = new byte[2048];
                     requestSize = dataStream.Read(requestBuffer, 0, requestBuffer.Length);
@@ -110,6 +105,12 @@ namespace Servidor
                                 {
                                     AD.authentication((string)deserializedRequest.user, (string)deserializedRequest.password);
                                     response = "{\"success\":true}";
+                                    jugador.Nombre = (string)deserializedRequest.user;
+                                    controller.Jugadores.Add(jugador);
+                                    if (controller.Jugadores.Count == 4)
+                                    {
+                                        controller.inicio();
+                                    }
                                 }
                                 catch (Exception e)
                                 {
@@ -121,7 +122,6 @@ namespace Servidor
                                 dataStream.Write(responseBuffer, 0, responseBuffer.Length);
                                 Console.WriteLine(response);
                                 dataStream.Flush();
-                                jugador.Nombre = (string)deserializedRequest.user;
                                 SendGameInformation();
 
                                 break;
@@ -207,7 +207,7 @@ namespace Servidor
 
             if (controller.Jugadores.Count != 4)
             {
-                informacion = "{ 'dealer': 'salu4', 'players': [ ";
+                informacion = "{ 'dealer': '" + controller.dealer + "', 'players': [ ";
             }
             else
             {
@@ -241,7 +241,7 @@ namespace Servidor
 
             informacion += "] } }";
 
-            //Console.WriteLine(String.Format("{0}", informacion));
+            Console.WriteLine(String.Format("{0}", informacion));
 
             BroadCast(informacion);
         }

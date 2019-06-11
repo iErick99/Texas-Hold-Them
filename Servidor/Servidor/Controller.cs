@@ -24,8 +24,11 @@ namespace Servidor
                                   //y se activa cuando al menos los 4 jugadores ya participaron. Esto sirve por si en una jugada 
                                   //nadie aposto y la apuesta queda en 0;
         public int contHilos = 1;
-        public int ciega = 0;
+        public int ciega = 1;
         private int contVueltas=0;
+        private int limVueltas = 4;
+
+        public string dealer = "";
         public Controller()
         {
             cartas = new ModelCartas();
@@ -54,7 +57,7 @@ namespace Servidor
         public void inicio()
         {
 
-            apuestaMinima = 50;
+            apuestaMinima = 25;
 
             if (nuevo_juego) { this.nuevoJuego(ref nuevo_juego, contHilos); ciega++; if (ciega == 5) { ciega = 1; } }
             if (vuelta){ this.cobro(ref nuevo_juego, ref contHilos, ref vuelta); }
@@ -66,7 +69,6 @@ namespace Servidor
                 case 4: { turno = jugadores[3].Nombre; break; }
             }
             if (contHilos == 0) { contHilos = ciega; }
-            contHilos++;
             if (contHilos == 5) { contHilos = 1; vuelta = true; }
 
         }
@@ -77,7 +79,21 @@ namespace Servidor
             {
                 j.setApostado(0);
                 j.setJugando(true);
+                if (j.getMonto() < apuestaMinima)
+                {
+                    j.setMonto(0);
+                    j.setJugando(false);
+                    j.setCarta1(null);
+                    j.setCarta2(null);
+                    limVueltas--;
+                    jugador++;
+                    if (jugador == 5) jugador = 1;
+                    if (jugador == 6) jugador = 2;
+                    contHilos=jugador;
+                }
             }
+            limVueltas = 4;
+            this.calcularDealer(jugador);
             switch (jugador)
             {
                 case 1:
@@ -168,7 +184,8 @@ namespace Servidor
                     contHilos = ciega;
                     this.nuevoJuego(ref nuevo_juego, contHilos);
                     ciega++;
-                    if (ciega == 5) { ciega = 1; }
+                    if (ciega == 5) { ciega = 1; apuestaMinima = apuestaMinima * 2; }
+                    contHilos--;
                 }
                 else
                 {
@@ -182,7 +199,7 @@ namespace Servidor
         {
             foreach (Jugador jugador in jugadores)
             {
-                if (jugador.getApostado() != apuesta && jugador.getJugando() == true) { return false; }
+                if (jugador.getApostado() != apuesta && jugador.getJugando() == true ) { return false; }
             }
             return true;
         }
@@ -191,7 +208,18 @@ namespace Servidor
         public void apostar(string nombreJugador, string instruccion, int raise)
         {
             Jugador j = BuscarJugador(nombreJugador);
-            if(instruccion == "Apostar")
+
+            if (j.getMonto() <= 0)
+            {
+                j.setMonto(0);
+                j.setJugando(false);
+                j.setCarta1(null);
+                j.setCarta2(null);
+                limVueltas--;
+                instruccion = "pasar";
+            }
+
+            if (instruccion == "Apostar")
             {
                 j.setApostado(j.getApostado() + raise);
                 j.setMonto(j.getMonto() - raise);
@@ -204,7 +232,7 @@ namespace Servidor
             }
             if(instruccion == "Igualar")
             {
-                if (j.getMonto() >= apuesta)
+                if (j.getMonto() > apuesta)
                 {
                     int aux = apuesta - j.getApostado();
                     j.setApostado(apuesta);
@@ -213,9 +241,12 @@ namespace Servidor
                 }
                 else
                 {
+                    int aux = apuesta - j.getApostado();
                     j.setApostado(j.getMonto());
-                    pozo += j.getMonto();
+                    pozo += aux;
                     j.setMonto(0);
+                    j.setJugando(false);
+                    limVueltas--;
                 }
             }
             if (instruccion == "Botar")
@@ -223,6 +254,7 @@ namespace Servidor
                 j.setJugando(false);
                 j.setCarta1(null);
                 j.setCarta2(null);
+                limVueltas--;
             }
             this.Procesar();
         }
@@ -233,8 +265,21 @@ namespace Servidor
             contHilos++;
             contVueltas++;
             if (contHilos == 5) { contHilos = 1; }
-            if (contVueltas == 4) { vuelta = true; }
-            turno = asignarTurno(contHilos);
+            if (contVueltas >= limVueltas) { vuelta = true; }
+            turno = asignarTurno();
+        }
+
+        public string asignarTurno()
+        {
+            while (true)
+            {
+                if (contHilos == 1 && jugadores[0].getJugando() == true) { return jugadores[0].Nombre; }
+                if (contHilos == 2 && jugadores[1].getJugando() == true) { return jugadores[1].Nombre; }
+                if (contHilos == 3 && jugadores[2].getJugando() == true) { return jugadores[2].Nombre; }
+                if (contHilos == 4 && jugadores[3].getJugando() == true) { return jugadores[3].Nombre; }
+                contHilos++;
+                if (contHilos == 5) { contHilos = 1; }
+            }
         }
 
         public Jugador BuscarJugador(string nombreJugador)
@@ -246,19 +291,15 @@ namespace Servidor
             return null;
         }
 
-        public string asignarTurno(int x)
-        {
-            while (true)
-            {
-                if (x == 1 && jugadores[0].getJugando() == true) { return jugadores[0].Nombre; }
-                if (x == 2 && jugadores[1].getJugando() == true) { return jugadores[1].Nombre; }
-                if (x == 3 && jugadores[2].getJugando() == true) { return jugadores[2].Nombre; }
-                if (x == 4 && jugadores[3].getJugando() == true) { return jugadores[3].Nombre; }
-                x++;
-            }
-        }
+        
+
         public void escogerGanador()
         {
+            jugadores[0].setValorMano(0);
+            jugadores[1].setValorMano(0);
+            jugadores[2].setValorMano(0);
+            jugadores[3].setValorMano(0);
+
             if (jugadores[0].getJugando())
             {
                 cartas.getMesa().Add(jugadores[0].getCarta1());
@@ -319,5 +360,14 @@ namespace Servidor
                 jugadores[3].setMonto(jugadores[3].getMonto() + pozo);
             }
         }
+
+        public void calcularDealer(int jugador)
+        {
+            if (jugador == 1) dealer = jugadores[3].Nombre;
+            if (jugador == 2) dealer = jugadores[0].Nombre;
+            if (jugador == 3) dealer = jugadores[1].Nombre;
+            if (jugador == 4) dealer = jugadores[2].Nombre;
+        }
+
     }
 }
