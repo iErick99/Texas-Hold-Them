@@ -146,7 +146,7 @@ namespace Poker
                     this.pintarFichas(Int32.Parse(apuestasDejugadores[i].Text), i);
 
                     double minimo = 0;
-                    if (Double.Parse(apuestasDejugadores[i].Text) > minimo) 
+                    if (Double.Parse(apuestasDejugadores[i].Text) >= minimo) 
                     {
                         minimo = Double.Parse(apuestasDejugadores[i].Text);
                         this.Sld_apuesta.Minimum = minimo;
@@ -157,10 +157,7 @@ namespace Poker
                         elipsesDeJugador[i].Stroke = (Brush)new BrushConverter().ConvertFrom("Red");
                         this.Sld_apuesta.Maximum = Double.Parse(saldosDejugadores[i].Text);
 
-                        if (this.Sld_apuesta.Maximum <= this.Sld_apuesta.Minimum) 
-                        {
-                            this.Sld_apuesta.Maximum = this.Sld_apuesta.Minimum;
-                        }
+
                     }
 
                     if (informacion.players[i].name == informacion.dealer)
