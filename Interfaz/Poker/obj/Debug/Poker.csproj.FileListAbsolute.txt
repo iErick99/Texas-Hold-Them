@@ -226,3 +226,34 @@ C:\Users\jaalf\Desktop\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Poker.csproj.Cor
 C:\Users\jaalf\Desktop\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Poker.csproj.CopyComplete
 C:\Users\jaalf\Desktop\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Poker.exe
 C:\Users\jaalf\Desktop\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Poker.pdb
+C:\Users\LoLER\OneDrive - Universidad Nacional de Costa Rica\Documentos\Sistemas Operativos\Texas-Hold-Them\Interfaz\Poker\bin\Debug\Poker.exe.config
+C:\Users\LoLER\OneDrive - Universidad Nacional de Costa Rica\Documentos\Sistemas Operativos\Texas-Hold-Them\Interfaz\Poker\bin\Debug\Poker.exe
+C:\Users\LoLER\OneDrive - Universidad Nacional de Costa Rica\Documentos\Sistemas Operativos\Texas-Hold-Them\Interfaz\Poker\bin\Debug\Poker.pdb
+C:\Users\LoLER\OneDrive - Universidad Nacional de Costa Rica\Documentos\Sistemas Operativos\Texas-Hold-Them\Interfaz\Poker\bin\Debug\MaterialDesignColors.dll
+C:\Users\LoLER\OneDrive - Universidad Nacional de Costa Rica\Documentos\Sistemas Operativos\Texas-Hold-Them\Interfaz\Poker\bin\Debug\MaterialDesignThemes.Wpf.dll
+C:\Users\LoLER\OneDrive - Universidad Nacional de Costa Rica\Documentos\Sistemas Operativos\Texas-Hold-Them\Interfaz\Poker\bin\Debug\Newtonsoft.Json.dll
+C:\Users\LoLER\OneDrive - Universidad Nacional de Costa Rica\Documentos\Sistemas Operativos\Texas-Hold-Them\Interfaz\Poker\bin\Debug\MaterialDesignColors.pdb
+C:\Users\LoLER\OneDrive - Universidad Nacional de Costa Rica\Documentos\Sistemas Operativos\Texas-Hold-Them\Interfaz\Poker\bin\Debug\MaterialDesignThemes.Wpf.pdb
+C:\Users\LoLER\OneDrive - Universidad Nacional de Costa Rica\Documentos\Sistemas Operativos\Texas-Hold-Them\Interfaz\Poker\bin\Debug\MaterialDesignThemes.Wpf.xml
+C:\Users\LoLER\OneDrive - Universidad Nacional de Costa Rica\Documentos\Sistemas Operativos\Texas-Hold-Them\Interfaz\Poker\bin\Debug\Newtonsoft.Json.xml
+C:\Users\LoLER\OneDrive - Universidad Nacional de Costa Rica\Documentos\Sistemas Operativos\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Poker.csprojAssemblyReference.cache
+C:\Users\LoLER\OneDrive - Universidad Nacional de Costa Rica\Documentos\Sistemas Operativos\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Cuenta.g.cs
+C:\Users\LoLER\OneDrive - Universidad Nacional de Costa Rica\Documentos\Sistemas Operativos\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Login.g.cs
+C:\Users\LoLER\OneDrive - Universidad Nacional de Costa Rica\Documentos\Sistemas Operativos\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Mesa.g.cs
+C:\Users\LoLER\OneDrive - Universidad Nacional de Costa Rica\Documentos\Sistemas Operativos\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Servidor.g.cs
+C:\Users\LoLER\OneDrive - Universidad Nacional de Costa Rica\Documentos\Sistemas Operativos\Texas-Hold-Them\Interfaz\Poker\obj\Debug\App.g.cs
+C:\Users\LoLER\OneDrive - Universidad Nacional de Costa Rica\Documentos\Sistemas Operativos\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Poker_Content.g.cs
+C:\Users\LoLER\OneDrive - Universidad Nacional de Costa Rica\Documentos\Sistemas Operativos\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Poker_MarkupCompile.cache
+C:\Users\LoLER\OneDrive - Universidad Nacional de Costa Rica\Documentos\Sistemas Operativos\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Poker_MarkupCompile.lref
+C:\Users\LoLER\OneDrive - Universidad Nacional de Costa Rica\Documentos\Sistemas Operativos\Texas-Hold-Them\Interfaz\Poker\obj\Debug\App.baml
+C:\Users\LoLER\OneDrive - Universidad Nacional de Costa Rica\Documentos\Sistemas Operativos\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Cuenta.baml
+C:\Users\LoLER\OneDrive - Universidad Nacional de Costa Rica\Documentos\Sistemas Operativos\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Login.baml
+C:\Users\LoLER\OneDrive - Universidad Nacional de Costa Rica\Documentos\Sistemas Operativos\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Mesa.baml
+C:\Users\LoLER\OneDrive - Universidad Nacional de Costa Rica\Documentos\Sistemas Operativos\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Servidor.baml
+C:\Users\LoLER\OneDrive - Universidad Nacional de Costa Rica\Documentos\Sistemas Operativos\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Poker.g.resources
+C:\Users\LoLER\OneDrive - Universidad Nacional de Costa Rica\Documentos\Sistemas Operativos\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Poker.Properties.Resources.resources
+C:\Users\LoLER\OneDrive - Universidad Nacional de Costa Rica\Documentos\Sistemas Operativos\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Poker.csproj.GenerateResource.cache
+C:\Users\LoLER\OneDrive - Universidad Nacional de Costa Rica\Documentos\Sistemas Operativos\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Poker.csproj.CoreCompileInputs.cache
+C:\Users\LoLER\OneDrive - Universidad Nacional de Costa Rica\Documentos\Sistemas Operativos\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Poker.csproj.CopyComplete
+C:\Users\LoLER\OneDrive - Universidad Nacional de Costa Rica\Documentos\Sistemas Operativos\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Poker.exe
+C:\Users\LoLER\OneDrive - Universidad Nacional de Costa Rica\Documentos\Sistemas Operativos\Texas-Hold-Them\Interfaz\Poker\obj\Debug\Poker.pdb
