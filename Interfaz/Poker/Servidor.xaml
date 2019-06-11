@@ -5,8 +5,54 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Poker"
         mc:Ignorable="d"
-        Title="Servidor" Height="450" Width="800">
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        Background="{DynamicResource MaterialDesignPaper}"
+        TextElement.FontWeight="Medium"
+        TextElement.FontSize="14"
+        FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Icon="/Images/logo.png"
+        Title="Login" Height="301.455" Width="398.818" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True" ResizeMode="NoResize">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0" Background="Transparent" MouseLeftButtonDown="Brd_MouseLeftButtonDown">
+            <Grid>
+                <materialDesign:ColorZone Background="#FFAA2424" BorderBrush="#FFAA2424">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                        <Button x:Name="btn_cerrar" Width="30" Height="30" materialDesign:ShadowAssist.ShadowDepth="Depth3" Padding="0" Click="Btn_cerrar_Click" Background="#FFDC0F0F" BorderBrush="#FF950808">
+                            <materialDesign:PackIcon Kind="WindowClose" Background="#FFDC0F0F"/>
+                        </Button>
+                    </StackPanel>
+                </materialDesign:ColorZone>
+
+            </Grid>
+        </Border>
+
+        <Grid Grid.Row="1">
+            <materialDesign:ColorZone Mode="PrimaryDark" Foreground="White" Background="#FF950808" BorderBrush="#FF950808">
+                <TextBlock Text="Conectarse al servidor" FontSize="35" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="30 50 0 10"/>
+            </materialDesign:ColorZone>
+        </Grid>
+
+        <Grid Grid.Row="2">
+            <StackPanel Orientation="Vertical" Margin="20 20 20 0" Focusable="True">
+
+                <StackPanel Orientation="Horizontal" Margin="0 40 0 0">
+                    <materialDesign:PackIcon Kind="IpNetwork" Foreground="{Binding ElementName=txt_ip}" VerticalAlignment="Bottom" Margin="0 4"/>
+                    <TextBox x:Name="txt_ip" Width="150" materialDesign:HintAssist.Hint="IP Servidor" materialDesign:HintAssist.IsFloating="True" CaretBrush="#FF950808" />
+                    <materialDesign:PackIcon Kind="SerialPort" Foreground="{Binding ElementName=txt_puerto}" VerticalAlignment="Bottom" Margin="5,4,0,4"/>
+                    <TextBox x:Name="txt_puerto" Width="129" materialDesign:HintAssist.Hint="Puerto" materialDesign:HintAssist.IsFloating="True" CaretBrush="#FF950808" />
+                </StackPanel>
+
+                <Button x:Name="Btn_iniciar" Content="Conectar" Width="93" HorizontalAlignment="Right" Margin="0,20,42,0" Background="#FF950808" BorderBrush="#FF950808" Click="Btn_iniciar_Click"/>
+
+            </StackPanel>
+        </Grid>
     </Grid>
+
 </Window>
