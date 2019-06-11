@@ -197,6 +197,7 @@
     <Resource Include="Images\Cartas\Espadas\12.png" />
     <Resource Include="Images\Cartas\Espadas\13.png" />
     <Resource Include="Images\Cartas\Espadas\14.png" />
+    <Content Include="Sounds\connect.wav" />
     <Content Include="Sounds\pass.wav" />
     <Content Include="Sounds\raise.wav" />
     <Resource Include="Images\Cartas\Treboles\2.png" />

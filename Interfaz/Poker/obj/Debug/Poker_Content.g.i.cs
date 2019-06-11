@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("sounds/connect.wav")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("sounds/pass.wav")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("sounds/raise.wav")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("sounds/alert.wav")]
