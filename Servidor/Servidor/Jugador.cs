@@ -21,9 +21,11 @@ namespace Servidor
         private double valorMano;
 
         private bool jugando;
+        private bool enLinea;
 
         private TcpClient client;
 
+        
         public Jugador()
         {
             nombre = "";
@@ -34,6 +36,7 @@ namespace Servidor
             carta2 = null;
             jugando = true;
             valorMano = 0;
+            enLinea = false;
         }
         public TcpClient Client
         {
@@ -49,6 +52,12 @@ namespace Servidor
         {
             get { return nombre; }
             set { nombre = value; }
+        }
+
+        public bool EnLinea
+        {
+            get { return enLinea; }
+            set { enLinea = value; }
         }
 
         public string getClave() { return clave; }

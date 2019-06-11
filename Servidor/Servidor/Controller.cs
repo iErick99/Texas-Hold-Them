@@ -16,7 +16,7 @@ namespace Servidor
         private ModelCartas cartas;
         private List<Jugador> jugadores = new List<Jugador>();
         private String turno = "";
-        
+        private bool partidaIniciada;
 
         public bool nuevo_juego = true;//sirve para identificar si va empezar un nuevo juego
 
@@ -53,10 +53,15 @@ namespace Servidor
             get { return turno; }
             set { turno = value; }
         }
+        public bool PartidaIniciada
+        {
+            get { return partidaIniciada; }
+            set { partidaIniciada = value; }
+        }
 
         public void inicio()
         {
-
+            partidaIniciada = true;
             apuestaMinima = 25;
 
             if (nuevo_juego) { this.nuevoJuego(ref nuevo_juego, contHilos); ciega++; if (ciega == 5) { ciega = 1; } }
@@ -89,7 +94,11 @@ namespace Servidor
                     jugador++;
                     if (jugador == 5) jugador = 1;
                     if (jugador == 6) jugador = 2;
-                    contHilos=jugador;
+                    contHilos = jugador;
+                }
+                if (!j.EnLinea)
+                {
+                    j.setJugando(false);
                 }
             }
             limVueltas = 4;
@@ -153,10 +162,13 @@ namespace Servidor
 
             foreach (Jugador jugador in jugadores)
             {
-                jugador.setCarta1(cartas.getCartas()[0]);
-                cartas.getCartas().Remove(cartas.getCartas()[0]);
-                jugador.setCarta2(cartas.getCartas()[0]);
-                cartas.getCartas().Remove(cartas.getCartas()[0]);
+                if (jugador.getJugando() == true)
+                {
+                    jugador.setCarta1(cartas.getCartas()[0]);
+                    cartas.getCartas().Remove(cartas.getCartas()[0]);
+                    jugador.setCarta2(cartas.getCartas()[0]);
+                    cartas.getCartas().Remove(cartas.getCartas()[0]);
+                }
             }
 
         }
@@ -261,12 +273,24 @@ namespace Servidor
 
         public void Procesar()
         {
+            contVueltas++;
+            if (contVueltas >= limVueltas) { vuelta = true; }
             if (vuelta) { this.cobro(ref nuevo_juego, ref contHilos, ref vuelta); }
             contHilos++;
-            contVueltas++;
             if (contHilos == 5) { contHilos = 1; }
-            if (contVueltas >= limVueltas) { vuelta = true; }
             turno = asignarTurno();
+        }
+
+        public int JugadoresEnLinea()
+        {
+            int cantidad = 0;
+            foreach(Jugador jugador in jugadores)
+            {
+                if (jugador.EnLinea)
+                    cantidad += 1;
+            }
+
+            return cantidad;
         }
 
         public string asignarTurno()
@@ -358,6 +382,27 @@ namespace Servidor
             {
                 Console.WriteLine("Ganador: Jugador 3 con: " + jugadores[3].getValorMano());
                 jugadores[3].setMonto(jugadores[3].getMonto() + pozo);
+            }
+
+            else {
+                Console.WriteLine("Empate");
+                List<Jugador> jugadoresActivos = new List<Jugador>();
+
+                foreach (Jugador j in jugadores) {
+                    if (j.getJugando()) {
+                        jugadoresActivos.Add(j);
+                    }
+                }
+
+                for (int i = 0; i < jugadoresActivos.Count; i++) {
+                    string nombre = jugadoresActivos[i].Nombre;
+
+                    for (int j = 0; j < jugadores.Count; j++) {
+                        if (jugadores[j].Nombre.Equals(nombre)) {
+                            jugadores[j].setMonto(jugadores[j].getMonto() + (pozo / jugadoresActivos.Count));
+                        }
+                    }
+                }
             }
         }
 
