@@ -13,23 +13,22 @@ namespace Servidor
         private int pozo = 0;
         private int apuesta = 0;
         private int apuestaMinima = 0;
-        private string instruccion = "";
         private ModelCartas cartas;
         private List<Jugador> jugadores = new List<Jugador>();
         private String turno = "";
-        private int contVueltas=0;
+        
 
         public bool nuevo_juego = true;//sirve para identificar si va empezar un nuevo juego
+
         public bool vuelta = true;//Sirve solamente para dar permiso que se ejecute el metodo "cobro"
                                   //y se activa cuando al menos los 4 jugadores ya participaron. Esto sirve por si en una jugada 
                                   //nadie aposto y la apuesta queda en 0;
         public int contHilos = 1;
         public int ciega = 0;
+        private int contVueltas=0;
         public Controller()
         {
             cartas = new ModelCartas();
-            //ARRACO EL SERVER
-            //llAMO 4 HILOS 
         }
         public int Pozo
         {
@@ -57,30 +56,19 @@ namespace Servidor
 
             apuestaMinima = 50;
 
-            this.mutexGeneral();
+            if (nuevo_juego) { this.nuevoJuego(ref nuevo_juego, contHilos); ciega++; if (ciega == 5) { ciega = 1; } }
+            if (vuelta){ this.cobro(ref nuevo_juego, ref contHilos, ref vuelta); }
+            switch (contHilos)
+            {
+                case 1: { turno = jugadores[0].Nombre; break; }
+                case 2: { turno = jugadores[1].Nombre; break; }
+                case 3: { turno = jugadores[2].Nombre; break; }
+                case 4: { turno = jugadores[3].Nombre; break; }
+            }
+            if (contHilos == 0) { contHilos = ciega; }
+            contHilos++;
+            if (contHilos == 5) { contHilos = 1; vuelta = true; }
 
-        }
-
-        public void mutexGeneral()
-        {
-                if (nuevo_juego) { this.nuevoJuego(ref nuevo_juego, contHilos); ciega++; if (ciega == 5) { ciega = 1; } }
-                if (vuelta){ this.cobro(ref nuevo_juego, ref contHilos, ref vuelta); }
-                switch (contHilos)
-                {
-                    case 1: { turno = jugadores[0].Nombre; break; }
-                    case 2: { turno = jugadores[1].Nombre; break; }
-                    case 3: { turno = jugadores[2].Nombre; break; }
-                    case 4: { turno = jugadores[3].Nombre; break; }
-                }
-                if (instruccion != "")
-                {
-                    if (contHilos == 0) { contHilos = ciega; }
-                    contHilos++;
-                    if (contHilos == 5) { contHilos = 1; vuelta = true; }
-
-                    instruccion = "";
-                }
-        
         }
 
         public void nuevoJuego(ref bool nuevoJuego, int jugador)
@@ -167,20 +155,20 @@ namespace Servidor
                 foreach (Jugador jugador in jugadores)
                 {
                     jugador.setApostado(0);
-                    //jugador.setJugando(true);
                 }
                 if (cartas.getMesa().Count() == 5)
                 {
                     nuevo_juego = true;
                     //DEFINIR GANADOR
-                    /////////////////////////
                     this.escogerGanador();
-                    //////////////////////////////////
+                    //////////////////////
                     pozo = 0;
                     apuesta = 0;
-                    contHilos = 0;
-                    instruccion = "nuevoJuego";
                     this.cartas.vaciarMesa();
+                    contHilos = ciega;
+                    this.nuevoJuego(ref nuevo_juego, contHilos);
+                    ciega++;
+                    if (ciega == 5) { ciega = 1; }
                 }
                 else
                 {
@@ -216,7 +204,7 @@ namespace Servidor
             }
             if(instruccion == "Igualar")
             {
-                if (j.getMonto() > apuesta)
+                if (j.getMonto() >= apuesta)
                 {
                     int aux = apuesta - j.getApostado();
                     j.setApostado(apuesta);
@@ -235,33 +223,18 @@ namespace Servidor
                 j.setJugando(false);
                 j.setCarta1(null);
                 j.setCarta2(null);
-                Console.WriteLine("BOTO");
             }
-            instruccion = "sigaRecto";
+            this.Procesar();
+        }
 
-            if (nuevo_juego) {
-                this.nuevoJuego(ref nuevo_juego, contHilos);
-                    ciega++;
-                if (ciega == 5) {
-                    ciega = 1; apuestaMinima += 50;
-                }
-
-            }
+        public void Procesar()
+        {
             if (vuelta) { this.cobro(ref nuevo_juego, ref contHilos, ref vuelta); }
-            Console.WriteLine(vuelta);
-            if (instruccion != "")
-            {
-                if (contHilos == 0) { contHilos = ciega; if (nuevo_juego) { this.nuevoJuego(ref nuevo_juego, ciega+1); ciega++; if (ciega == 5) { ciega = 1; apuestaMinima += 50; } } }
-                contHilos++;
-                contVueltas++;
-                if (contHilos == 5) { contHilos = 1; }
-                if (contVueltas == 4) { vuelta = true; }
-
-                instruccion = "";
-            }
-
+            contHilos++;
+            contVueltas++;
+            if (contHilos == 5) { contHilos = 1; }
+            if (contVueltas == 4) { vuelta = true; }
             turno = asignarTurno(contHilos);
-
         }
 
         public Jugador BuscarJugador(string nombreJugador)
@@ -275,11 +248,6 @@ namespace Servidor
 
         public string asignarTurno(int x)
         {
-            if (x == 0)
-            {
-                if (nuevo_juego) { this.nuevoJuego(ref nuevo_juego, contHilos); ciega++; if (ciega == 5) { ciega = 1; apuestaMinima += 50; } }
-                x++;
-            }
             while (true)
             {
                 if (x == 1 && jugadores[0].getJugando() == true) { return jugadores[0].Nombre; }
