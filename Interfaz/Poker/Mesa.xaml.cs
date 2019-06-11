@@ -482,7 +482,9 @@ namespace Poker
 
         private void Btn_cerrar_Click(object sender, RoutedEventArgs e)
         {
+            this.client.SendData("{\"method\": \"disconnect\"}");
             Application.Current.Shutdown();
+
         }
 
         private void Brd_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -537,10 +539,11 @@ namespace Poker
 
         private void Btn_raise_Click(object sender, RoutedEventArgs e)
         {
-            this.client.SendData(String.Format("{{\"method\": \"raise\", \"quantity\": {0}}}", (int)Lbl_apuesta.Content));
-
-            new SoundPlayer("../../Sounds/raise.wav").Play();
-            this.terminarTurno();
+            if ((int)this.Lbl_apuesta.Content != 0) {
+                this.client.SendData(String.Format("{{\"method\": \"raise\", \"quantity\": {0}}}", (int)Lbl_apuesta.Content));
+                new SoundPlayer("../../Sounds/raise.wav").Play();
+                this.terminarTurno();
+            }
         }
 
         private void Timer_Tick(object sender, EventArgs e)

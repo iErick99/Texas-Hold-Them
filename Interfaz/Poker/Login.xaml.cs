@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
+using System.Media;
 using System.Windows;
 using System.Windows.Input;
 
@@ -38,6 +39,7 @@ namespace Poker
         {
             try
             {
+                new SoundPlayer("../../Sounds/connect.wav").Play();
                 client.Connect("13.90.205.129", 100);
 
                 this.client.SendData(String.Format("{{\"method\": \"login\", \"user\": \"{0}\", \"password\": \"{1}\"}}", txt_usuario.Text, psw_contrasena.Password));
