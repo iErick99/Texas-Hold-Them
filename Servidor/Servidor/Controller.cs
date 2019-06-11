@@ -388,8 +388,18 @@ namespace Servidor
                 Console.WriteLine("Empate");
                 List<Jugador> jugadoresActivos = new List<Jugador>();
 
+                double mayor = 0;
                 foreach (Jugador j in jugadores) {
-                    if (j.getJugando()) {
+
+                    if (j.getJugando() && j.getValorMano() > mayor) {
+                        mayor = j.getValorMano();
+                    }
+                }
+
+                foreach (Jugador j in jugadores)
+                {
+                    if (j.getValorMano() == mayor)
+                    {
                         jugadoresActivos.Add(j);
                     }
                 }

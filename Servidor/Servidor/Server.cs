@@ -148,7 +148,6 @@ namespace Servidor
                                 Console.WriteLine(response);
                                 dataStream.Flush();
                                 SendGameInformation();
-
                                 break;
                             }
 
