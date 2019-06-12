@@ -134,7 +134,7 @@ namespace Servidor
 
                                     if (controller.Jugadores.Count == 4 && controller.PartidaIniciada != true)
                                     {
-                                        controller.inicio();
+                                        controller.Inicio();
                                     }
                                 }
                                 catch (Exception e)
@@ -154,7 +154,7 @@ namespace Servidor
                         case "raise":
                             {
                                 int apuesta = deserializedRequest.quantity;
-                                controller.apostar(jugador.Nombre, "Apostar", apuesta);
+                                controller.Raise(jugador.Nombre, apuesta);
                                 SendGameInformation();
                             }
                             break;
@@ -193,21 +193,21 @@ namespace Servidor
 
                         case "pass":
                             {
-                                controller.apostar(jugador.Nombre, "Pasar", 0);
+                                controller.Pass(jugador.Nombre);
                                 SendGameInformation();
                             }
                             break;
 
                         case "fold":
                             {
-                                controller.apostar(jugador.Nombre, "Botar", 0);
+                                controller.Fold(jugador.Nombre);
                                 SendGameInformation();
                             }
                             break;
 
                         case "call":
                             {
-                                controller.apostar(jugador.Nombre, "Igualar", 0);
+                                controller.Call(jugador.Nombre);
                                 SendGameInformation();
                             }
                             break;
@@ -218,7 +218,7 @@ namespace Servidor
                                     if (controller.Turno == jugador.Nombre)
                                     {
                                         jugador.EnLinea = false;
-                                        controller.apostar(jugador.Nombre, "Botar", 0);
+                                        controller.Fold(jugador.Nombre);
                                         SendGameInformation();
                                         break;
                                     }

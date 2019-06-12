@@ -9,19 +9,21 @@ namespace Servidor
     class ModelCartas
     {
         private const int numCartas = 52;
-        //private Carta[] cartas;
-        //private Carta[] disponibles;
         private int tam;
         private List<Carta> cartas;
         private List<Carta> disponibles;
         private List<Carta> mesa;
         public List<Carta> getCartasOficiales() { return cartas; }
-        public List<Carta> getCartas() { return disponibles; }
         public List<Carta> getMesa() { return mesa; }
         public List<Carta> Mesa
         {
             get { return mesa; }
             set { mesa = value; }
+        }
+        public List<Carta> Disponibles
+        {
+            get { return disponibles; }
+            set { disponibles = value; }
         }
         public ModelCartas()
         {
@@ -69,35 +71,34 @@ namespace Servidor
 
 
             }
-            this.clone(cartas, ref disponibles);
-            this.desordenar(disponibles);
-
+            this.Clone();
+            this.Desordenar();
         }
-        public void clone(List<Carta> clonador, ref List<Carta> clonado)
+        public void Clone()
         {
-            clonado = new List<Carta>();
-            foreach (Carta c in clonador)
+            disponibles = new List<Carta>();
+            foreach (Carta c in cartas)
             {
-                clonado.Add(c);
+                disponibles.Add(c);
             }
         }
-        public void desordenar(List<Carta> lista)
+        public void Desordenar()
         {
             Carta aux;
             int x = 0, y = 0;
             Random ram = new Random();
-            for (int i = 0; i < lista.Count() / 2; i++)
+            for (int i = 0; i < disponibles.Count() / 2; i++)
             {
-                x = ram.Next(0, lista.Count());
-                y = ram.Next(0, lista.Count());
+                x = ram.Next(0, disponibles.Count());
+                y = ram.Next(0, disponibles.Count());
 
-                aux = lista[x];
-                lista[x] = lista[y];
-                lista[y] = aux;
+                aux = disponibles[x];
+                disponibles[x] = disponibles[y];
+                disponibles[y] = aux;
             }
 
         }
-        public void dealing()
+        public void Dealing()
         {
             if (this.mesa.Count() == 0)
             {
